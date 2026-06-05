@@ -8,10 +8,18 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# --- GOOGLE VERIFICATION TRACKER ---
+# This hidden container ensures Google bots can safely parse your property code
+st.components.v1.html(
+    """
+    <meta name="google-site-verification" content="SratphLQH9l1bcw65FrdBhyFi_d0i4wGVhuOCR027ks" />
+    """,
+    height=0,
+    width=0
+)
+
 # --- CLEAN WELCOMING LIGHT MODE STYLING ---
 st.markdown("""
-<meta name="google-site-verification" content="SratphLQH9l1bcw65FrdBhyFi_d0i4wGVhuOCR027ks" />
-
 <style>
     /* Force and lock the theme selector menu to only display Light mode options */
     [data-testid="stStatusWidget"] button:not(:nth-child(2)),
