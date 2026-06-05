@@ -1,4 +1,5 @@
 import streamlit as st
+import google.generativeai as genai
 
 # --- CORE RESPONSE STRUCTURE CONFIGURATION ---
 st.set_page_config(
@@ -8,14 +9,28 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# --- INITIALIZE GEMINI CLIENT ---
+# Pulls your secure token from the Streamlit Cloud secret vaults
+if "GEMINI_API_KEY" in st.secrets:
+    genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+    # Using the standard modern flash model optimized for lightning-fast chats
+    model = genai.GenerativeModel('gemini-2.5-flash')
+else:
+    model = None
+
 # --- CLEAN WELCOMING LIGHT MODE STYLING ---
 st.markdown("""
 <style>
-    /* Welcoming Light Background & Clear Typography */
+    /* Targeted clean typography that leaves Streamlit system menus completely untouched */
+    .stApp [data-testid="stMarkdownContainer"], 
+    .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp li, .stApp span, .stApp div {
+        font-family: "Times New Roman", Times, serif !important;
+    }
+
+    /* Welcoming Light Background */
     .stApp {
         background-color: #f8fafc !important;
         color: #0f172a !important;
-        font-family: "Times New Roman", Times, serif;
     }
     
     /* Clean Header Card */
@@ -73,7 +88,7 @@ st.markdown("""
         line-height: 1.6;
     }
 
-    /* Vibrant, Clear Badges for Light Textures */
+    /* Vibrant Badges */
     .tier-badge-highest {
         background-color: #fef9c3 !important;
         color: #713f12 !important;
@@ -112,11 +127,6 @@ st.markdown("""
         border: 1px solid #34d399 !important;
         display: inline-block;
         margin-bottom: 8px;
-    }
-    
-    /* Force Fonts to Times New Roman globally */
-    .stChatMessage, .stMarkdown, p, div, span, h3, h1 {
-        font-family: "Times New Roman", Times, serif !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -172,7 +182,6 @@ elif st.session_state.page == "Pilots":
     st.write("Structured resources built to optimize competitive college applications and accelerate flight training timelines.")
     st.write("")
 
-    # --- CARD 1: ERAU ---
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
@@ -187,7 +196,6 @@ elif st.session_state.page == "Pilots":
     st.link_button("Deploy to Official ERAU Portal ↗️", "https://erau.edu/academics/degrees-and-programs/free-online-courses/Aviation-101", use_container_width=True)
     st.write("")
 
-    # --- CARD 2: PART 107 ---
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
@@ -202,7 +210,6 @@ elif st.session_state.page == "Pilots":
     st.link_button("Deploy to FAA Unmanned Portal ↗️", "https://www.faa.gov/uas/commercial_operators", use_container_width=True)
     st.write("")
 
-    # --- CARD 3: AOPA ---
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
@@ -217,7 +224,6 @@ elif st.session_state.page == "Pilots":
     st.link_button("Deploy to AOPA High School Hub ↗️", "https://youcanfly.aopa.org/high-school", use_container_width=True)
     st.write("")
 
-    # --- CARD 4: CIVIL AIR PATROL ---
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
@@ -232,7 +238,6 @@ elif st.session_state.page == "Pilots":
     st.link_button("Deploy to Civil Air Patrol Portal ↗️", "https://www.gocivilairpatrol.com/", use_container_width=True)
     st.write("")
 
-    # --- CARD 5: SPORTYS ---
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-medium">⚓ Tier 4: Foundational Value</span><br>
@@ -252,7 +257,6 @@ elif st.session_state.page == "ATC":
     st.write("Professional simulation tracks and phraseology baselines designed to secure federal placement pathways.")
     st.write("")
 
-    # --- CARD 1: VATSIM ---
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
@@ -267,7 +271,6 @@ elif st.session_state.page == "ATC":
     st.link_button("Deploy to VATSIM Network ↗️", "https://vatsim.net/", use_container_width=True)
     st.write("")
 
-    # --- CARD 2: FAA ACADEMY PREP ---
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
@@ -282,7 +285,6 @@ elif st.session_state.page == "ATC":
     st.link_button("Deploy to FAA Air Traffic Manuals ↗️", "https://www.faa.gov/air_traffic/publications/", use_container_width=True)
     st.write("")
 
-    # --- CARD 3: LIVE ATC ---
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
@@ -296,23 +298,38 @@ elif st.session_state.page == "ATC":
     """, unsafe_allow_html=True)
     st.link_button("Deploy to LiveATC Audio Feed ↗️", "https://www.liveatc.net/", use_container_width=True)
 
-# PAGE 4: CHATBOT
+# PAGE 4: LIVE GEMINI CHATBOT
 elif st.session_state.page == "AI":
     st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
     
+    # Initialize chat memory
     if "chat_history" not in st.session_state:
-        st.session_state.chat_history = [{"role": "assistant", "content": "Avionics arrays initialized. Pose any operational rule or structural airspace query below."}]
+        st.session_state.chat_history = [{"role": "assistant", "content": "Aviation data arrays initialized. I am powered by Google Gemini. Ask me anything about rules, airspace vectors, or private pilot preparation!"}]
         
+    # Render chat history with customized avatars
     for text in st.session_state.chat_history:
         icon = "🤖" if text["role"] == "assistant" else "🧑‍✈️"
         with st.chat_message(text["role"], avatar=icon):
             st.write(text["content"])
             
-    if prompt := st.chat_input("Query structural regulations, terminal parameters..."):
+    # Process inputs
+    if prompt := st.chat_input("Query regulations, terminal fields..."):
         st.session_state.chat_history.append({"role": "user", "content": prompt})
         with st.chat_message("user", avatar="🧑‍✈️"):
             st.write(prompt)
+            
         with st.chat_message("assistant", avatar="🤖"):
-            reply = f"AeroBot Log: Tactical inquiry recorded. Evaluating reference vectors for: '{prompt}' inside the active Pilot's Handbook of Aeronautical Knowledge."
+            if model is not None:
+                with st.spinner("Analyzing operational directives..."):
+                    try:
+                        # Construct a clean persona directive for context
+                        system_prompt = f"You are AeroBot, an expert high school aviation mentor and CFI. Answer this question accurately using standard FAA guidelines: {prompt}"
+                        response = model.generate_content(system_prompt)
+                        reply = response.text
+                    except Exception as e:
+                        reply = f"System Error processing vector: {str(e)}. Check your API key dashboard."
+            else:
+                reply = "AeroBot Alert: Gemini integration requires an active GEMINI_API_KEY saved inside your Streamlit Cloud configuration secrets."
+                
             st.write(reply)
             st.session_state.chat_history.append({"role": "assistant", "content": reply})
