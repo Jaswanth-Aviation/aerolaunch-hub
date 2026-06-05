@@ -1,5 +1,6 @@
 import streamlit as st
-import g4f
+import urllib.request
+import json
 
 # --- CORE RESPONSE STRUCTURE CONFIGURATION ---
 st.set_page_config(
@@ -12,19 +13,14 @@ st.set_page_config(
 # --- CLEAN WELCOMING LIGHT MODE STYLING ---
 st.markdown("""
 <style>
-    /* Targeted clean typography that leaves Streamlit system menus completely untouched */
     .stApp [data-testid="stMarkdownContainer"], 
     .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp li, .stApp span, .stApp div {
         font-family: "Times New Roman", Times, serif !important;
     }
-
-    /* Welcoming Light Background */
     .stApp {
         background-color: #f8fafc !important;
         color: #0f172a !important;
     }
-    
-    /* Clean Header Card */
     .app-header {
         text-align: center;
         padding: 24px 10px;
@@ -34,8 +30,6 @@ st.markdown("""
         margin-bottom: 25px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
     }
-    
-    /* Crisp Pearl White Cards */
     .resource-card {
         background: #ffffff !important;
         padding: 24px;
@@ -44,21 +38,16 @@ st.markdown("""
         margin-bottom: 18px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
     }
-    
     .resource-card p {
         color: #334155 !important;
     }
-    
-    /* Vibrant Contrast Titles */
     .card-title {
         color: #1d4ed8 !important;
         font-size: 23px;
         font-weight: 700;
         margin-top: 4px;
         margin-bottom: 2px;
-        letter-spacing: -0.01em;
     }
-    
     .card-subtitle {
         font-size: 12px;
         color: #64748b !important;
@@ -66,8 +55,6 @@ st.markdown("""
         letter-spacing: 0.07em;
         margin-bottom: 14px;
     }
-    
-    /* Soft Guidance Container */
     .guidance-box {
         background-color: #f1f5f9 !important;
         border-left: 4px solid #1d4ed8 !important;
@@ -75,11 +62,8 @@ st.markdown("""
         border-radius: 6px;
         margin-top: 14px;
         font-size: 15px;
-        color: #1e293b !important;
         line-height: 1.6;
     }
-
-    /* Vibrant Badges */
     .tier-badge-highest {
         background-color: #fef9c3 !important;
         color: #713f12 !important;
@@ -87,7 +71,6 @@ st.markdown("""
         border-radius: 20px;
         font-size: 11px;
         font-weight: bold;
-        letter-spacing: 0.05em;
         text-transform: uppercase;
         border: 1px solid #eab308 !important;
         display: inline-block;
@@ -100,7 +83,6 @@ st.markdown("""
         border-radius: 20px;
         font-size: 11px;
         font-weight: bold;
-        letter-spacing: 0.05em;
         text-transform: uppercase;
         border: 1px solid #60a5fa !important;
         display: inline-block;
@@ -113,7 +95,6 @@ st.markdown("""
         border-radius: 20px;
         font-size: 11px;
         font-weight: bold;
-        letter-spacing: 0.05em;
         text-transform: uppercase;
         border: 1px solid #34d399 !important;
         display: inline-block;
@@ -134,7 +115,6 @@ if "page" not in st.session_state:
     st.session_state.page = "Feed"
 
 nav_cols = st.columns(4)
-
 with nav_cols[0]:
     if st.button("🏠 Home Feed", use_container_width=True, type="primary" if st.session_state.page == "Feed" else "secondary"):
         st.session_state.page = "Feed"
@@ -154,31 +134,63 @@ with nav_cols[3]:
 
 st.write("") 
 
-# --- LIVE FREE AI CHAT ENGINE ---
-def query_unrestricted_ai(prompt_text):
-    """Fetches dynamic answers from a collection of open provider networks using g4f."""
-    try:
-        response = g4f.ChatCompletion.create(
-            model=g4f.models.gpt_4o_mini,
-            messages=[
-                {"role": "user", "content": f"You are AeroBot, an expert FAA aviation ground instructor. Answer this question concisely with clear bullet points or markdown formatting: {prompt_text}"}
-            ]
-        )
-        if response and len(str(response).strip()) > 5:
-            return str(response).strip()
-    except Exception as e:
-        pass
+# --- STABLE HUGGING FACE AI INFERENCE ENGINE ---
+def query_aviation_llm(prompt_text):
+    """Queries a hosted open-weights LLM using standard API requests securely."""
+    # Pull token from Streamlit's secrets vault
+    if "HF_TOKEN" not in st.secrets:
+        return "⚠️ Configuration Error: Please add your `HF_TOKEN` into the Streamlit Secrets tab."
     
-    # Secure Local Backup System in case the cloud server blocks outbound web requests
-    query_lower = prompt_text.lower()
-    if "control" in query_lower or "3" in query_lower:
-        return "**AeroBot Ground Briefing — The 3 Primary Flight Control Systems:**\n\n1. **Ailerons:** Controls **Roll** around the longitudinal axis.\n2. **Elevator:** Controls **Pitch** around the lateral axis.\n3. **Rudder:** Controls **Yaw** around the vertical axis."
-    elif "force" in query_lower:
-        return "**AeroBot Ground Briefing — The 4 Forces of Flight:**\n\n1. **Lift:** Upward aerodynamic force.\n2. **Weight:** Downward pull of gravity.\n3. **Thrust:** Forward pull produced by the engine.\n4. **Drag:** Rearward resistance force."
-    elif "component" in query_lower or "parts" in query_lower:
-        return "**AeroBot Ground Briefing — The 5 Main Components of an Aircraft:**\n\n1. **Fuselage:** The central body structure that houses the crew and passengers.\n2. **Wings:** Maximum lift surfaces engineered to counteract weight.\n3. **Empennage:** The entire tail assembly (vertical and horizontal stabilizers).\n4. **Powerplant:** The engine and propeller setup creating forward thrust.\n5. **Landing Gear:** The wheels or struts supporting structural loads on the ground."
-    else:
-        return f"**AeroBot Ground Briefing:** Received your query regarding *'{prompt_text}'*.\n\nTo discover more about this specific aviation vector, check out the official links and learning matrices under the **Pilot Roadmap** and **ATC Roadmap** layout decks above!"
+    api_token = st.secrets["HF_TOKEN"]
+    # Using Llama-3-8B-Instruct hosted directly on Hugging Face's server array
+    api_url = "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct"
+    
+    # Craft system guidelines to force the model to behave like an aviation expert
+    system_context = (
+        "You are AeroBot, an expert FAA flight instructor and air traffic specialist. "
+        "Answer the student's question accurately, directly, and comprehensively using clear markdown formatting. "
+        "Do not talk about yourself or write long introductory fluff. Go straight to the answer."
+    )
+    
+    payload = {
+        "inputs": f"<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_context}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt_text}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+        "parameters": {
+            "max_new_tokens": 600,
+            "temperature": 0.5,
+            "return_full_text": False
+        },
+        "options": {
+            "wait_for_model": True
+        }
+    }
+    
+    try:
+        req = urllib.request.Request(
+            api_url,
+            data=json.dumps(payload).encode("utf-8"),
+            headers={
+                "Authorization": f"Bearer {api_token}",
+                "Content-Type": "application/json"
+            }
+        )
+        with urllib.request.urlopen(req, timeout=25) as response:
+            res_data = json.loads(response.read().decode("utf-8"))
+            
+            if isinstance(res_data, list) and len(res_data) > 0:
+                raw_reply = res_data[0].get("generated_text", "")
+            elif isinstance(res_data, dict):
+                raw_reply = res_data.get("generated_text", "")
+            else:
+                raw_reply = str(res_data)
+                
+            # Clean up residual chat formatting strings if visible
+            clean_reply = raw_reply.split("<|eot_id|>")[0].strip()
+            if clean_reply:
+                return clean_reply
+    except Exception as e:
+        return f"⚠️ Connection issue with flight database: {str(e)}. Please check your token configuration or try again shortly."
+    
+    return "No definitive data returned. Please try rephrasing your request."
 
 # --- ROUTING LOGIC ---
 
@@ -225,48 +237,6 @@ elif st.session_state.page == "Pilots":
     </div>
     """, unsafe_allow_html=True)
     st.link_button("Deploy to FAA Unmanned Portal ↗️", "https://www.faa.gov/uas/commercial_operators", use_container_width=True)
-    st.write("")
-
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">AOPA High School Aviation Initiative</div>
-        <div class="card-subtitle">Provider: Aircraft Owners and Pilots Association (AOPA)</div>
-        <p style='font-size: 16px;'>Specialized STEM curricula and scholarship frameworks built to transition secondary education students directly into crewed cockpits.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Shows a multi-year commitment to the largest pilot advocacy group in the world. Grants you direct visibility to critical youth flight training scholarship pools.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to AOPA High School Hub ↗️", "https://youcanfly.aopa.org/high-school", use_container_width=True)
-    st.write("")
-
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
-        <div class="card-title">CAP Aerospace Education Cadet Program</div>
-        <div class="card-subtitle">Provider: Civil Air Patrol (USAF Auxiliary)</div>
-        <p style='font-size: 16px;'>Official federal cadet program offering interactive aerospace modules, leadership evaluation paths, and actual orientation flights in single-engine aircraft.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> CAP has free online aerospace modules for cadets and students. Highly respected by military aviation pipelines and major passenger airlines alike.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to Civil Air Patrol Portal ↗️", "https://www.gocivilairpatrol.com/", use_container_width=True)
-    st.write("")
-
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-medium">⚓ Tier 4: Foundational Value</span><br>
-        <div class="card-title">Sporty's Flight Academy Training Matrices</div>
-        <div class="card-subtitle">Provider: Sporty's Pilot Shop</div>
-        <p style='font-size: 16px;'>Interactive primary training arrays and practice testing frameworks mirroring the formal FAA written knowledge examination parameters.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Builds the exact core knowledge needed to pass the actual FAA Private Pilot written exam early, cutting real-world flight training cost loops by half.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to Sporty's Academy ↗️", "https://www.sportys.com/", use_container_width=True)
 
 # PAGE 3: ATC HUB
 elif st.session_state.page == "ATC":
@@ -286,61 +256,32 @@ elif st.session_state.page == "ATC":
     </div>
     """, unsafe_allow_html=True)
     st.link_button("Deploy to VATSIM Network ↗️", "https://vatsim.net/", use_container_width=True)
-    st.write("")
 
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">FAA Academy Prep / Green ATC Basics</div>
-        <div class="card-subtitle">Provider: Federal Aviation Administration Manuals</div>
-        <p style='font-size: 16px;'>Self-directed study manuals detailing the baseline regulatory infrastructure for safe aircraft handling and radar vector tracking coordinates.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Studying FAA Order JO 7110.65 (the official ATC bible) and the Pilot/Controller Glossary gives you a massive advantage before entering university terminal radar training programs.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA Air Traffic Manuals ↗️", "https://www.faa.gov/air_traffic/publications/", use_container_width=True)
-    st.write("")
-
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">LiveATC Audio Log Portfolio Build</div>
-        <div class="card-subtitle">Provider: LiveATC Network</div>
-        <p style='font-size: 16px;'>Direct real-time streaming audio feeds from international terminal radar control facilities and active tower frequencies worldwide.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Keeping a logbook of hours spent listening to busy Class B airspace (like Chicago O'Hare or Atlanta) trains your ear to parse rapid-fire commands at operational speed.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to LiveATC Audio Feed ↗️", "https://www.liveatc.net/", use_container_width=True)
-
-# PAGE 4: LIVE GENERAL RESPONSE CHATBOT INTERFACE
+# PAGE 4: LIVE DYNAMIC RESPONSE CHATBOT INTERFACE
 elif st.session_state.page == "AI":
-    st.markdown("### 🤖 AeroBot Ground Training Terminal")
+    st.markdown("### 🤖 AeroBot Dynamic Flight Simulator Terminal")
     
     # Initialize native chat memory arrays inside the website state
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = [
-            {"role": "assistant", "content": "Welcome to AeroBot! My system is fully online. Ask me absolutely ANY aviation question—like 'What is a stall?', 'Explain pitch and roll', or 'How does a propeller work?'—and I will answer dynamically!"}
+            {"role": "assistant", "content": "Hello! I am AeroBot. My server backend is now fully linked up to live cloud-hosted open models. Ask me absolutely ANY dynamic aviation or ground school question and I will generate an unscripted response!"}
         ]
         
-    # Render chat history with customized layout blocks inside your page
+    # Render historical conversation elements
     for message in st.session_state.chat_history:
         avatar_icon = "🤖" if message["role"] == "assistant" else "🧑‍✈️"
         with st.chat_message(message["role"], avatar=avatar_icon):
             st.write(message["content"])
             
-    # Native input box built directly into the website flow
-    if user_input := st.chat_input("Ask AeroBot any ground question..."):
-        # Append user message
+    # Capture input dynamically from the viewport chat bar
+    if user_input := st.chat_input("Ask AeroBot anything..."):
         st.session_state.chat_history.append({"role": "user", "content": user_input})
         with st.chat_message("user", avatar="🧑‍✈️"):
             st.write(user_input)
             
-        # Dynamically process live answers via our free background library client
+        # Run live model processing via API call
         with st.chat_message("assistant", avatar="🤖"):
-            with st.spinner("Analyzing operational databases..."):
-                live_reply = query_unrestricted_ai(user_input)
+            with st.spinner("Connecting to live flight intelligence matrix..."):
+                live_reply = query_aviation_llm(user_input)
             st.write(live_reply)
             st.session_state.chat_history.append({"role": "assistant", "content": live_reply})
