@@ -136,27 +136,27 @@ st.write("")
 
 # --- STABLE HUGGING FACE AI INFERENCE ENGINE ---
 def query_aviation_llm(prompt_text):
-    """Queries a hosted open-weights LLM using standard API requests securely."""
-    # Pull token from Streamlit's secrets vault
+    """Queries an optimized model via stable API routes instantly."""
     if "HF_TOKEN" not in st.secrets:
         return "⚠️ Configuration Error: Please add your `HF_TOKEN` into the Streamlit Secrets tab."
     
     api_token = st.secrets["HF_TOKEN"]
-    # Using Llama-3-8B-Instruct hosted directly on Hugging Face's server array
-    api_url = "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct"
     
-    # Craft system guidelines to force the model to behave like an aviation expert
-    system_context = (
-        "You are AeroBot, an expert FAA flight instructor and air traffic specialist. "
-        "Answer the student's question accurately, directly, and comprehensively using clear markdown formatting. "
-        "Do not talk about yourself or write long introductory fluff. Go straight to the answer."
+    # Using the universally available open-access endpoint route
+    api_url = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3"
+    
+    # Clean system prompt instructions combined directly to maximize execution speed
+    full_prompt = (
+        f"<s>[INST] You are AeroBot, an expert FAA flight instructor. "
+        f"Answer the student's question accurately, directly, and comprehensively using markdown formatting. "
+        f"Question: {prompt_text} [/INST]"
     )
     
     payload = {
-        "inputs": f"<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n{system_context}<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n{prompt_text}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+        "inputs": full_prompt,
         "parameters": {
-            "max_new_tokens": 600,
-            "temperature": 0.5,
+            "max_new_tokens": 500,
+            "temperature": 0.4,
             "return_full_text": False
         },
         "options": {
@@ -173,24 +173,22 @@ def query_aviation_llm(prompt_text):
                 "Content-Type": "application/json"
             }
         )
-        with urllib.request.urlopen(req, timeout=25) as response:
+        with urllib.request.urlopen(req, timeout=15) as response:
             res_data = json.loads(response.read().decode("utf-8"))
             
             if isinstance(res_data, list) and len(res_data) > 0:
-                raw_reply = res_data[0].get("generated_text", "")
+                reply = res_data[0].get("generated_text", "")
             elif isinstance(res_data, dict):
-                raw_reply = res_data.get("generated_text", "")
+                reply = res_data.get("generated_text", "")
             else:
-                raw_reply = str(res_data)
+                reply = str(res_data)
                 
-            # Clean up residual chat formatting strings if visible
-            clean_reply = raw_reply.split("<|eot_id|>")[0].strip()
-            if clean_reply:
-                return clean_reply
+            if reply:
+                return reply.strip()
     except Exception as e:
-        return f"⚠️ Connection issue with flight database: {str(e)}. Please check your token configuration or try again shortly."
+        return f"⚠️ Server update in progress. Please re-send your question in a brief moment! (Details: {str(e)})"
     
-    return "No definitive data returned. Please try rephrasing your request."
+    return "No definitive training data returned. Please try rephrasing your request."
 
 # --- ROUTING LOGIC ---
 
