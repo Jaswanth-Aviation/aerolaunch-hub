@@ -1,5 +1,6 @@
 import streamlit as st
-import google.generativeai as genai
+import urllib.request
+import urllib.parse
 
 # --- CORE RESPONSE STRUCTURE CONFIGURATION ---
 st.set_page_config(
@@ -8,15 +9,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
-
-# --- INITIALIZE GEMINI CLIENT ---
-# Pulls your secure token from the Streamlit Cloud secret vaults
-if "GEMINI_API_KEY" in st.secrets:
-    genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-    # Using the standard modern flash model optimized for lightning-fast chats
-    model = genai.GenerativeModel('gemini-2.5-flash')
-else:
-    model = None
 
 # --- CLEAN WELCOMING LIGHT MODE STYLING ---
 st.markdown("""
@@ -298,13 +290,13 @@ elif st.session_state.page == "ATC":
     """, unsafe_allow_html=True)
     st.link_button("Deploy to LiveATC Audio Feed ↗️", "https://www.liveatc.net/", use_container_width=True)
 
-# PAGE 4: LIVE GEMINI CHATBOT
+# PAGE 4: AEROBOT GROUND KNOWLEDGE SYSTEM (AGE-ACCESSIBLE AI)
 elif st.session_state.page == "AI":
     st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
     
-    # Initialize chat memory
+    # Initialize chat memory arrays
     if "chat_history" not in st.session_state:
-        st.session_state.chat_history = [{"role": "assistant", "content": "Aviation data arrays initialized. I am powered by Google Gemini. Ask me anything about rules, airspace vectors, or private pilot preparation!"}]
+        st.session_state.chat_history = [{"role": "assistant", "content": "Aviation data arrays initialized. Ask me anything about the forces of flight, airspace rules, weather logs, or private pilot parameters below!"}]
         
     # Render chat history with customized avatars
     for text in st.session_state.chat_history:
@@ -312,24 +304,27 @@ elif st.session_state.page == "AI":
         with st.chat_message(text["role"], avatar=icon):
             st.write(text["content"])
             
-    # Process inputs
-    if prompt := st.chat_input("Query regulations, terminal fields..."):
+    # Open-Access AI Query Box
+    if prompt := st.chat_input("Query aerodynamics, FAA regulations, terminal fields..."):
         st.session_state.chat_history.append({"role": "user", "content": prompt})
         with st.chat_message("user", avatar="🧑‍✈️"):
             st.write(prompt)
             
         with st.chat_message("assistant", avatar="🤖"):
-            if model is not None:
-                with st.spinner("Analyzing operational directives..."):
-                    try:
-                        # Construct a clean persona directive for context
-                        system_prompt = f"You are AeroBot, an expert high school aviation mentor and CFI. Answer this question accurately using standard FAA guidelines: {prompt}"
-                        response = model.generate_content(system_prompt)
-                        reply = response.text
-                    except Exception as e:
-                        reply = f"System Error processing vector: {str(e)}. Check your API key dashboard."
-            else:
-                reply = "AeroBot Alert: Gemini integration requires an active GEMINI_API_KEY saved inside your Streamlit Cloud configuration secrets."
-                
+            with st.spinner("Processing flight telemetry arrays..."):
+                try:
+                    # System prompt guidance embedded directly in the message string
+                    enhanced_query = f"Answer this aviation question precisely as an expert FAA Flight Instructor mentoring a high school student: {prompt}"
+                    encoded_prompt = urllib.parse.quote(enhanced_query)
+                    
+                    # Direct open-access AI proxy gateway
+                    api_url = f"https://text.pollinations.ai/{encoded_prompt}"
+                    req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0'})
+                    
+                    with urllib.request.urlopen(req) as response:
+                        reply = response.read().decode('utf-8')
+                except Exception as e:
+                    reply = "Telemetry Sync Error: Unable to link with the public flight query engine. Please check your network link."
+            
             st.write(reply)
             st.session_state.chat_history.append({"role": "assistant", "content": reply})
