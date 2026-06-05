@@ -1,6 +1,4 @@
 import streamlit as st
-import urllib.request
-import urllib.parse
 
 # --- CORE RESPONSE STRUCTURE CONFIGURATION ---
 st.set_page_config(
@@ -290,41 +288,16 @@ elif st.session_state.page == "ATC":
     """, unsafe_allow_html=True)
     st.link_button("Deploy to LiveATC Audio Feed ↗️", "https://www.liveatc.net/", use_container_width=True)
 
-# PAGE 4: AEROBOT GROUND KNOWLEDGE SYSTEM (AGE-ACCESSIBLE AI)
+# PAGE 4: AEROBOT GROUND KNOWLEDGE SYSTEM (SECURE ZAPIER CHATBOT INTERFACE)
 elif st.session_state.page == "AI":
     st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
+    st.write("Ask your questions inside the secure training module below:")
     
-    # Initialize chat memory arrays
-    if "chat_history" not in st.session_state:
-        st.session_state.chat_history = [{"role": "assistant", "content": "Aviation data arrays initialized. Ask me anything about the forces of flight, airspace rules, weather logs, or private pilot parameters below!"}]
-        
-    # Render chat history with customized avatars
-    for text in st.session_state.chat_history:
-        icon = "🤖" if text["role"] == "assistant" else "🧑‍✈️"
-        with st.chat_message(text["role"], avatar=icon):
-            st.write(text["content"])
-            
-    # Open-Access AI Query Box
-    if prompt := st.chat_input("Query aerodynamics, FAA regulations, terminal fields..."):
-        st.session_state.chat_history.append({"role": "user", "content": prompt})
-        with st.chat_message("user", avatar="🧑‍✈️"):
-            st.write(prompt)
-            
-        with st.chat_message("assistant", avatar="🤖"):
-            with st.spinner("Processing flight telemetry arrays..."):
-                try:
-                    # System prompt guidance embedded directly in the message string
-                    enhanced_query = f"Answer this aviation question precisely as an expert FAA Flight Instructor mentoring a high school student: {prompt}"
-                    encoded_prompt = urllib.parse.quote(enhanced_query)
-                    
-                    # Direct open-access AI proxy gateway
-                    api_url = f"https://text.pollinations.ai/{encoded_prompt}"
-                    req = urllib.request.Request(api_url, headers={'User-Agent': 'Mozilla/5.0'})
-                    
-                    with urllib.request.urlopen(req) as response:
-                        reply = response.read().decode('utf-8')
-                except Exception as e:
-                    reply = "Telemetry Sync Error: Unable to link with the public flight query engine. Please check your network link."
-            
-            st.write(reply)
-            st.session_state.chat_history.append({"role": "assistant", "content": reply})
+    # Securely embedding your custom Zapier Chatbot using an iframe element
+    zapier_bot_url = "https://schoolaichatbot.zapier.app/"
+    
+    st.components.v1.iframe(
+        src=zapier_bot_url,
+        height=600,
+        scrolling=True
+    )
