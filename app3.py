@@ -11,6 +11,26 @@ st.set_page_config(
 # --- CLEAN WELCOMING LIGHT MODE STYLING ---
 st.markdown("""
 <style>
+    /* Force and lock the theme selector menu to only display Light mode options */
+    [data-testid="stStatusWidget"] button:not(:nth-child(2)),
+    div[role="radiogroup"] label:not(:nth-child(2)),
+    ul[role="listbox"] li:not(:nth-child(2)) {
+        display: none !important;
+    }
+    
+    /* Target settings menu buttons directly to hide Dark and System choices */
+    button[data-testid="theme-selector-System"],
+    button[data-testid="theme-selector-Dark"] {
+        display: none !important;
+    }
+    
+    /* Fallback catch-all for text-labeled theme selections */
+    span::-moz-selection, 
+    div div div:has(> button) button div:contains("System"),
+    div div div:has(> button) button div:contains("Dark") {
+        display: none !important;
+    }
+
     /* Targeted clean typography that leaves Streamlit system menus completely untouched */
     .stApp [data-testid="stMarkdownContainer"], 
     .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp li, .stApp span, .stApp div {
