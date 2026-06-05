@@ -10,6 +10,8 @@ st.set_page_config(
 
 # --- CLEAN WELCOMING LIGHT MODE STYLING ---
 st.markdown("""
+<meta name="google-site-verification" content="SratphLQH9l1bcw65FrdBhyFi_d0i4wGVhuOCR027ks" />
+
 <style>
     /* Force and lock the theme selector menu to only display Light mode options */
     [data-testid="stStatusWidget"] button:not(:nth-child(2)),
