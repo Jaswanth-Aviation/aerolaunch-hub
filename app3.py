@@ -196,4 +196,116 @@ elif st.session_state.page == "Pilots":
         <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
         <div class="card-title">FAA Part 107 Remote Pilot Certification</div>
         <div class="card-subtitle">Provider: Federal Aviation Administration (FAA)</div>
-        <p style='font-size: 1
+        <p style='font-size: 16px;'>A formal federal license authorizing commercial unmanned aircraft systems operations. Requires structural recall of chart layouts, weather trends, and aviation safety mandates.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> An official federal license. Proves you understand national airspace, sectional charts, weather graphics, and federal regulations before even logging a real cockpit flight hour.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Unmanned Portal ↗️", "https://www.faa.gov/uas/commercial_operators", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">AOPA High School Aviation Initiative</div>
+        <div class="card-subtitle">Provider: Aircraft Owners and Pilots Association (AOPA)</div>
+        <p style='font-size: 16px;'>Specialized STEM curricula and scholarship frameworks built to transition secondary education students directly into crewed cockpits.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Shows a multi-year commitment to the largest pilot advocacy group in the world. Grants you direct visibility to critical youth flight training scholarship pools.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AOPA High School Hub ↗️", "https://youcanfly.aopa.org/high-school", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">CAP Aerospace Education Cadet Program</div>
+        <div class="card-subtitle">Provider: Civil Air Patrol (USAF Auxiliary)</div>
+        <p style='font-size: 16px;'>Official federal cadet program offering interactive aerospace modules, leadership evaluation paths, and actual orientation flights in single-engine aircraft.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> CAP has free online aerospace modules for cadets and students. Highly respected by military aviation pipelines and major passenger airlines alike.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Civil Air Patrol Portal ↗️", "https://www.gocivilairpatrol.com/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 4: Foundational Value</span><br>
+        <div class="card-title">Sporty's Flight Academy Training Matrices</div>
+        <div class="card-subtitle">Provider: Sporty's Pilot Shop</div>
+        <p style='font-size: 16px;'>Interactive primary training arrays and practice testing frameworks mirroring the formal FAA written knowledge examination parameters.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Builds the exact core knowledge needed to pass the actual FAA Private Pilot written exam early, cutting real-world flight training cost loops by half.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Sporty's Academy ↗️", "https://www.sportys.com/", use_container_width=True)
+
+# PAGE 3: ATC HUB
+elif st.session_state.page == "ATC":
+    st.markdown("### 🎙️ Air Traffic Control Vector Matrix")
+    st.write("Professional simulation tracks and phraseology baselines designed to secure federal placement pathways.")
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">VATSIM Virtual Controller Certification (S1, S2)</div>
+        <div class="card-subtitle">Provider: Virtual Air Traffic Simulation Network</div>
+        <p style='font-size: 16px;'>A global, high-fidelity simulation network where student controllers go through rigorous exams and practical tests to manage real virtual pilot flights using actual ATC phraseology.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> You must pass real-world-style ATC entry exams and practical training to control virtual aircraft. Real-world controllers use this to keep their situational awareness locked in.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to VATSIM Network ↗️", "https://vatsim.net/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">FAA Academy Prep / Green ATC Basics</div>
+        <div class="card-subtitle">Provider: Federal Aviation Administration Manuals</div>
+        <p style='font-size: 16px;'>Self-directed study manuals detailing the baseline regulatory infrastructure for safe aircraft handling and radar vector tracking coordinates.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Studying FAA Order JO 7110.65 (the official ATC bible) and the Pilot/Controller Glossary gives you a massive advantage before entering university terminal radar training programs.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Air Traffic Manuals ↗️", "https://www.faa.gov/air_traffic/publications/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">LiveATC Audio Log Portfolio Build</div>
+        <div class="card-subtitle">Provider: LiveATC Network</div>
+        <p style='font-size: 16px;'>Direct real-time streaming audio feeds from international terminal radar control facilities and active tower frequencies worldwide.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Keeping a logbook of hours spent listening to busy Class B airspace (like Chicago O'Hare or Atlanta) trains your ear to parse rapid-fire commands at operational speed.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to LiveATC Audio Feed ↗️", "https://www.liveatc.net/", use_container_width=True)
+
+# PAGE 4: AEROBOT GROUND KNOWLEDGE SYSTEM
+elif st.session_state.page == "AI":
+    st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="card-title">AeroBot Training Terminal</div>
+        <div class="card-subtitle">Powered by Zapier AI Engine</div>
+        <p style='font-size: 16px;'>To provide a completely secure, unrestricted learning environment for young aviators, the AeroBot training core is hosted within our age-approved Zapier cloud network. Click the button below to clear tracking blocks and boot up the interactive flight instructor terminal.</p>
+        <div class="guidance-box">
+            <strong>🧑‍✈️ Student Note:</strong> You can quiz AeroBot on airspace tiers, weather codes, or aircraft weight balances. It will immediately generate precise FAA instruction patterns.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.link_button("Launch AeroBot Training Interface 🚀", "https://schoolaichatbot.zapier.app/", use_container_width=True)
