@@ -303,15 +303,16 @@ elif st.session_state.page == "AI":
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = [{"role": "assistant", "content": "Avionics arrays initialized. Pose any operational rule or structural airspace query below."}]
         
-    for text in st.session_state.chat_history:
-        with st.chat_message(text["role"]):
-            st.write(text["content"])
+ for text in st.session_state.chat_history:
+    icon = "🤖" if text["role"] == "assistant" else "🧑‍✈️"
+    with st.chat_message(text["role"], avatar=icon):
+        st.write(text["content"])
             
     if prompt := st.chat_input("Query structural regulations, terminal parameters..."):
         st.session_state.chat_history.append({"role": "user", "content": prompt})
-        with st.chat_message("user"):
-            st.write(prompt)
-        with st.chat_message("assistant"):
+with st.chat_message("user", avatar="🧑‍✈️"):
+    st.write(prompt)
+with st.chat_message("assistant", avatar="🤖"):
             reply = f"AeroBot Log: Tactical inquiry recorded. Evaluating reference vectors for: '{prompt}' inside the active Pilot's Handbook of Aeronautical Knowledge."
             st.write(reply)
             st.session_state.chat_history.append({"role": "assistant", "content": reply})
