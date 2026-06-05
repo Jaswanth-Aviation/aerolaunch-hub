@@ -1,6 +1,5 @@
 import streamlit as st
-import urllib.request
-import json
+import requests
 
 # --- CORE RESPONSE STRUCTURE CONFIGURATION ---
 st.set_page_config(
@@ -76,30 +75,6 @@ st.markdown("""
         display: inline-block;
         margin-bottom: 8px;
     }
-    .tier-badge-high {
-        background-color: #dbeafe !important;
-        color: #1e40af !important;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: 1px solid #60a5fa !important;
-        display: inline-block;
-        margin-bottom: 8px;
-    }
-    .tier-badge-medium {
-        background-color: #d1fae5 !important;
-        color: #065f46 !important;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: bold;
-        text-transform: uppercase;
-        border: 1px solid #34d399 !important;
-        display: inline-block;
-        margin-bottom: 8px;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -134,61 +109,40 @@ with nav_cols[3]:
 
 st.write("") 
 
-# --- STABLE HUGGING FACE AI INFERENCE ENGINE ---
-def query_aviation_llm(prompt_text):
-    """Queries an optimized model via stable API routes instantly."""
-    if "HF_TOKEN" not in st.secrets:
-        return "⚠️ Configuration Error: Please add your `HF_TOKEN` into the Streamlit Secrets tab."
+# --- ZAPIER WEBHOOK AI INFERENCE ROUTE ---
+def query_zapier_ai(prompt_text):
+    """Pipes the user prompt into Zapier Webhooks and returns the automated response."""
+    if "ZAPIER_WEBHOOK_URL" not in st.secrets:
+        return "⚠️ Configuration Error: Please add your `ZAPIER_WEBHOOK_URL` into the Streamlit Secrets tab."
     
-    api_token = st.secrets["HF_TOKEN"]
+    webhook_url = st.secrets["ZAPIER_WEBHOOK_URL"]
     
-    # Using the universally available open-access endpoint route
-    api_url = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3"
-    
-    # Clean system prompt instructions combined directly to maximize execution speed
-    full_prompt = (
-        f"<s>[INST] You are AeroBot, an expert FAA flight instructor. "
-        f"Answer the student's question accurately, directly, and comprehensively using markdown formatting. "
-        f"Question: {prompt_text} [/INST]"
-    )
-    
-    payload = {
-        "inputs": full_prompt,
-        "parameters": {
-            "max_new_tokens": 500,
-            "temperature": 0.4,
-            "return_full_text": False
-        },
-        "options": {
-            "wait_for_model": True
-        }
-    }
+    # Bundle the student's question cleanly
+    payload = {"prompt": prompt_text}
     
     try:
-        req = urllib.request.Request(
-            api_url,
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "Authorization": f"Bearer {api_token}",
-                "Content-Type": "application/json"
-            }
-        )
-        with urllib.request.urlopen(req, timeout=15) as response:
-            res_data = json.loads(response.read().decode("utf-8"))
+        response = requests.post(webhook_url, json=payload, timeout=20)
+        
+        if response.status_code in [200, 201]:
+            try:
+                res_json = response.json()
+                # Try parsing standard text hooks returns
+                if "response" in res_json:
+                    return res_json["response"].strip()
+                elif "text" in res_json:
+                    return res_json["text"].strip()
+                elif "output" in res_json:
+                    return res_json["output"].strip()
+            except Exception:
+                # Fallback to text raw return if Zapier hook returns a flat string
+                if response.text:
+                    return response.text.strip()
             
-            if isinstance(res_data, list) and len(res_data) > 0:
-                reply = res_data[0].get("generated_text", "")
-            elif isinstance(res_data, dict):
-                reply = res_data.get("generated_text", "")
-            else:
-                reply = str(res_data)
-                
-            if reply:
-                return reply.strip()
+            return "✅ Query processed by Zapier successfully! Check your integration action dashboard for the output."
+        else:
+            return f"⚠️ Zapier endpoint returned status code: {response.status_code}. Verify your active Zap setup."
     except Exception as e:
-        return f"⚠️ Server update in progress. Please re-send your question in a brief moment! (Details: {str(e)})"
-    
-    return "No definitive training data returned. Please try rephrasing your request."
+        return f"⚠️ Network pipeline timeout: {str(e)}. Please try sending your query again."
 
 # --- ROUTING LOGIC ---
 
@@ -199,87 +153,54 @@ if st.session_state.page == "Feed":
     <div class="resource-card">
         <div class="card-title">The High-School Aviation Deployment Matrix</div>
         <div class="card-subtitle">System Status: Operational</div>
-        <p style='font-size: 17px;'>Welcome to AeroLaunch. This portal was engineered specifically to solve the information gap for high school students looking to enter professional aviation. Instead of generic landing loops, this engine presents structured, tiered matrices compiled from verified federal and academic data. Use the navigation deck above to deploy into your chosen vector.</p>
+        <p style='font-size: 17px;'>Welcome to AeroLaunch. Use the navigation deck above to deploy into your chosen vector.</p>
     </div>
     """, unsafe_allow_html=True)
 
 # PAGE 2: PILOT HUB
 elif st.session_state.page == "Pilots":
     st.markdown("### 🧭 Student Pilot Flight Matrix")
-    st.write("Structured resources built to optimize competitive college applications and accelerate flight training timelines.")
-    st.write("")
-
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
         <div class="card-title">Aviation 101 Ground Course</div>
         <div class="card-subtitle">Provider: Embry-Riddle Aeronautical University (ERAU)</div>
-        <p style='font-size: 16px;'>A comprehensive online academic baseline detailing structural aerodynamics, instrumentation arrays, atmospheric profiles, and airspace classification systems.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Proves academic capability at the top aviation university in the world. Completing this module is an exceptional 'proof-of-passion' credential to list on early college transcripts.
-        </div>
+        <p style='font-size: 16px;'>A comprehensive online academic baseline detailing structural aerodynamics.</p>
     </div>
     """, unsafe_allow_html=True)
-    st.link_button("Deploy to Official ERAU Portal ↗️", "https://erau.edu/academics/degrees-and-programs/free-online-courses/Aviation-101", use_container_width=True)
-    st.write("")
-
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">FAA Part 107 Remote Pilot Certification</div>
-        <div class="card-subtitle">Provider: Federal Aviation Administration (FAA)</div>
-        <p style='font-size: 16px;'>A formal federal license authorizing commercial unmanned aircraft systems operations. Requires structural recall of chart layouts, weather trends, and aviation safety mandates.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> An official federal license. Proves you understand national airspace, sectional charts, weather graphics, and federal regulations before even logging a real cockpit flight hour.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA Unmanned Portal ↗️", "https://www.faa.gov/uas/commercial_operators", use_container_width=True)
 
 # PAGE 3: ATC HUB
 elif st.session_state.page == "ATC":
     st.markdown("### 🎙️ Air Traffic Control Vector Matrix")
-    st.write("Professional simulation tracks and phraseology baselines designed to secure federal placement pathways.")
-    st.write("")
-
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
         <div class="card-title">VATSIM Virtual Controller Certification (S1, S2)</div>
-        <div class="card-subtitle">Provider: Virtual Air Traffic Simulation Network</div>
-        <p style='font-size: 16px;'>A global, high-fidelity simulation network where student controllers go through rigorous exams and practical tests to manage real virtual pilot flights using actual ATC phraseology.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> You must pass real-world-style ATC entry exams and practical training to control virtual aircraft. Real-world controllers use this to keep their situational awareness locked in.
-        </div>
+        <p style='font-size: 16px;'>A global, high-fidelity simulation network using actual ATC phraseology.</p>
     </div>
     """, unsafe_allow_html=True)
-    st.link_button("Deploy to VATSIM Network ↗️", "https://vatsim.net/", use_container_width=True)
 
-# PAGE 4: LIVE DYNAMIC RESPONSE CHATBOT INTERFACE
+# PAGE 4: LIVE CHATBOT INTERFACE (ZAPIER-POWERED)
 elif st.session_state.page == "AI":
     st.markdown("### 🤖 AeroBot Dynamic Flight Simulator Terminal")
     
-    # Initialize native chat memory arrays inside the website state
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = [
-            {"role": "assistant", "content": "Hello! I am AeroBot. My server backend is now fully linked up to live cloud-hosted open models. Ask me absolutely ANY dynamic aviation or ground school question and I will generate an unscripted response!"}
+            {"role": "assistant", "content": "Hello! I am AeroBot. My backend is fully linked up to Zapier. Ask me absolutely ANY dynamic ground school question!"}
         ]
         
-    # Render historical conversation elements
     for message in st.session_state.chat_history:
         avatar_icon = "🤖" if message["role"] == "assistant" else "🧑‍✈️"
         with st.chat_message(message["role"], avatar=avatar_icon):
             st.write(message["content"])
             
-    # Capture input dynamically from the viewport chat bar
     if user_input := st.chat_input("Ask AeroBot anything..."):
         st.session_state.chat_history.append({"role": "user", "content": user_input})
         with st.chat_message("user", avatar="🧑‍✈️"):
             st.write(user_input)
             
-        # Run live model processing via API call
         with st.chat_message("assistant", avatar="🤖"):
-            with st.spinner("Connecting to live flight intelligence matrix..."):
-                live_reply = query_aviation_llm(user_input)
-            st.write(live_reply)
-            st.session_state.chat_history.append({"role": "assistant", "content": live_reply})
+            with st.spinner("Streaming request through Zapier core automated matrices..."):
+                zapier_reply = query_zapier_ai(user_input)
+            st.write(zapier_reply)
+            st.session_state.chat_history.append({"role": "assistant", "content": zapier_reply})
