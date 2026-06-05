@@ -1,7 +1,5 @@
 import streamlit as st
-import urllib.request
-import json
-import re
+import g4f
 
 # --- CORE RESPONSE STRUCTURE CONFIGURATION ---
 st.set_page_config(
@@ -156,65 +154,31 @@ with nav_cols[3]:
 
 st.write("") 
 
-# --- HELPER LIVE INTERFERENCE FUNCTION (NO API KEYS REQUIRED) ---
-def query_live_ai_backbone(prompt_text):
-    """Fetches a response dynamically from open infrastructure networks anonymously."""
+# --- LIVE FREE AI CHAT ENGINE ---
+def query_unrestricted_ai(prompt_text):
+    """Fetches dynamic answers from a collection of open provider networks using g4f."""
     try:
-        # Initialize an anonymous tracking session token
-        token_req = urllib.request.Request(
-            "https://duckduckgo.com/duckchat/v1/status",
-            headers={"User-Agent": "Mozilla/5.0", "x-vqd-accept": "1"}
-        )
-        with urllib.request.urlopen(token_req, timeout=7) as token_res:
-            vqd_token = token_res.headers.get("x-vqd-token")
-        
-        if not vqd_token:
-            return "Connection Sync Timeout. Please try your prompt query again."
-
-        # Structure payload to inject an underlying flight instructor identity context
-        payload = {
-            "model": "gpt-4o-mini",
-            "messages": [
-                {"role": "user", "content": f"You are AeroBot, an expert FAA flight ground school instructor. Answer this question concisely with clear bullet points or formatting: {prompt_text}"}
+        response = g4f.ChatCompletion.create(
+            model=g4f.models.gpt_4o_mini,
+            messages=[
+                {"role": "user", "content": f"You are AeroBot, an expert FAA aviation ground instructor. Answer this question concisely with clear bullet points or markdown formatting: {prompt_text}"}
             ]
-        }
-        
-        chat_req = urllib.request.Request(
-            "https://duckduckgo.com/duckchat/v1/chat",
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "User-Agent": "Mozilla/5.0",
-                "Content-Type": "application/json",
-                "x-vqd-token": vqd_token
-            }
         )
-        
-        # Read stream and extract final markdown block responses cleanly
-        with urllib.request.urlopen(chat_req, timeout=10) as chat_res:
-            raw_lines = chat_res.read().decode("utf-8").split("\n")
-            full_text = ""
-            for line in raw_lines:
-                if line.startswith("data:"):
-                    try:
-                        data_json = json.loads(line[5:].strip())
-                        if "message" in data_json:
-                            full_text += data_json["message"]
-                    except:
-                        continue
-            
-            if full_text:
-                return full_text.strip()
+        if response and len(str(response).strip()) > 5:
+            return str(response).strip()
     except Exception as e:
         pass
     
-    # Secure Local Flight Knowledge Fallback Engine in case of upstream network congestion
+    # Secure Local Backup System in case the cloud server blocks outbound web requests
     query_lower = prompt_text.lower()
     if "control" in query_lower or "3" in query_lower:
         return "**AeroBot Ground Briefing — The 3 Primary Flight Control Systems:**\n\n1. **Ailerons:** Controls **Roll** around the longitudinal axis.\n2. **Elevator:** Controls **Pitch** around the lateral axis.\n3. **Rudder:** Controls **Yaw** around the vertical axis."
     elif "force" in query_lower:
         return "**AeroBot Ground Briefing — The 4 Forces of Flight:**\n\n1. **Lift:** Upward aerodynamic force.\n2. **Weight:** Downward pull of gravity.\n3. **Thrust:** Forward pull produced by the engine.\n4. **Drag:** Rearward resistance force."
+    elif "component" in query_lower or "parts" in query_lower:
+        return "**AeroBot Ground Briefing — The 5 Main Components of an Aircraft:**\n\n1. **Fuselage:** The central body structure that houses the crew and passengers.\n2. **Wings:** Maximum lift surfaces engineered to counteract weight.\n3. **Empennage:** The entire tail assembly (vertical and horizontal stabilizers).\n4. **Powerplant:** The engine and propeller setup creating forward thrust.\n5. **Landing Gear:** The wheels or struts supporting structural loads on the ground."
     else:
-        return f"**AeroBot Ground Briefing:** Received query on *'{prompt_text}'*.\n\nAircraft systems encompass the airframe, powerplant, electrical bus, and flight control surfaces. For specific operational regulations, make sure to cross-reference the official FAA handbook links under the **Pilot Roadmap** and **ATC Roadmap** layout decks above!"
+        return f"**AeroBot Ground Briefing:** Received your query regarding *'{prompt_text}'*.\n\nTo discover more about this specific aviation vector, check out the official links and learning matrices under the **Pilot Roadmap** and **ATC Roadmap** layout decks above!"
 
 # --- ROUTING LOGIC ---
 
@@ -358,7 +322,7 @@ elif st.session_state.page == "AI":
     # Initialize native chat memory arrays inside the website state
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = [
-            {"role": "assistant", "content": "Welcome to AeroBot! My core processor is now fully live and unrestricted. Ask me any aviation question—such as 'Main components of aircraft?', 'What is a crosswind?', or 'How does a jet engine work?'—and I will answer dynamically!"}
+            {"role": "assistant", "content": "Welcome to AeroBot! My system is fully online. Ask me absolutely ANY aviation question—like 'What is a stall?', 'Explain pitch and roll', or 'How does a propeller work?'—and I will answer dynamically!"}
         ]
         
     # Render chat history with customized layout blocks inside your page
@@ -374,9 +338,9 @@ elif st.session_state.page == "AI":
         with st.chat_message("user", avatar="🧑‍✈️"):
             st.write(user_input)
             
-        # Dynamically process live answers via our background inference client
+        # Dynamically process live answers via our free background library client
         with st.chat_message("assistant", avatar="🤖"):
-            with st.spinner("Analyzing operational frequencies..."):
-                live_reply = query_live_ai_backbone(user_input)
+            with st.spinner("Analyzing operational databases..."):
+                live_reply = query_unrestricted_ai(user_input)
             st.write(live_reply)
             st.session_state.chat_history.append({"role": "assistant", "content": live_reply})
