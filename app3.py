@@ -288,16 +288,20 @@ elif st.session_state.page == "ATC":
     """, unsafe_allow_html=True)
     st.link_button("Deploy to LiveATC Audio Feed ↗️", "https://www.liveatc.net/", use_container_width=True)
 
-# PAGE 4: AEROBOT GROUND KNOWLEDGE SYSTEM (SECURE ZAPIER CHATBOT INTERFACE)
+# PAGE 4: AEROBOT GROUND KNOWLEDGE SYSTEM (SECURE ZAPIER DEPLOYMENT)
 elif st.session_state.page == "AI":
     st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
-    st.write("Ask your questions inside the secure training module below:")
     
-    # Securely embedding your custom Zapier Chatbot using an iframe element
-    zapier_bot_url = "https://schoolaichatbot.zapier.app/"
+    st.markdown("""
+    <div class="resource-card">
+        <div class="card-title">AeroBot Training Terminal</div>
+        <div class="card-subtitle">Powered by Zapier AI Engine</div>
+        <p style='font-size: 16px;'>To provide a completely secure, unrestricted learning environment for young aviators, the AeroBot training core is hosted within our age-approved Zapier cloud network. Click the button below to clear tracking blocks and boot up the interactive flight instructor terminal.</p>
+        <div class="guidance-box">
+            <strong>🧑‍✈️ Student Note:</strong> You can quiz AeroBot on airspace tiers, weather codes, or aircraft weight balances. It will immediately generate precise FAA instruction patterns.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    st.components.v1.iframe(
-        src=zapier_bot_url,
-        height=600,
-        scrolling=True
-    )
+    # Clean, full-width redirect button straight to your open Zapier interface link
+    st.link_button("Launch AeroBot Training Interface 🚀", "https://schoolaichatbot.zapier.app/", use_container_width=True)
