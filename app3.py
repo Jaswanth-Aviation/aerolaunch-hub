@@ -189,7 +189,7 @@ if st.session_state.page == "Feed":
 
 # PAGE 2: PILOT HUB
 elif st.session_state.page == "Pilots":
-    st.markdown("## 🧭 Section 1: The Pilot Hub (Top 25)")
+    st.markdown("## 🧭 Section 1: The Pilot Hub")
     st.write("Structured modules built to optimize competitive credentials and accelerate primary flight training timelines.")
     st.write("---")
 
