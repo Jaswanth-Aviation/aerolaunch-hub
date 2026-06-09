@@ -1607,11 +1607,14 @@ elif st.session_state.page == "ATC":
     st.write("Professional simulation tracks and phraseology baselines designed to secure federal placement pathways.")
     st.write("")
 
+    # --- SIMULATION AND COMPREHENSION FOUNDATIONS ---
+    st.markdown("#### 🥇 Tier 1: Virtual Networks & Live Communication Engines")
+
     st.markdown("""
     <div class="resource-card">
-        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <span class="tier-badge-highest">🏆 Core Track</span><br>
         <div class="card-title">VATSIM Virtual Controller Certification (S1, S2)</div>
-        <div class="card-subtitle">Provider: Virtual Air Traffic Simulation Network</div>
+        <div class="card-subtitle">Category: Virtual Air Traffic Simulation Network</div>
         <p style='font-size: 16px;'>A global, high-fidelity simulation network where student controllers go through rigorous exams and practical tests to manage real virtual pilot flights using actual ATC phraseology.</p>
         <div class="guidance-box">
             <strong>📋 Strategic Value:</strong> You must pass real-world-style ATC entry exams and practical training to control virtual aircraft. Real-world controllers use this to keep their situational awareness locked in.
@@ -1623,9 +1626,9 @@ elif st.session_state.page == "ATC":
 
     st.markdown("""
     <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <span class="tier-badge-high">⚡ Regulatory Study</span><br>
         <div class="card-title">FAA Academy Prep / Green ATC Basics</div>
-        <div class="card-subtitle">Provider: Federal Aviation Administration Manuals</div>
+        <div class="card-subtitle">Category: Federal Aviation Administration Manuals</div>
         <p style='font-size: 16px;'>Self-directed study manuals detailing the baseline regulatory infrastructure for safe aircraft handling and radar vector tracking coordinates.</p>
         <div class="guidance-box">
             <strong>📋 Strategic Value:</strong> Studying FAA Order JO 7110.65 (the official ATC bible) and the Pilot/Controller Glossary gives you a massive advantage before entering university terminal radar training programs.
@@ -1637,9 +1640,9 @@ elif st.session_state.page == "ATC":
 
     st.markdown("""
     <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <span class="tier-badge-high">⚡ Auditory Parsing</span><br>
         <div class="card-title">LiveATC Audio Log Portfolio Build</div>
-        <div class="card-subtitle">Provider: LiveATC Network</div>
+        <div class="card-subtitle">Category: LiveATC Network</div>
         <p style='font-size: 16px;'>Direct real-time streaming audio feeds from international terminal radar control facilities and active tower frequencies worldwide.</p>
         <div class="guidance-box">
             <strong>📋 Strategic Value:</strong> Keeping a logbook of hours spent listening to busy Class B airspace (like Chicago O'Hare or Atlanta) trains your ear to parse rapid-fire commands at operational speed.
@@ -1647,6 +1650,205 @@ elif st.session_state.page == "ATC":
     </div>
     """, unsafe_allow_html=True)
     st.link_button("Deploy to LiveATC Audio Feed ↗️", "https://www.liveatc.net/", use_container_width=True)
+    st.write("")
+
+    # --- FUNDING & FLIGHT TRAINING CROSSOVER MATRICES ---
+    st.markdown("#### 💰 Tier 2: Scholarship Systems & Advanced Video Academy Resources")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #87</span><br>
+        <div class="card-title">Captain Barney Conrath Aviation Scholarship Funds</div>
+        <div class="card-subtitle">Category: Regional Memorial Endowments</div>
+        <p style='font-size: 16px;'>Dedicated flight training memorial funds targeting regional students aiming for professional aviation careers.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Provides valuable alternative funding leads for students who may miss out on broader national scholarship deadlines.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Aviation Scholarship Board ↗️", "https://www.aopa.org/training-and-safety/students/scholarships", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #88</span><br>
+        <div class="card-title">The Ninety-Nines International Women Pilots Funding Systems</div>
+        <div class="card-subtitle">Category: Female Career Development Pathways</div>
+        <p style='font-size: 16px;'>Comprehensive flying awards, including the notable Amelia Earhart Memorial fund, covering advanced flight ratings for female pilots.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Connects female students with historical global support networks, backing long-term career growth.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to The Ninety-Nines Scholarships ↗️", "https://www.ninety-nines.org/scholarships.htm", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #89</span><br>
+        <div class="card-title">Regional Airline Association (RAA) Academic Scholarship Boards</div>
+        <div class="card-subtitle">Category: Institutional Hour-Building Funding</div>
+        <p style='font-size: 16px;'>Higher-education scholarships tailored for collegiate aviators working toward regional airline entry.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Directly connects advanced students to potential employers, helping ease the financial burden of hour-building stages.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to RAA Aviation Awards ↗️", "https://www.raa.org/scholarships/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #90</span><br>
+        <div class="card-title">Aircraft Electronics Association (AEA) Technology Grants</div>
+        <div class="card-subtitle">Category: Avionics and Engineering Maintenance</div>
+        <p style='font-size: 16px;'>Specialized funding focused on avionics repair, electronics engineering, and instrument maintenance training.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Offers a solid alternative track for students interested in tech and maintenance roles over direct cockpit careers.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AEA Educational Foundation ↗️", "https://aea.net/educationalfoundation/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #91</span><br>
+        <div class="card-title">Free Pilot Training Online Ground Academy</div>
+        <div class="card-subtitle">Category: Open Access Curriculum</div>
+        <p style='font-size: 16px;'>Comprehensive, step-by-step video deep-dives going over the entire Private Pilot knowledge blueprint for zero cost.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Offers an excellent free alternative to premium video courses, making ground school accessible to all students.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Free Pilot Training Network ↗️", "https://www.youtube.com/@FreePilotTraining", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #92</span><br>
+        <div class="card-title">FlightChops General Aviation Safety Matrices</div>
+        <div class="card-subtitle">Category: Human Factors Analysis Vlogs</div>
+        <p style='font-size: 16px;'>Highly produced real-world training vlogs exploring cockpit stress, checkride mistakes, instrument training, and safety errors.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Validates the learning curve by showing real pilot struggles, reinforcing realistic safety mindsets.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FlightChops Safety Ecosystem ↗️", "https://flightchops.com/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #93</span><br>
+        <div class="card-title">The Finer Points: Professional Pilot Flight Training</div>
+        <div class="card-subtitle">Category: Practical Flight Deck Mechanics</div>
+        <p style='font-size: 16px;'>Educational videos focusing on flight deck organization, refined piloting techniques, stick-and-rudder feel, and safety tips.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps students master flight skills faster through sharp, actionable tips from senior flight instructors.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to The Finer Points Flight Resource ↗️", "https://www.learnthefinerpoints.com/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #94</span><br>
+        <div class="card-title">MzeroA Flight Training Free Resource Playlists</div>
+        <div class="card-subtitle">Category: Oral Checkride Evaluation Prep</div>
+        <p style='font-size: 16px;'>Informative videos covering typical oral exam questions, checkride gotchas, and everyday safety procedures.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Excellent for last-minute oral checkride prep, helping turn complex regulations into clear talking points.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to MzeroA Online Platform ↗️", "https://mzeroa.com/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #95</span><br>
+        <div class="card-title">Fly8MA Free Private Pilot Videos</div>
+        <div class="card-subtitle">Category: Pre-Flight Competency Outlines</div>
+        <p style='font-size: 16px;'>Short, focused tutorials on critical flight mechanics, crosswind landings, aircraft systems, and chart reading.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Great for quick reviews before flights, letting students easily refresh their memory on key concepts.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Fly8MA Aviation Academy ↗️", "https://fly8ma.com/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #96</span><br>
+        <div class="card-title">Mentour Pilot Commercial Operational Airframe Deep-Dives</div>
+        <div class="card-subtitle">Category: Commercial Line Crew Coordination</div>
+        <p style='font-size: 16px;'>Detailed breakdowns by a senior airline captain detailing modern jet line problems, multi-crew communication failures, and automated system setups.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Bridges the gap to advanced airline career training by showing students real-world commercial flight safety situations.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Mentour Pilot Enterprise Channel ↗️", "https://mentourpilot.com/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #97</span><br>
+        <div class="card-title">Aviation Training Network Technical Playlists</div>
+        <div class="card-subtitle">Category: Mechanical Systems Visualizations</div>
+        <p style='font-size: 16px;'>Illustrated animations explaining engine designs, variable-pitch props, and the mechanics of flight instruments.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps visual learners easily understand complex mechanical systems without needing a physical teardown.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Aviation Training Network ↗️", "https://skybrary.aero/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #98</span><br>
+        <div class="card-title">AeroGuard Flight Training Academic Blueprints</div>
+        <div class="card-subtitle">Category: Baseline Zero-To-Hero Frameworks</div>
+        <p style='font-size: 16px;'>Structured learning guides mapping career paths from zero hours up to global airline first officer qualifications.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps students outline and budget their entire professional career timeline from day one.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AeroGuard Flight Academy ↗️", "https://www.flyaeroguard.com/", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #99</span><br>
+        <div class="card-title">Corporate Pilot Life: Operational Logistics Series</div>
+        <div class="card-subtitle">Category: Part 135 Non-Scheduled Logistics</div>
+        <p style='font-size: 16px;'>First-person operational logs detailing business jet flight planning, international handling, and corporate captain duties.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Pulls back the curtain on private charter careers, showing students a viable alternative to typical airline jobs.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Corporate Pilot Life Portfolio ↗️", "https://www.youtube.com/@CorporatePilotLife", use_container_width=True)
+    st.write("")
+
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Rank #100</span><br>
+        <div class="card-title">Flight Safety Foundation Accident Prevention Archives</div>
+        <div class="card-subtitle">Category: Industry Systemic Incident Matrices</div>
+        <p style='font-size: 16px;'>Data-heavy safety reports and case analyses highlighting systemic global airline risks and incident trends.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Teaches advanced students to appreciate systemic risk metrics and professional safety management architectures.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Flight Safety Foundation Resource Center ↗️", "https://flightsafety.org/", use_container_width=True)
 
 # PAGE 4: AEROBOT GROUND KNOWLEDGE SYSTEM
 elif st.session_state.page == "AI":
