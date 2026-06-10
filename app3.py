@@ -1460,7 +1460,7 @@ elif st.session_state.page == "Drone":
     </div>
     """, unsafe_allow_html=True)
 
-# PAGE 8: AI CHATBOT / GITHUB MODELS PROTOTYPING ENGINE
+# PAGE 7: AI CHATBOT / GITHUB MODELS PROTOTYPING ENGINE
 elif st.session_state.page == "AIChatbot":
     st.markdown("### 🤖 Section 7: AI Chatbot & GitHub Models Integration Hub")
     st.write("Follow the technical deployment manual below to configure, launch, and run your localized Streamlit prototyping client connected directly to the GitHub Models ecosystem.")
