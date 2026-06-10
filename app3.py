@@ -153,7 +153,7 @@ st.markdown("""
 if "page" not in st.session_state:
     st.session_state.page = "Feed"
 
-nav_cols = st.columns(4)
+nav_cols = st.columns(5)
 
 with nav_cols[0]:
     if st.button("🏠 Home Feed", use_container_width=True, type="primary" if st.session_state.page == "Feed" else "secondary"):
@@ -168,6 +168,10 @@ with nav_cols[2]:
         st.session_state.page = "ATC"
         st.rerun()
 with nav_cols[3]:
+    if st.button("💁‍♀️ Crew Roadmap", use_container_width=True, type="primary" if st.session_state.page == "Crew" else "secondary"):
+        st.session_state.page = "Crew"
+        st.rerun()
+with nav_cols[4]:
     if st.button("🤖 AeroBot AI", use_container_width=True, type="primary" if st.session_state.page == "AI" else "secondary"):
         st.session_state.page = "AI"
         st.rerun()
@@ -500,7 +504,6 @@ elif st.session_state.page == "Pilots":
     </div>
     """, unsafe_allow_html=True)
     st.link_button("Deploy to NASA ASRS System Database ↗️", "https://asrs.arc.nasa.gov/", use_container_width=True)
-    st.write("")
 
     # SUBSECTION D
     st.markdown("### 💰 Scholarships & Specialized Video Ground Schools")
@@ -719,7 +722,7 @@ elif st.session_state.page == "ATC":
         <div class="card-subtitle">Category: International Protocol Treaty</div>
         <p style='font-size: 16px;'>The master international treaty text standardizing air traffic rules, flight rules, and separation criteria worldwide.</p>
         <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> The core reference for international air traffic control, vital for understanding global aviation standards.
+            <strong>📋 Strategic Value:</strong> The core reference for international air traffic control, vital for understand global aviation standards.
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -974,7 +977,399 @@ elif st.session_state.page == "ATC":
     """, unsafe_allow_html=True)
     st.link_button("Deploy to Flight Safety Foundation Safety Digest Logs ↗️", "https://flightsafety.org/", use_container_width=True)
 
-# PAGE 4: AEROBOT GROUND KNOWLEDGE SYSTEM
+# PAGE 4: FLIGHT ATTENDANT HUB
+elif st.session_state.page == "Crew":
+    st.markdown("## 🛒 Section 3: Flight Attendant / Air Hostess Hub (Top 25)")
+    st.write("Comprehensive training modules, service protocols, and career toolkits designed to master cabin environment dynamics.")
+    st.write("---")
+
+    # SUBSECTION A
+    st.markdown("### 🥇 Cabin Safety Protocols & Emergency Command")
+
+    #1
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#1: ICAO Cabin Safety Training Manual (Doc 10002)</div>
+        <div class="card-subtitle">Category: Global Safety Textbook</div>
+        <p style='font-size: 16px;'>The global master manual detailing emergency commands, slide use, raft parameters, and survival gear layouts.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> The primary textbook for cabin safety, ensuring student training meets international airline criteria.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to ICAO Store Official Reference Catalog ↗️", "https://store.icao.int/", use_container_width=True)
+    st.write("")
+
+    #2
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#2: FAA Advisory Circular 121-24C (Passenger Safety Briefings)</div>
+        <div class="card-subtitle">Category: Regulatory Briefing Standards</div>
+        <p style='font-size: 16px;'>Legal standards detailing what must be included in passenger briefings and exit row instructions.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Ensures cabin safety presentations meet all legal criteria, preparing crews to handle safety checks confidently.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Advisory Circular Repository ↗️", "https://www.faa.gov/regulations_policies/advisory_circulars/", use_container_width=True)
+    st.write("")
+
+    #3
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#3: Skybrary Cabin Safety Compendium</div>
+        <div class="card-subtitle">Category: Safety Response Database</div>
+        <p style='font-size: 16px;'>An open aviation safety database cataloging best responses for severe turbulence, cabin smoke, and sudden decompressions.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Provides an excellent reference source for building practical cabin safety guides and response workflows.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to SKYbrary Cabin Safety Gateway ↗️", "https://skybrary.aero/", use_container_width=True)
+    st.write("")
+
+    #4
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#4: Aircraft Emergency Evacuation Slide System Mechanics</div>
+        <div class="card-subtitle">Category: Evacuation System Hardware</div>
+        <p style='font-size: 16px;'>Technical overviews detailing door slide arming, pressure checks, and deployment triggers for various exit doors.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Eliminates door operation errors, ensuring slides are armed correctly for flight and disarmed safely for arrival.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to SKYbrary Emergency Evacuation Slides ↗️", "https://skybrary.aero/", use_container_width=True)
+    st.write("")
+
+    #5
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#5: IATA Dangerous Goods Regulations (DGR) Quick Reference</div>
+        <div class="card-subtitle">Category: Hazardous Material Matrix</div>
+        <p style='font-size: 16px;'>Identification charts showing restricted items, lithium battery fire hazards, and spill control steps for cabins.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps crews spot and neutralize hidden hazardous materials in carry-on bags before departure.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to IATA Dangerous Goods Documentation ↗️", "https://www.iata.org/", use_container_width=True)
+    st.write("")
+
+    # SUBSECTION B
+    st.markdown("### 💼 Recruitment, Resumes & Interview Prep")
+
+    #6
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#6: Canva Flight Attendant Resume Layout Templates</div>
+        <div class="card-subtitle">Category: Visual Application Layouts</div>
+        <p style='font-size: 16px;'>Visual, professional resume layouts tailored to highlight customer service skills and safety certifications for airline applications.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps candidates format their experience clearly, matching the visual styles preferred by airline hiring teams.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Canva Professional Flight Attendant Templates ↗️", "https://www.canva.com/", use_container_width=True)
+    st.write("")
+
+    #7
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#7: Indeed Career Guide: Flight Attendant Interview Steps</div>
+        <div class="card-subtitle">Category: Behavioral Strategy Systems</div>
+        <p style='font-size: 16px;'>Behavioral interview questions structured around Situation, Task, Action, and Result (STAR) formats used by airlines during recruitment.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Prepares applicants to give structured, professional answers that demonstrate real-world problem-solving skills.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Indeed Career Guide: Flight Attendant Interview Steps ↗️", "https://www.indeed.com/", use_container_width=True)
+    st.write("")
+
+    #8
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#8: Verbal De-escalation Techniques for Confined Spaces</div>
+        <div class="card-subtitle">Category: Passenger Command Strategy</div>
+        <p style='font-size: 16px;'>Practical guides on diffusing passenger arguments, calming upset travelers, and resolving seating disputes peacefully.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Gives crew members the communication skills needed to handle arguments before they escalate into serious safety risks.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to SKYbrary Managing Disruptive Passengers ↗️", "https://skybrary.aero/", use_container_width=True)
+    st.write("")
+
+    #9
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#9: Public Announcement (PA) Reading Script Database</div>
+        <div class="card-subtitle">Category: Vocal Delivery Scripts</div>
+        <p style='font-size: 16px;'>Practice scripts covering welcome messages, turbulence warnings, and customs instructions to practice clear speaking habits.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Improves vocal tone and clarity, helping crews deliver clear, professional announcements under pressure.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Flight Attendant PA Scripts Directory ↗️", "https://www.flightattendantcentral.com/", use_container_width=True)
+    st.write("")
+
+    #10
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#10: DOT Airline Accessibility Guidelines</div>
+        <div class="card-subtitle">Category: Inclusive Service Protocols</div>
+        <p style='font-size: 16px;'>Regulatory service guides showing how to assist solo young travelers, elderly passengers, and disabled flyers safely.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Ensures full compliance with passenger accessibility rules, providing professional, empathetic care for every flyer.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to DOT Airline Accessibility Guidelines ↗️", "https://www.transportation.gov/airconsumer", use_container_width=True)
+
+    # SUBSECTION C
+    st.markdown("### 🍽️ Catering Logic & Galley Management")
+
+    #11
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#11: IATA Special Meal (SPML) Universal Code Matrix</div>
+        <div class="card-subtitle">Category: Catering Identity Coding</div>
+        <p style='font-size: 16px;'>Standardized codes used to identify special passenger meals, including vegan, kosher, halal, and allergen-free options.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Prevents catering mix-ups, helping crews distribute specialized meals accurately to the right passengers.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to IATA Passenger Special Meal Specifications ↗️", "https://www.iata.org/", use_container_width=True)
+    st.write("")
+
+    #12
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#12: Widebody Aircraft Galley Latches & Safety Standards</div>
+        <div class="card-subtitle">Category: Secure Infrastructure Standards</div>
+        <p style='font-size: 16px;'>Operating guides for locking meal carts, latching galley doors, and securing electrical ovens before take-off.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Prevents cart rollaways and injury risks by ensuring all galley gear is locked down tight during turbulence.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to SKYbrary Galley Safety Standards ↗️", "https://skybrary.aero/", use_container_width=True)
+    st.write("")
+
+    #13
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#13: FDA Retail & Food Service Regulation Logs</div>
+        <div class="card-subtitle">Category: Clinical Preservation Metrics</div>
+        <p style='font-size: 16px;'>Health guidelines defining safe temperature ranges for holding and serving prepared meals on commercial routes.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Prevents food spoilage, ensuring all passenger meals remain safe and healthy throughout long journeys.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FDA Retail & Food Service Regulation Logs ↗️", "https://www.fda.gov/food/", use_container_width=True)
+    st.write("")
+
+    #14
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-foundational">⚓ Tier 4: Foundational Value</span><br>
+        <div class="card-title">#14: IATA Aircraft Cabin Waste Reduction Portal</div>
+        <div class="card-subtitle">Category: Eco-Compliance Processing</div>
+        <p style='font-size: 16px;'>International rules covering cabin sorting, recycling, and disposing of international bio-waste upon arrival.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps airlines comply with green target goals and international garbage disposal rules at global hubs.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to IATA Aircraft Cabin Waste Reduction Portal ↗️", "https://www.iata.org/", use_container_width=True)
+
+    # SUBSECTION D
+    st.markdown("### 🌐 IATA Geography & Flight Wellness")
+
+    #15
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#15: IATA Official Coding Engine Search</div>
+        <div class="card-subtitle">Category: Aerodromic Location Codes</div>
+        <p style='font-size: 16px;'>Search tools and reference guides designed to help students master three-letter city codes like JFK, LHR, and DXB.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Fundamental skill that prevents luggage routing mistakes and speeds up check-in logistics.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to IATA Official Coding Engine Search ↗️", "https://www.iata.org/en/publications/directories/code-search/", use_container_width=True)
+    st.write("")
+
+    #16
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#16: TimeAndDate Global Zone Converter Maps</div>
+        <div class="card-subtitle">Category: Chronometric Tracking Maps</div>
+        <p style='font-size: 16px;'>Time zone charts showing how to calculate local arrival times and track day changes when crossing the International Date Line.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps crews manage flight logs accurately and schedule rest blocks properly on long multi-stop trips.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to TimeAndDate Global Zone Converter Maps ↗️", "https://www.timeanddate.com/worldclock/converter.html", use_container_width=True)
+    st.write("")
+
+    #17
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#17: IATA Travel Centre Passport and Visa Requirements</div>
+        <div class="card-subtitle">Category: Customs Border Verification</div>
+        <p style='font-size: 16px;'>Border rules showing passport validity requirements, mandatory visas, and crew entry rules for different countries.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps crews cross international borders smoothly, avoiding customs issues or entry delays during layovers.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to IATA Travel Centre Passport and Visa Requirements ↗️", "https://www.iatatravelcentre.com/", use_container_width=True)
+    st.write("")
+
+    #18
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#18: Sterile Flight Deck Rule Operational Compliance</div>
+        <div class="card-subtitle">Category: Flight Deck Interaction Integrity</div>
+        <p style='font-size: 16px;'>Regulations banning all non-safety communications with the cockpit during low-altitude taxiing, takeoffs, and landings.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Prevents pilot distractions during critical phases of flight, ensuring the flight deck stays completely focused on safety.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Advisory Circular AC 121-32: Sterile Flight Deck ↗️", "https://www.faa.gov/regulations_policies/advisory_circulars/", use_container_width=True)
+    st.write("")
+
+    #19
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#19: ICAO Fatigue Risk Management Portal</div>
+        <div class="card-subtitle">Category: Human Metrics Risk Assessment</div>
+        <p style='font-size: 16px;'>System tracking sheets outlining legal duty limits, minimum rest breaks, and fatigue reporting tools for international crews.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Prevents extreme exhaustion risks by ensuring airline schedules comply with legal safety rest margins.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to ICAO Fatigue Risk Management Portal ↗️", "https://www.icao.int/", use_container_width=True)
+    st.write("")
+
+    #20
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#20: CDC Traveler's Health Blood Clots Guide</div>
+        <div class="card-subtitle">Category: Operational Circulatory Wellness</div>
+        <p style='font-size: 16px;'>Leg movement guides and compression advice designed to maintain good blood flow on long-haul segments to prevent DVT.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Lowers blood clot risks from long sitting times, keeping crews safe and healthy across extended flights.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to CDC Traveler's Health Blood Clots Guide ↗️", "https://wwwnc.cdc.gov/travel", use_container_width=True)
+
+    # SUBSECTION E
+    st.markdown("### 🏥 High-Altitude Medicine & Crash Case Studies")
+
+    #21
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#21: Aerospace Medical Association (AsMA) Publications</div>
+        <div class="card-subtitle">Category: High-Altitude Clinical Reference</div>
+        <p style='font-size: 16px;'>Clinical reference manuals tracking altitude strains on wounds, heart issues, asthma attacks, and stroke symptoms in pressurized cabins.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Gives crews the medical knowledge needed to treat serious health crises effectively at high cruise altitudes.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Aerospace Medical Association (AsMA) Publications ↗️", "https://www.asma.org/", use_container_width=True)
+    st.write("")
+
+    #22
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#22: British Airtours Flight 28M Evacuation Analysis</div>
+        <div class="card-subtitle">Category: Hardware Egress Evacuation Study</div>
+        <p style='font-size: 16px;'>A safety review of a 1985 engine fire that caused smoke to quickly fill the cabin, slowing down passenger evacuation steps.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Drove major updates in interior safety design, leading to wider exit row paths, clear floor lighting, and fire-resistant seat covers.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to UK AAIB Historical Accident Investigation Vault ↗️", "https://www.gov.uk/government/organisations/air-accidents-investigation-branch", use_container_width=True)
+    st.write("")
+
+    #23
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#23: Air Canada Flight 797 Technical Evaluation Archive</div>
+        <div class="card-subtitle">Category: Structural Lavatory Fire Mitigation</div>
+        <p style='font-size: 16px;'>A study of a hidden bathroom fire that spread through wall panels, knocking out power and filling the cabin with thick smoke.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Drove major cabin updates, making lavatory smoke alarms, automatic extinguishers, and path lights mandatory on all planes.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to NTSB Air Canada 797 Technical Evaluation Archive ↗️", "https://www.ntsb.gov/", use_container_width=True)
+    st.write("")
+
+    #24
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#24: US Airways Flight 1549 Hudson River Ditching Evacuation</div>
+        <div class="card-subtitle">Category: Emergency Command Ditching Matrix</div>
+        <p style='font-size: 16px;'>A review of a dual-engine bird strike ditching, showing how fast, orderly cabin teams emptied the plane onto river rafts.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Proves the value of structured training drills, illustrating how perfect command loops make fast water evacuations possible.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to NTSB Hudson Ditching Operational Review ↗️", "https://www.ntsb.gov/", use_container_width=True)
+    st.write("")
+
+    #25
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#25: Flight Safety Foundation Cabin Crew Safety Digests</div>
+        <div class="card-subtitle">Category: Evolving Structural Safety Analysis</div>
+        <p style='font-size: 16px;'>A compilation of modern safety briefings tracking exit injuries, galley cart hazards, and changing cabin equipment standards.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Keeps safety training fresh, ensuring crew knowledge aligns with modern airline safety updates and research.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Flight Safety Foundation Cabin Crew Safety Digests ↗️", "https://flightsafety.org/", use_container_width=True)
+
+# PAGE 5: AEROBOT GROUND KNOWLEDGE SYSTEM
 elif st.session_state.page == "AI":
     st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
     
