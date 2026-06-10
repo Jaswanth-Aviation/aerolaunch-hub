@@ -1510,19 +1510,72 @@ elif st.session_state.page == "Drone":
     """, unsafe_allow_html=True)
     st.link_button("Deploy to DartDrones Online ↗️", "https://www.dartdrones.com/", use_container_width=True)
 
-# PAGE 7: AEROBOT GROUND KNOWLEDGE SYSTEM
+# PAGE 7: AEROBOT GROUND KNOWLEDGE SYSTEM (100% FREE BUILT-IN AI CHATBOT)
 elif st.session_state.page == "AI":
-    st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
-    
-    st.markdown("""
-    <div class="resource-card">
-        <div class="card-title">AeroBot Training Terminal</div>
-        <div class="card-subtitle">Powered by Zapier AI Engine</div>
-        <p style='font-size: 16px;'>To provide a completely secure, unrestricted learning environment for young aviators, the AeroBot training core is hosted within our age-approved Zapier cloud network. Click the button below to clear tracking blocks and boot up the interactive flight instructor terminal.</p>
-        <div class="guidance-box">
-            <strong>📋 Student Note:</strong> You can quiz AeroBot on airspace tiers, weather codes, or aircraft weight balances. It will immediately generate precise FAA instruction patterns.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.link_button("Launch AeroBot Training Interface 🚀", "https://schoolaichatbot.zapier.app/", use_container_width=True)
+    import requests
+    import json
+
+    st.markdown("### 🤖 AeroBot: Built-in Avionics Ground Instructor")
+    st.write("Ask AeroBot anything about airspace tiers, weather codes, or flight rules.")
+
+    # 1. SET UP CHAT MEMORY (Stores your conversation history so it remembers context)
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = []
+
+    # 2. SHOW THE PAST CONVERSATION ON SCREEN
+    for message in st.session_state.chat_history:
+        with st.chat_message(message["role"]):
+            st.markdown(message["text"])
+
+    # 3. CAPTURE NEW USER INPUT (Creates the sleek typing box at the bottom)
+    if user_prompt := st.chat_input("Ask a question (e.g., 'What is Class B airspace?')"):
+        
+        # Display what you typed immediately
+        with st.chat_message("user"):
+            st.markdown(user_prompt)
+        st.session_state.chat_history.append({"role": "user", "text": user_prompt})
+
+        # 4. SEND THE TEXT TO THE FREE PUBLIC CHAT ENGINE
+        with st.chat_message("assistant"):
+            response_placeholder = st.empty()
+            response_placeholder.markdown("*AeroBot is thinking...*")
+            
+            # System directives to keep the bot focused on your aviation theme
+            system_instruction = (
+                "You are AeroBot, an expert high school aviation instructor for the AeroLaunch hub website. "
+                "Keep your answers highly encouraging, structured, and easy for a 16-year-old student to read. "
+                "Use bullet points and bold headers to break down complex flight physics or FAA rules."
+            )
+            
+            # Pack history up for the public model
+            messages_payload = [{"role": "system", "content": system_instruction}]
+            for msg in st.session_state.chat_history:
+                messages_payload.append({"role": msg["role"], "content": msg["text"]})
+            
+            # Use an open-endpoint endpoint configuration
+            url = "https://openrouter.ai/api/v1/chat/completions"
+            headers = {
+                "Content-Type": "application/json"
+            }
+            payload = {
+                "model": "meta-llama/llama-3-8b-instruct:free", # Accesses the free-tier public model
+                "messages": messages_payload
+            }
+            
+            try:
+                # Shoot the network call out across the internet
+                res = requests.post(url, headers=headers, json=payload, timeout=15)
+                
+                if res.status_code == 200:
+                    res_json = res.json()
+                    # Extract the text answer directly from the data map
+                    ai_response = res_json['choices'][0]['message']['content']
+                    response_placeholder.markdown(ai_response)
+                    
+                    # Save the answer into your memory history
+                    st.session_state.chat_history.append({"role": "assistant", "text": ai_response})
+                else:
+                    response_placeholder.markdown("❌ **AeroBot Server Delay:** The open server is busy right now. Try submitting your query again in a few seconds!")
+                    
+            except Exception as e:
+                response_placeholder.markdown("❌ **AeroBot Network Error:** Unable to reach the internet portal. Check your connection or IDE firewall rules!")
