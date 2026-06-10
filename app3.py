@@ -153,7 +153,7 @@ st.markdown("""
 if "page" not in st.session_state:
     st.session_state.page = "Feed"
 
-nav_cols = st.columns(5)
+nav_cols = st.columns(6)
 
 with nav_cols[0]:
     if st.button("🏠 Home Feed", use_container_width=True, type="primary" if st.session_state.page == "Feed" else "secondary"):
@@ -172,6 +172,10 @@ with nav_cols[3]:
         st.session_state.page = "Crew"
         st.rerun()
 with nav_cols[4]:
+    if st.button("🔧 Maintenance", use_container_width=True, type="primary" if st.session_state.page == "Maintenance" else "secondary"):
+        st.session_state.page = "Maintenance"
+        st.rerun()
+with nav_cols[5]:
     if st.button("🤖 AeroBot AI", use_container_width=True, type="primary" if st.session_state.page == "AI" else "secondary"):
         st.session_state.page = "AI"
         st.rerun()
@@ -193,7 +197,7 @@ if st.session_state.page == "Feed":
 
 # PAGE 2: PILOT HUB
 elif st.session_state.page == "Pilots":
-    st.markdown("## 🧭 Section 1: The Pilot Hub")
+    st.markdown("## 🧭 Section 1: The Pilot Hub (Top 25)")
     st.write("Structured modules built to optimize competitive credentials and accelerate primary flight training timelines.")
     st.write("---")
 
@@ -584,7 +588,7 @@ elif st.session_state.page == "Pilots":
 
 # PAGE 3: ATC HUB
 elif st.session_state.page == "ATC":
-    st.markdown("## 🎙️ Section 2: Air Traffic Control")
+    st.markdown("## 🎙️ Section 2: Air Traffic Control (Top 25)")
     st.write("Professional simulation tracks, metrics, and standard phraseology systems designed to master controller infrastructure.")
     st.write("---")
 
@@ -735,7 +739,7 @@ elif st.session_state.page == "ATC":
         <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
         <div class="card-title">#10: Standard Lateral and Vertical Separation Minimums Matrix</div>
         <div class="card-subtitle">Category: Separation Minimums Charts</div>
-        <p style='font-size: 16px;'>Quick-reference tables outlining legal distance limits ($3\text{ miles}$, $5\text{ miles}$, or $1000\text{ feet}$ vertically) required between planes.</p>
+        <p style='font-size: 16px;'>Quick-reference tables outlining legal distance limits ($3\\text{ miles}$, $5\\text{ miles}$, or $1000\\text{ feet}$ vertically) required between planes.</p>
         <div class="guidance-box">
             <strong>📋 Strategic Value:</strong> Instills basic safety limits, helping controllers maintain legal margins and prevent separation violations.
         </div>
@@ -765,7 +769,7 @@ elif st.session_state.page == "ATC":
         <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
         <div class="card-title">#12: Intercept Angle Mathematics for Instrument Approaches</div>
         <div class="card-subtitle">Category: Mathematical Vectoring Arcs</div>
-        <p style='font-size: 16px;'>Guides outlining how to turn planes onto instrument final approaches ($30\text{-degree}$ maximum limits) without overshooting the line.</p>
+        <p style='font-size: 16px;'>Guides outlining how to turn planes onto instrument final approaches ($30\\text{-degree}$ maximum limits) without overshooting the line.</p>
         <div class="guidance-box">
             <strong>📋 Strategic Value:</strong> Sharpens mental math skills, helping controllers issue smooth turns that align pilots perfectly with instrument approach paths.
         </div>
@@ -858,7 +862,7 @@ elif st.session_state.page == "ATC":
         <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
         <div class="card-title">#18: Reduced Vertical Separation Minimum (RVSM) Flight Levels</div>
         <div class="card-subtitle">Category: High-Altitude Space Metrics</div>
-        <p style='font-size: 16px;'>Rules reducing standard vertical spacing from $2000\text{ feet}$ to $1000\text{ feet}$ for advanced aircraft flying between FL290 and FL410.</p>
+        <p style='font-size: 16px;'>Rules reducing standard vertical spacing from $2000\\text{ feet}$ to $1000\\text{ feet}$ for advanced aircraft flying between FL290 and FL410.</p>
         <div class="guidance-box">
             <strong>📋 Strategic Value:</strong> Doubles high-altitude airspace capacity, making it vital for modern enroute sequencing training.
         </div>
@@ -979,7 +983,7 @@ elif st.session_state.page == "ATC":
 
 # PAGE 4: FLIGHT ATTENDANT HUB
 elif st.session_state.page == "Crew":
-    st.markdown("## 🛒 Section 3: Flight Attendant / Air Hostess Hub")
+    st.markdown("## 🛒 Section 3: Flight Attendant / Air Hostess Hub (Top 25)")
     st.write("Comprehensive training modules, service protocols, and career toolkits designed to master cabin environment dynamics.")
     st.write("---")
 
@@ -1293,7 +1297,7 @@ elif st.session_state.page == "Crew":
     st.link_button("Deploy to CDC Traveler's Health Blood Clots Guide ↗️", "https://wwwnc.cdc.gov/travel", use_container_width=True)
 
     # SUBSECTION E
-    st.markdown("### 🏥 High-Altitude Medicine & Crash Case Studies")
+    st.markdown("### ### 🏥 High-Altitude Medicine & Crash Case Studies")
 
     #21
     st.markdown("""
@@ -1369,7 +1373,392 @@ elif st.session_state.page == "Crew":
     """, unsafe_allow_html=True)
     st.link_button("Deploy to Flight Safety Foundation Cabin Crew Safety Digests ↗️", "https://flightsafety.org/", use_container_width=True)
 
-# PAGE 5: AEROBOT GROUND KNOWLEDGE SYSTEM
+# PAGE 5: AIRCRAFT MAINTENANCE HUB
+elif st.session_state.page == "Maintenance":
+    st.markdown("## 🛠️ Section 4: Aircraft Maintenance & Engineering (AMT) Hub")
+    st.write("Technical manuals, regulatory rulebooks, and student apprenticeship training networks designed to build certified engineering profiles.")
+    st.write("---")
+
+    # SUBSECTION A
+    st.markdown("### 🥇 Strategic Youth Frameworks & Scholarships")
+
+    #1
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#1: FAA Aviation Handbooks & Manuals (General, Airframe, & Powerplant)</div>
+        <div class="card-subtitle">Category: Regulatory Textbooks</div>
+        <p style='font-size: 16px;'>The core technical textbooks covering aerodynamics, structural sheet metal, and turbine engine mechanics.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Forms the foundational reading material for anyone learning aircraft maintenance and structural engineering.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Handbooks Gateway ↗️", "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/", use_container_width=True)
+    st.write("")
+
+    #2
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#2: EAA AeroEducate Portal</div>
+        <div class="card-subtitle">Category: STEM Activity Matrix</div>
+        <p style='font-size: 16px;'>An interactive, youth-focused STEM tracking system designed to log hands-on engineering activities.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Connects high schoolers to local manufacturing projects and youth engineering mentors.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to EAA AeroEducate ↗️", "https://www.aeroeducate.org/", use_container_width=True)
+    st.write("")
+
+    #3
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#3: Aircraft Electronics Association (AEA) Educational Foundation</div>
+        <div class="card-subtitle">Category: Avionics Endowment Grants</div>
+        <p style='font-size: 16px;'>A dedicated association platform providing thousands of dollars in scholarships explicitly for high schoolers.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Directly offsets the cost of avionics, wiring, and electronics training programs for teens.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AEA Foundation Portal ↗️", "https://aea.net/educationalfoundation/", use_container_width=True)
+    st.write("")
+
+    #4
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#4: SkillsUSA Aviation Maintenance Trades</div>
+        <div class="card-subtitle">Category: Professional Workforce Pipelines</div>
+        <p style='font-size: 16px;'>A structured workforce program providing technical framework guidelines and competitive events for student mechanics.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Allows 16-year-olds to compete in high school divisions for precision assembly and safety wiring.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to SkillsUSA Main Site ↗️", "https://www.skillsusa.org/", use_container_width=True)
+    st.write("")
+
+    #5
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#5: FAA Safety Team (FAASTeam) Learning Center</div>
+        <div class="card-subtitle">Category: Safety Clearance Certificates</div>
+        <p style='font-size: 16px;'>The official safety portal hosting hundreds of free courses on human error, tool management, and parts inspections.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Earns teens official industry safety certificates to boost their resumes before turning 18.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAASTeam Online ↗️", "https://www.faasafety.gov/", use_container_width=True)
+
+    # SUBSECTION B
+    st.markdown("### 🔩 Core Technical & Industry Resources")
+
+    #6
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#6: Aviation Mechanic Practical Test Standards (PTS)</div>
+        <div class="card-subtitle">Category: License Evaluation Parameters</div>
+        <p style='font-size: 16px;'>The official testing blueprint detailing the exact practical projects required to clear a mechanic license.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Provides the direct grading criteria for passing hands-on oral and practical technician exams.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Testing Library ↗️", "https://www.faa.gov/training_testing/testing/", use_container_width=True)
+    st.write("")
+
+    #7
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#7: Dynamic Regulatory System (DRS)</div>
+        <div class="card-subtitle">Category: Airworthiness Search Protocols</div>
+        <p style='font-size: 16px;'>The FAA’s central legal search engine for standard airworthiness certificates, directives, and component limits.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Introduces students to regulatory maintenance law and how to research mandatory aircraft safety recalls.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA DRS System ↗️", "https://drs.faa.gov/", use_container_width=True)
+    st.write("")
+
+    #8
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#8: Aviation Maintenance Magazine</div>
+        <div class="card-subtitle">Category: Fleet Overhaul Media</div>
+        <p style='font-size: 16px;'>A professional trade journal covering automated tooling, composites, and global fleet overhaul trends.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Keeps students updated on commercial MRO (Maintenance, Repair, and Overhaul) corporate operations.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AMTSociety News ↗️", "https://www.aviationmaint.com/", use_container_width=True)
+    st.write("")
+
+    #9
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#9: National Aviation Academy (NAA) Training Blog</div>
+        <div class="card-subtitle">Category: Operational Hangar Logs</div>
+        <p style='font-size: 16px;'>Informative visual breakdowns showing daily life inside turbine maintenance hangars and tool control stations.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps teens visualize the daily career workflow of an active heavy-jet maintenance technician.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to NAA Training Portal ↗️", "https://www.naa.edu/", use_container_width=True)
+    st.write("")
+
+    #10
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#10: AMT Society Knowledge Center</div>
+        <div class="card-subtitle">Category: Physical Craft Practice</div>
+        <p style='font-size: 16px;'>A professional forum network detailing industry standard practices for safety wire patterns and sheet metal rivets.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Serves as a peer-vetted knowledge base for perfecting physical trade craft skills.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AMTSociety Hub ↗️", "https://www.aviationmx.org/", use_container_width=True)
+    st.write("")
+
+    #11
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#11: Aircraft Component Type Certificate Data Sheets (TCDS)</div>
+        <div class="card-subtitle">Category: Structural Build Constraints</div>
+        <p style='font-size: 16px;'>The official weight, fuel, and engine limit sheets used to certify exact aircraft build specifications.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Vital for teaching students how to verify if an aircraft modification is legally airworthy.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA TCDS Database ↗️", "https://rgl.faa.gov/", use_container_width=True)
+    st.write("")
+
+    #12
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#12: Electronic Code of Federal Regulations (eCFR) Part 43</div>
+        <div class="card-subtitle">Category: Maintenance Legality Codes</div>
+        <p style='font-size: 16px;'>The baseline federal law defining what constitutes legal maintenance, rebuild alterations, and preventive tasks.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Gives 16-year-olds a clear understanding of what basic fixes a private pilot can legally perform themselves.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to eCFR Part 43 Portal ↗️", "https://www.ecfr.gov/", use_container_width=True)
+    st.write("")
+
+    #13
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#13: Aircraft Electronics Association Avionics Magazine</div>
+        <div class="card-subtitle">Category: Electrical Computational Systems</div>
+        <p style='font-size: 16px;'>Tech tracking articles breaking down modern glass cockpits, wiring setups, and digital radar components.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Focuses heavily on the electrical and computational side of modern avionics engineering.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AEA Avionics News ↗️", "https://www.avionicsnews.com/", use_container_width=True)
+    st.write("")
+
+    #14
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#14: Choose Aerospace Curriculum Network</div>
+        <div class="card-subtitle">Category: Secondary Training Blueprints</div>
+        <p style='font-size: 16px;'>A dedicated high school training network framework providing direct entry paths into certified mechanic academies.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps high schools incorporate standardized aviation maintenance classes directly into teenage class schedules.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Choose Aerospace ↗️", "https://www.chooseaerospace.org/", use_container_width=True)
+    st.write("")
+
+    #15
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#15: Northrop Rice Aviation Foundation Grants</div>
+        <div class="card-subtitle">Category: Tooling Capital Endowments</div>
+        <p style='font-size: 16px;'>A funding system offering specialized tool grants and avionic system scholarships for student technicians.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps students buy expensive starting toolsets required for entry-level hangar apprenticeships.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to NRAF Foundation ↗️", "https://www.northropricefoundation.org/", use_container_width=True)
+    st.write("")
+
+    #16
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#16: Boeing Technical Apprenticeship Program</div>
+        <div class="card-subtitle">Category: Manufacturing Corporate Entry</div>
+        <p style='font-size: 16px;'>Corporate outreach pathways showing how high school graduates step directly into assembly line careers.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Provides an actionable alternative to a traditional 4-year degree via direct aerospace manufacturer training.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Boeing Careers Portal ↗️", "https://jobs.boeing.com/", use_container_width=True)
+    st.write("")
+
+    #17
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#17: AOPA AMT Career Guide</div>
+        <div class="card-subtitle">Category: Industry Deployment Guides</div>
+        <p style='font-size: 16px;'>A comprehensive breakdown showing the intersection of general aviation maintenance and commercial airline operations.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Helps students choose between working on small flight-school trainers or massive commercial airliners.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AOPA Mechanic Paths ↗️", "https://www.aopa.org/news-and-media/all-index/aviation-maintenance-technician", use_container_width=True)
+    st.write("")
+
+    #18
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-foundational">⚓ Tier 4: Foundational Value</span><br>
+        <div class="card-title">#18: Aviation Maintenance Technician Society Awards</div>
+        <div class="card-subtitle">Category: Continuous Competency Records</div>
+        <p style='font-size: 16px;'>A specialized rewards program that logs continuous training milestones for apprentice technicians.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Encourages a culture of lifelong learning by tracking voluntary safety training credits.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA William O'Brien Program ↗️", "https://www.faasafety.gov/AMT/amtinfo/", use_container_width=True)
+    st.write("")
+
+    #19
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#19: Engine Components Inc. (ECI) Technical Library</div>
+        <div class="card-subtitle">Category: Piston Clearance Mechanics</div>
+        <p style='font-size: 16px;'>Free graphic heavy manuals tracking piston engine wear, cylinder rebuilding, and piston clearances.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Excellent visual resource for understanding how internal combustion aircraft engines operate.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to ECI Component Guides ↗️", "https://www.asoverhaul.com/", use_container_width=True)
+    st.write("")
+
+    #20
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#20: Aviation Institute of Maintenance (AIM) High School Hub</div>
+        <div class="card-subtitle">Category: Secondary Academic Matriculation</div>
+        <p style='font-size: 16px;'>Offers dual-enrollment class tracking and summer camp options for 16-year-olds exploring technical trades.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Allows high school juniors to earn college credits toward an airframe license early.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AIM Aviation Hangar ↗️", "https://aviationmaintenance.edu/", use_container_width=True)
+    st.write("")
+
+    #21
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#21: Aircraft Mechanics Fraternal Association (AMFA) Education</div>
+        <div class="card-subtitle">Category: Professional Guild Connections</div>
+        <p style='font-size: 16px;'>Trade union portal providing student mentoring connections with active airline line maintenance mechanics.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Connects student technicians with industry professionals to build career networks.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AMFA Union System ↗️", "https://www.amfanational.org/", use_container_width=True)
+    st.write("")
+
+    #22
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#22: Women in Aviation International (WAI) Technical Scholarships</div>
+        <div class="card-subtitle">Category: Targeted Diversity Endowments</div>
+        <p style='font-size: 16px;'>Dedicated scholarship network awarding specialized funding blocks for airframe and avionics ratings.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Promotes diversity in the hangar by funding technical training for young women.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to WAI Scholarships Hub ↗️", "https://www.wai.org/scholarships", use_container_width=True)
+    st.write("")
+
+    #23
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#23: JSFirm Aviation Maintenance Job Board</div>
+        <div class="card-subtitle">Category: Labor Index Metrics</div>
+        <p style='font-size: 16px;'>A real-time hiring search engine showing what specific tool proficiencies and certificates are actively in high demand.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Allows students to spot current market wage trends and identify highly valued technical skills.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to JSFirm Hangar Search ↗️", "https://www.jsfirm.com/", use_container_width=True)
+    st.write("")
+
+    #24
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#24: ATP Flight School AMT Pipeline</div>
+        <div class="card-subtitle">Category: Fast-Track Infrastructure</div>
+        <p style='font-size: 16px;'>Accelerating training program outlines tracking commercial airline fleet support logistics.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Illustrates how fast-track training setups transition students rapidly from school to airline careers.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to ATP AMT Career Program ↗️", "https://atpflightschool.com/amt/", use_container_width=True)
+    st.write("")
+
+    #25
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#25: Professional Aviation Maintenance Association (PAMA)</div>
+        <div class="card-subtitle">Category: Global Safety Clearinghouses</div>
+        <p style='font-size: 16px;'>Core professional network hosting trade webinars and connecting high school chapters to active field events.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Keeps young technicians informed on changing global licensing and regulatory safety updates.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to PAMA National Portal ↗️", "https://www.pama.org/", use_container_width=True)
+
+# PAGE 6: AEROBOT GROUND KNOWLEDGE SYSTEM
 elif st.session_state.page == "AI":
     st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
     
