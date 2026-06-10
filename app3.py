@@ -475,15 +475,257 @@ elif st.session_state.page == "Pilots":
     </div>
     """, unsafe_allow_html=True)
 
-# PAGE 3: ATC ROADMAP
+# PAGE 3: ATC ROADMAP (THE AIR TRAFFIC CONTROL HUB - TOP 25)
 elif st.session_state.page == "ATC":
-    st.markdown("### 🎙️ Air Traffic Control Matrix")
+    st.markdown("### 🎛️ Section 2: The Air Traffic Control Hub")
+    
+    # Category 1
+    st.markdown("#### 🥇 Virtual ATC Frameworks & Master Rules")
+    
     st.markdown("""
     <div class="resource-card">
-        <div class="tier-badge-high">Tier 3: Advanced</div>
-        <div class="card-title">FAA Academy Training</div>
-        <div class="card-subtitle">Location: Oklahoma City, OK</div>
-        <p>Pass the AT-SA exam to get selected for terminal or en-route traffic management training at the central federal academy.</p>
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#1: VATSIM S1 Controller Training Syllabus</div>
+        <div class="card-subtitle">Strategic Value: Early Ground Control Mastery</div>
+        <p><strong>Summary:</strong> The fundamental gateway manual covering clearance formats, airport ground layouts, and taxi safety protocols.</p>
+        <p><strong>Strategic Value:</strong> Ideal for teaching the basics of ground management before students move on to active radar sequencing.</p>
+        <a class="resource-link" href="https://vatsim.net/" target="_blank">VATSIM United States Training Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#2: FAA Order JO 7110.65 (Air Traffic Control Manual)</div>
+        <div class="card-subtitle">Strategic Value: The Absolute Regulatory Blueprint</div>
+        <p><strong>Summary:</strong> The absolute legal handbook defining standard US phraseology, separation minimums, and vector guidelines.</p>
+        <p><strong>Strategic Value:</strong> The definitive handbook for air traffic control, serving as the core reference source for any ATC training setup.</p>
+        <a class="resource-link" href="https://www.faa.gov/air_traffic/publications/" target="_blank">FAA Document Gateway: JO 7110.65BB →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#3: IVAO ATC Online Academy Manuals</div>
+        <div class="card-subtitle">Strategic Value: Global Procedures Onboarding</div>
+        <p><strong>Summary:</strong> International training handbooks focusing on ICAO terminal rules, transition layer setups, and non-US vector standards.</p>
+        <p><strong>Strategic Value:</strong> Provides essential global perspective, teaching students how air traffic control operates outside North America.</p>
+        <a class="resource-link" href="https://ivao.aero/" target="_blank">IVAO HQ Training Academy →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#4: Eurocontrol Training Zone Portal</div>
+        <div class="card-subtitle">Strategic Value: Multinational Airspace Optimization</div>
+        <p><strong>Summary:</strong> Interactive training tracking air traffic flows, sector load balancing, and delay-reduction strategies across Europe.</p>
+        <p><strong>Strategic Value:</strong> Introduces high-level airspace management concepts, showing how to handle traffic flows between different countries.</p>
+        <a class="resource-link" href="https://www.eurocontrol.int/" target="_blank">Eurocontrol Aviation Training Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#5: EuroScope Radar Client Software Project</div>
+        <div class="card-subtitle">Strategic Value: Desktop Radar Simulation Exercises</div>
+        <p><strong>Summary:</strong> A highly detailed radar simulator client that replicates real-world European air traffic radar displays and tracker systems.</p>
+        <p><strong>Strategic Value:</strong> Gives students hands-on practice with professional-grade radar tools from home without needing expensive academy equipment.</p>
+        <a class="resource-link" href="https://www.euroscope.hu/" target="_blank">EuroScope Radar Engine →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#6: OpenRadar Open-Source Tower Tracking Software</div>
+        <div class="card-subtitle">Strategic Value: Cost-Free Terminal Scope Operations</div>
+        <p><strong>Summary:</strong> An open-source radar simulator focusing on terminal approach control and tower visual sweeps.</p>
+        <p><strong>Strategic Value:</strong> Provides an accessible tool for students to practice managing traffic arcs and local terminal arrivals.</p>
+        <a class="resource-link" href="https://sourceforge.net/" target="_blank">OpenRadar SourceForge Project →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 2
+    st.markdown("#### 🛰️ Radar Vectoring Mechanics & Separation Rules")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#7: ATC-Sim Browser Radar Vectoring Game</div>
+        <div class="card-subtitle">Strategic Value: Practical Spatial Geometry Drills</div>
+        <p><strong>Summary:</strong> A 2D browser simulator where players issue headings, altitudes, and speeds to feed arrivals onto final approach paths safely.</p>
+        <p><strong>Strategic Value:</strong> A fast, interactive way to practice radar geometry and master vectoring techniques early in training.</p>
+        <a class="resource-link" href="https://www.atc-sim.com/" target="_blank">ATC-Sim Browser Radar Engine →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#8: FAA Runway Incursion Prevention Training Simulator</div>
+        <div class="card-subtitle">Strategic Value: Surface Movement Risk Mitigation</div>
+        <p><strong>Summary:</strong> Interactive training tools designed to spot and prevent ground errors, runway incursions, and vehicle tracking mistakes.</p>
+        <p><strong>Strategic Value:</strong> Focuses heavily on ground safety, teaching students how to keep runways clear and prevent close calls on the tarmac.</p>
+        <a class="resource-link" href="https://www.faa.gov/airports/runway_safety" target="_blank">FAA Runway Safety Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#9: ICAO Document 4444 (Air Traffic Management Standards)</div>
+        <div class="card-subtitle">Strategic Value: Global Treaty Alignment</div>
+        <p><strong>Summary:</strong> The master international treaty text standardizing air traffic rules, flight rules, and separation criteria worldwide.</p>
+        <p><strong>Strategic Value:</strong> The core reference for international air traffic control, vital for understanding global aviation standards.</p>
+        <a class="resource-link" href="https://store.icao.int/" target="_blank">ICAO Store Official Reference Catalog →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#10: Standard Lateral and Vertical Separation Minimums Matrix</div>
+        <div class="card-subtitle">Strategic Value: Structural Safety Target Enforcement</div>
+        <p><strong>Summary:</strong> Quick-reference tables outlining legal distance limits (3 miles, 5 miles, or 1000 feet vertically) required between planes.</p>
+        <p><strong>Strategic Value:</strong> Instills basic safety limits, helping controllers maintain legal margins and prevent separation violations.</p>
+        <a class="resource-link" href="https://skybrary.aero/" target="_blank">SKYbrary Separation Standards →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#11: Wake Turbulence Category Separation Requirements</div>
+        <div class="card-subtitle">Strategic Value: Structural Flow Management Safety</div>
+        <p><strong>Summary:</strong> Tables outlining required distance buffers behind heavy jets to prevent light planes from hitting dangerous wingtip vortices.</p>
+        <p><strong>Strategic Value:</strong> Critical for avoiding wake turbulence accidents, helping controllers space departures safely based on weight class.</p>
+        <a class="resource-link" href="https://www.faa.gov/" target="_blank">FAA Wake Turbulence Mitigation Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#12: Intercept Angle Mathematics for Instrument Approaches</div>
+        <div class="card-subtitle">Strategic Value: Approach Glidepath Entry Optimization</div>
+        <p><strong>Summary:</strong> Guides outlining how to turn planes onto instrument final approaches (30-degree maximum limits) without overshooting the line.</p>
+        <p><strong>Strategic Value:</strong> Sharpens mental math skills, helping controllers issue smooth turns that align pilots perfectly with instrument approach paths.</p>
+        <a class="resource-link" href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/instrument_procedures_handbook" target="_blank">FAA Instrument Procedures Handbook →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 3
+    st.markdown("#### 🎙️ Tower Operations & Airspace Infrastructure")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#13: FAA Airport Sign and Marking Guide</div>
+        <div class="card-subtitle">Strategic Value: Local Airfield Visual Awareness</div>
+        <p><strong>Summary:</strong> Visual reference guides illustrating runway hold lines, taxi signs, direction indicators, and displaced threshold markers.</p>
+        <p><strong>Strategic Value:</strong> Essential for tower operators, helping them guide pilots accurately through complex airport layouts.</p>
+        <a class="resource-link" href="https://www.faa.gov/airports/runway_safety/publications" target="_blank">FAA Runway Safety Sign Manual →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#14: Land and Hold Short Operations (LAHSO) Safety Limits</div>
+        <div class="card-subtitle">Strategic Value: Advanced Capacity Engineering</div>
+        <p><strong>Summary:</strong> Operating parameters for landing planes on intersecting runways and stopping them before the crossing point.</p>
+        <p><strong>Strategic Value:</strong> Increases airport capacity during peak hours while keeping strict safety margins between crossing aircraft.</p>
+        <a class="resource-link" href="https://www.faa.gov/" target="_blank">FAA LAHSO Directives Matrix →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#15: Airspace Classifications Dimensional Metric Matrix</div>
+        <div class="card-subtitle">Strategic Value: Regulatory Boundaries Identification</div>
+        <p><strong>Summary:</strong> Dimensional charts illustrating the vertical and lateral boundaries of Class A, B, C, D, E, and G airspaces.</p>
+        <p><strong>Strategic Value:</strong> Provides the basic framework for airspace rules, defining when flights must establish contact with controllers.</p>
+        <a class="resource-link" href="https://www.faa.gov/" target="_blank">FAA Airspace Classification Hub →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#16: Standard Terminal Arrival Route (STAR) Chart Profiles</div>
+        <div class="card-subtitle">Strategic Value: Arrival Sequence Profiling Efficiency</div>
+        <p><strong>Summary:</strong> Standard instrument arrival charts detailing predefined routes, speed limits, and altitude restrictions for incoming jets.</p>
+        <p><strong>Strategic Value:</strong> Streamlines approach control workloads by automatically organizing arrivals onto standard terminal paths.</p>
+        <a class="resource-link" href="https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dtpp/" target="_blank">FAA Terminal Procedures Publication (d-TPP) →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#17: Holding Pattern Entry Geometric Calculation Worksheets</div>
+        <div class="card-subtitle">Strategic Value: Traffic Delay Sequencing Control</div>
+        <p><strong>Summary:</strong> Math guides detailing direct, parallel, and teardrop entry profiles for holding patterns based on arrival angles.</p>
+        <p><strong>Strategic Value:</strong> Essential for managing traffic delays, helping controllers predict airframe paths during holding adjustments.</p>
+        <a class="resource-link" href="https://www.andreasnotebook.com/" target="_blank">CFI Notebook Holding Procedures →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#18: Reduced Vertical Separation Minimum (RVSM) Flight Levels</div>
+        <div class="card-subtitle">Strategic Value: High-Altitude Route Capacity Engineering</div>
+        <p><strong>Summary:</strong> Rules reducing standard vertical spacing from 2000 feet to 1000 feet for advanced aircraft flying between FL290 and FL410.</p>
+        <p><strong>Strategic Value:</strong> Doubles high-altitude airspace capacity, making it vital for modern enroute sequencing training.</p>
+        <a class="resource-link" href="https://www.faa.gov/air_traffic/separation/rvsm" target="_blank">FAA RVSM Documentation Portal →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 4
+    st.markdown("#### 🧠 Aptitude Testing & Emergency Scenarios")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#19: ATSA Air Traffic Selection Assessment Prep Guide</div>
+        <div class="card-subtitle">Strategic Value: Federal Screening Evaluation Preparedness</div>
+        <p><strong>Summary:</strong> Official overviews explaining the structure, sections, and passing scores required for the FAA's entry-level controller aptitude test.</p>
+        <p><strong>Strategic Value:</strong> Critical starting point for aspiring controllers, showing them what to expect before taking official entry tests.</p>
+        <a class="resource-link" href="https://www.faa.gov/be-atc" target="_blank">FAA ATC Career Hiring Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#20: JobTestPrep ATSA Free Practice Modules</div>
+        <div class="card-subtitle">Strategic Value: Dynamic Interactive Testing Calibration</div>
+        <p><strong>Summary:</strong> Sample math games and interactive puzzles testing a user's ability to clear intersecting conflicts under tight time limits.</p>
+        <p><strong>Strategic Value:</strong> Sharpens early decision-making habits, helping candidates improve their reaction times for the official ATSA test.</p>
+        <a class="resource-link" href="https://www.jobtestprep.com/" target="_blank">JobTestPrep ATSA Free Practice Modules →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#21: Transponder Squawk Code Matrix (7500, 7600, 7700)</div>
+        <div class="card-subtitle">Strategic Value: Silent Risk Vector Identification</div>
+        <p><strong>Summary:</strong> A quick-reference sheet for emergency transponder codes: 7500 (Hijack), 7600 (Radio Failure), and 7700 (General Emergency).</p>
+        <p><strong>Strategic Value:</strong> Allows controllers to instantly identify flight emergencies on radar screens without needing verbal radio contact.</p>
+        <a class="resource-link" href="https://www.aopa.org/" target="_blank">AOPA Transponder Squawk Guidelines →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#22: FAA Light Gun Signals Reference Chart</div>
+        <div class="card-subtitle">Strategic Value: Fail-Safe Visual Backups Execution</div>
+        <p><strong>Summary:</strong> Procedures for using airport light guns and tracking predictable pilot paths when a flight loses all radio contact.</p>
+        <p><strong>Strategic Value:</strong> Keeps traffic flowing safely during radio outages by providing a reliable backup communication method.</p>
+        <a class="resource-link" href="https://www.faa.gov/" target="_blank">FAA Light Gun Signals Reference Chart →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 5
+    st.markdown("#### 📊 Historical Case Studies & Safety Logs")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#23: Tenerife Airport Disaster Systemic Breakdown Analysis</div>
+        <div class="card-subtitle">Strategic Value: Master Phraseology Safety Standard</div>
+        <p><strong>Summary:</strong> A safety review of the 1977 runway collision, highlighting how vague phrasing, radio blockages, and stress led to error.</p>
+        <p><strong>Strategic Value:</strong> The premier lesson on radio safety, showing why the industry shifted to strict, unambiguous phraseology.</p>
+        <a class="resource-link" href="https://skybrary.aero/articles/tenerife-airport-disaster-1977" target="_blank">SKYbrary Tenerife Collision Analysis →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#24: Uberlingen Mid-Air Collision TCAS Priority Study</div>
+        <div class="card-subtitle">Strategic Value: Dynamic Cockpit Automation Logic Priority</div>
+        <p><strong>Summary:</strong> An analysis of a mid-air crash caused when a controller's vectors directly contradicted automated onboard collision alerts (TCAS).</p>
+        <p><strong>Strategic Value:</strong> Teaches critical system priorities, establishing that automated cockpit warnings always override ground instructions during alerts.</p>
+        <a class="resource-link" href="https://skybrary.aero/" target="_blank">SKYbrary Uberlingen Structural Safety Review →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#25: Flight Safety Foundation: Continuous ATC Integrity Reports</div>
+        <div class="card-subtitle">Strategic Value: Active Real-World Systemic Risk Monitoring</div>
+        <p><strong>Summary:</strong> Regular safety reports tracking modern near-miss statistics, systemic software glitches, and controller fatigue risks.</p>
+        <p><strong>Strategic Value:</strong> Keeps curriculum content up to date with modern safety trends and active systemic air traffic risks.</p>
+        <a class="resource-link" href="https://flightsafety.org/" target="_blank">Flight Safety Foundation Safety Digest Logs →</a>
     </div>
     """, unsafe_allow_html=True)
 
