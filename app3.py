@@ -1459,83 +1459,22 @@ elif st.session_state.page == "Drone":
         <a class="resource-link" href="https://www.dartdrones.com/" target="_blank">DartDrones Online →</a>
     </div>
     """, unsafe_allow_html=True)
-
-# PAGE 7: AEROBOT AI (LIVE INTERACTIVE CHAT ENGINE)
-elif st.session_state.page == "AIChatbot":
-    st.markdown("### 🤖 AeroBot AI: Live Prototyping Sandbox")
-    st.write("An interactive, lightweight chat client built natively with Streamlit widgets and backed by the GitHub Models framework.")
     
-    st.markdown("---")
+# PAGE 7: AEROBOT GROUND KNOWLEDGE SYSTEM
+elif st.session_state.page == "AI":
+    st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
     
-    # 1. Secure Authentication Entry Gateway
-    # If you prefer to hardcode your key via st.secrets, swap this line for: github_token = st.secrets["GITHUB_TOKEN"]
-    github_token = st.text_input("Enter GitHub Personal Access Token to Unlock:", type="password", help="Requires a classic GitHub token with the 'models' read scope.")
+    st.markdown("""
+    <div class="resource-card">
+        <div class="card-title">AeroBot Training Terminal</div>
+        <div class="card-subtitle">Powered by Zapier AI Engine</div>
+        <p style='font-size: 16px;'>To provide a completely secure, unrestricted learning environment for young aviators, the AeroBot training core is hosted within our age-approved Zapier cloud network. Click the button below to clear tracking blocks and boot up the interactive flight instructor terminal.</p>
+        <div class="guidance-box">
+            <strong>📋 Student Note:</strong> You can quiz AeroBot on airspace tiers, weather codes, or aircraft weight balances. It will immediately generate precise FAA instruction patterns.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     
-    if github_token:
-        from azure.ai.inference import ChatCompletionsClient
-        from azure.ai.inference.models import SystemMessage, UserMessage, AssistantMessage
-        from azure.core.credentials import AzureKeyCredential
+    st.link_button("Launch AeroBot Training Interface 🚀", "https://schoolaichatbot.zapier.app/", use_container_width=True)
 
-        try:
-            # Initialize the backend client connection infrastructure
-            client = ChatCompletionsClient(
-                endpoint="https://models.inference.ai.azure.com",
-                credential=AzureKeyCredential(github_token)
-            )
-            
-            # 2. Session State Memory Buffer Configuration
-            if "messages" not in st.session_state:
-                st.session_state.messages = [
-                    {"role": "system", "content": "You are AeroBot, a brilliant, helpful, and highly clear aviation AI assistant built into the AeroLaunch dashboard."}
-                ]
-            
-            # 3. Render Historical Chat Message Array from Memory
-            for msg in st.session_state.messages:
-                if msg["role"] != "system":
-                    with st.chat_message(msg["role"]):
-                        st.markdown(msg["content"])
-            
-            # 4. Live User Chat Input Widget Execution
-            if user_input := st.chat_input("Ask AeroBot AI anything about aviation roadmaps, maintenance, or operations..."):
-                
-                # Append the fresh user message into screen view instantly
-                with st.chat_message("user"):
-                    st.markdown(user_input)
-                st.session_state.messages.append({"role": "user", "content": user_input})
-                
-                # Process payload conversion arrays for Azure/GitHub SDK compatibility
-                api_messages = []
-                for m in st.session_state.messages:
-                    if m["role"] == "system":
-                        api_messages.append(SystemMessage(content=m["content"]))
-                    elif m["role"] == "user":
-                        api_messages.append(UserMessage(content=m["content"]))
-                    elif m["role"] == "assistant":
-                        api_messages.append(AssistantMessage(content=m["content"]))
 
-                # 5. Live Inference Generation Target Execution
-                with st.chat_message("assistant"):
-                    with st.spinner("AeroBot is thinking..."):
-                        try:
-                            response = client.complete(
-                                stream=False,
-                                model="Phi-3.5-mini-instruct",  # Swap to gpt-4o or your designated engine link if whitelisted on your token
-                                messages=api_messages,
-                                temperature=0.7,
-                                max_tokens=1200
-                            )
-                            
-                            assistant_response = response.choices[0].message.content
-                            st.markdown(assistant_response)
-                            
-                            # Log assistant payload back into historical session state cache memory
-                            st.session_state.messages.append({"role": "assistant", "content": assistant_response})
-                            
-                        except Exception as inference_error:
-                            st.error(f"Inference Delivery Interruption: {inference_error}")
-                            
-        except Exception as init_error:
-            st.error(f"Client Synchronization Fault: {init_error}")
-            
-    else:
-        st.info("🔒 Standby Mode: Enter an authenticated GitHub Personal Access Token to engage the live chat runtime sandbox interface.")
