@@ -1374,7 +1374,7 @@ elif st.session_state.page == "Crew":
     st.link_button("Deploy to Flight Safety Foundation Cabin Crew Safety Digests ↗️", "https://flightsafety.org/", use_container_width=True)
 
 # PAGE 5: AIRCRAFT MAINTENANCE HUB
-elif st.session_state.page == "Aircraft Maintenance Roadmap":
+elif st.session_state.page == "Maintenance":
     st.markdown("## 🛠️ Section 4: Aircraft Maintenance & Engineering (AMT) Hub")
     st.write("Technical manuals, regulatory rulebooks, and student apprenticeship training networks designed to build certified engineering profiles.")
     st.write("---")
