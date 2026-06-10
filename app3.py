@@ -1459,242 +1459,111 @@ elif st.session_state.page == "Drone":
         <a class="resource-link" href="https://www.dartdrones.com/" target="_blank">DartDrones Online →</a>
     </div>
     """, unsafe_allow_html=True)
+
+# PAGE 8: AI CHATBOT / GITHUB MODELS PROTOTYPING ENGINE
+elif st.session_state.page == "AIChatbot":
+    st.markdown("### 🤖 Section 7: AI Chatbot & GitHub Models Integration Hub")
+    st.write("Follow the technical deployment manual below to configure, launch, and run your localized Streamlit prototyping client connected directly to the GitHub Models ecosystem.")
     
-# PAGE 7: AIRPORT MANAGEMENT (AVIATION BUSINESS & AIRPORT MANAGEMENT HUB - TOP 25)
-elif st.session_state.page == "AirportManagement":
-    st.markdown("### 🏢 Section 6: Aviation Business & Airport Management Hub")
+    st.markdown("---")
     
-    # Category 1
+    # Technical Documentation Tabs
+    tab1, tab2, tab3 = st.tabs(["📋 Deployment Guide", "💻 Python Application Code", "🚀 Execution Commands"])
     
-    st.markdown("""
-    <div class="resource-card">
-        <div class="tier-badge-medium">Tier 2: Medium</div>
-        <div class="card-title">#1: SkillsUSA Aviation Maintenance Trades</div>
-        <div class="card-subtitle">Strategic Value: Ground Crew Scheduling & Project Management</div>
-        <p><strong>Summary:</strong> Team logistics and structural operations framework data that models how ground handling operations function.</p>
-        <p><strong>Strategic Value:</strong> Teaches project management skills needed to organize efficient ground crew schedules.</p>
-        <a class="resource-link" href="https://www.skillsusa.org/" target="_blank">SkillsUSA Main Site →</a>
-    </div>
+    with tab1:
+        st.markdown("### Step 1: Generate a GitHub Personal Access Token")
+        st.write("To connect an application to the GitHub Models API securely, an authenticated classic access token is required:")
+        
+        st.markdown("""
+        1. **Log in** to your personal GitHub account.
+        2. Click your **profile picture** in the top-right corner and choose **Settings**.
+        3. Scroll down on the left sidebar and select **Developer Settings**.
+        4. Expand **Personal access tokens** and select **Tokens (classic)**.
+        5. Click **Generate new token** ➔ **Generate new token (classic)**.
+        6. Input a descriptive note (e.g., `Streamlit AI Model Hub`).
+        7. **Scopes Selection:** Check **only** the `models` (read) scope. *To maintain security, do not check any other operational scopes.*
+        8. Click **Generate token** and immediately copy the string. 
+        """)
+        
+        st.warning("⚠️ CRITICAL SECURITY WARNING: Treat this token as a raw password. Never commit this token directly into open source repositories or public files.")
 
-    <div class="resource-card">
-        <div class="tier-badge-high">Tier 3: High</div>
-        <div class="card-title">#2: SkyVector Aeronautical Charts</div>
-        <div class="card-subtitle">Strategic Value: Hub-and-Spoke Network Visualization</div>
-        <p><strong>Summary:</strong> Essential for analyzing airline route networks, regional hub connections, and runway approach paths.</p>
-        <p><strong>Strategic Value:</strong> Helps business students visualize airline route networks and geographic hub-and-spoke models.</p>
-        <a class="resource-link" href="https://skyvector.com/" target="_blank">SkyVector Live Map →</a>
-    </div>
+    with tab2:
+        st.markdown("### Step 2 & 3: Application Script Architecture")
+        st.write("Create a core Python application file named `app.py` and populate it with the production template layout below:")
+        
+        # Cleaned, structured, and syntactically correct script template
+        st.code("""import streamlit as st
+from azure.ai.inference import ChatCompletionsClient
+from azure.ai.inference.models import SystemMessage, UserMessage
+from azure.core.credentials import AzureKeyCredential
 
-    <div class="resource-card">
-        <div class="tier-badge-highest">Tier 4: Highest</div>
-        <div class="card-title">#3: Eurocontrol Training Zone Portal</div>
-        <div class="card-subtitle">Strategic Value: Corporate Optimization & Delay Cost Modeling</div>
-        <p><strong>Summary:</strong> Corporate airspace planning data tracking sector delays, passenger flows, and fuel-efficient arrivals.</p>
-        <p><strong>Strategic Value:</strong> Illustrates the economic cost of delays and shows how routing changes protect airline profits.</p>
-        <a class="resource-link" href="https://trainingzone.eurocontrol.int/" target="_blank">Eurocontrol Aviation Training →</a>
-    </div>
+# Global Streamlit Layout Engine Configuration
+st.set_page_config(page_title="AI Model Client", page_icon="🤖", layout="wide")
 
-    <div class="resource-card">
-        <div class="tier-badge-high">Tier 3: High</div>
-        <div class="card-title">#4: Flight Safety Foundation Safety Digest Logs</div>
-        <div class="card-subtitle">Strategic Value: Frontline Risk Management Alignment</div>
-        <p><strong>Summary:</strong> Risk-management templates illustrating how airport operations track ground safety and fuel loading hazards.</p>
-        <p><strong>Strategic Value:</strong> Connects high-level business choices directly with frontline airport safety practices.</p>
-        <a class="resource-link" href="https://flightsafety.org/" target="_blank">Flight Safety Foundation →</a>
-    </div>
+st.title("🤖 AI Model Prototyping Interface")
+st.write("A secure localized micro-client infrastructure powered directly by GitHub Models API orchestration.")
 
-    <div class="resource-card">
-        <div class="tier-badge-highest">Tier 4: Highest</div>
-        <div class="card-title">#5: ICAO Store Official Reference Catalog</div>
-        <div class="card-subtitle">Strategic Value: Sovereign Airport Treaty Foundations</div>
-        <p><strong>Summary:</strong> Global regulatory treaties detailing international airport design limits and airline passenger manifest rules.</p>
-        <p><strong>Strategic Value:</strong> The primary legal framework for studying international aviation passenger rights and airport treaties.</p>
-        <a class="resource-link" href="https://store.icao.int/" target="_blank">ICAO Reference Store →</a>
-    </div>
-    """, unsafe_allow_html=True)
+st.markdown("---")
 
-    # Category 2
-    st.markdown("#### 📊 Corporate Logistics & Airport Operations")
-    
-    st.markdown("""
-    <div class="resource-card">
-        <div class="tier-badge-highest">Tier 4: Highest</div>
-        <div class="card-title">#6: AAAE (American Association of Airport Executives) Student Hub</div>
-        <div class="card-subtitle">Strategic Value: Operational Internship Pipeline</div>
-        <p><strong>Summary:</strong> Gives high school students access to career mentors, corporate management internships, and airport safety reports.</p>
-        <p><strong>Strategic Value:</strong> The prime network for teenagers looking to transition into paid airport operational management roles.</p>
-        <a class="resource-link" href="https://www.aaae.org/" target="_blank">AAAE National Site →</a>
-    </div>
+# Secure User Token Authentication Field
+github_token = st.text_input("Enter GitHub Personal Access Token (Classic):", type="password", help="Requires 'models' read-access scope.")
 
-    <div class="resource-card">
-        <div class="tier-badge-medium">Tier 2: Medium</div>
-        <div class="card-title">#7: Airports Council International (ACI) Learning Center</div>
-        <div class="card-subtitle">Strategic Value: Global Hub Traffic Analytics</div>
-        <p><strong>Summary:</strong> Data trackers detailing passenger volume records, terminal expansions, and green airport design models.</p>
-        <p><strong>Strategic Value:</strong> Provides global analytics data used to rank the world's busiest air transport hubs.</p>
-        <a class="resource-link" href="https://aci.aero/" target="_blank">ACI World Portal →</a>
-    </div>
+if github_token:
+    try:
+        # Initialize the secure Chat Completions Client using GitHub Models Server Infrastructure
+        client = ChatCompletionsClient(
+            endpoint="https://models.inference.ai.azure.com",
+            credential=AzureKeyCredential(github_token)
+        )
+        
+        st.success("🔒 API Authentication Client Framework Initialized.")
+        
+        # User Parameter Adjustments Matrix
+        with st.sidebar:
+            st.header("⚙️ Model Architecture Parameters")
+            selected_model = st.selectbox("Target LLM Base Engine:", ["Phi-3.5-mini-instruct"])
+            temperature_setting = st.slider("Generation Creativity (Temperature):", min_value=0.0, max_value=1.0, value=0.7, step=0.1)
+            max_tokens_limit = st.slider("Maximum Response Tokens:", min_value=100, max_value=4000, value=1000, step=100)
+        
+        # Interactive Message Prompt Window
+        user_prompt = st.text_area("Message the model:", placeholder="Type your prompt parameters or technical inquiries here...")
+        
+        if st.button("🚀 Execute Model Inference") and user_prompt:
+            with st.spinner("Executing dynamic model inference routine via remote API backend..."):
+                try:
+                    # Request a direct non-streaming synchronous generation from the target model
+                    response = client.complete(
+                        stream=False,
+                        model=selected_model, 
+                        messages=[
+                            SystemMessage(content="You are a highly analytical, objective, and accurate AI engineering collaborator."),
+                            UserMessage(content=user_prompt),
+                        ],
+                        temperature=temperature_setting,
+                        max_tokens=max_tokens_limit
+                    )
+                    
+                    # Output Render Pipeline
+                    st.markdown("### 📤 Engine Generation Response:")
+                    st.info(response.choices[0].message.content)
+                    
+                except Exception as inner_err:
+                    st.error(f"Inference Failure: An error occurred during payload processing: {inner_err}")
+                    
+    except Exception as outer_err:
+        st.error(f"Initialization Security Fault: {outer_err}")
+else:
+    st.info("💡 Gateway Initialization Standby: Provide a valid GitHub Personal Access Token containing an active 'models' scope to spin up client logic.")
+""", language="python")
 
-    <div class="resource-card">
-        <div class="tier-badge-highest">Tier 4: Highest</div>
-        <div class="card-title">#8: IATA Airport Development Reference Manual (ADRM) Outlines</div>
-        <div class="card-subtitle">Strategic Value: Terminal Architectural Flow Engineering</div>
-        <p><strong>Summary:</strong> Design layout planning books detailing how security checkpoints, baggage belts, and gates are engineered.</p>
-        <p><strong>Strategic Value:</strong> Teaches architectural design logic aimed at speeding up passenger check-in and transit times.</p>
-        <a class="resource-link" href="https://www.iata.org/" target="_blank">IATA Operations Hub →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-high">Tier 3: High</div>
-        <div class="card-title">#9: MIT OpenCourseWare: Airport Systems Planning</div>
-        <div class="card-subtitle">Strategic Value: Advanced Capacity Constraint Modeling</div>
-        <p><strong>Summary:</strong> Free university syllabus tracks exploring runway capacity metrics, noise limits, and airline delay variables.</p>
-        <p><strong>Strategic Value:</strong> Provides rigorous, data-driven analytical models for managing real-world airport terminal constraints.</p>
-        <a class="resource-link" href="https://ocw.mit.edu/" target="_blank">MIT OpenCourseWare System →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-high">Tier 3: High</div>
-        <div class="card-title">#10: FAA Airport Compliance Directives Catalog</div>
-        <div class="card-subtitle">Strategic Value: Municipal Grant Lease Structuring</div>
-        <p><strong>Summary:</strong> Legal resource libraries detailing how federal grants fund municipal runways and control corporate terminal leases.</p>
-        <p><strong>Strategic Value:</strong> Shows how public money links with private airline agreements to expand city airports.</p>
-        <a class="resource-link" href="https://www.faa.gov/airports/" target="_blank">FAA Airports Portal →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-foundational">Tier 1: Foundational</div>
-        <div class="card-title">#11: Bureau of Transportation Statistics (BTS) Aviation Data</div>
-        <div class="card-subtitle">Strategic Value: Consumer Metric Statistics Modeling</div>
-        <p><strong>Summary:</strong> Live databases tracking on-time arrival records, airline revenue stats, and baggage loss metrics for consumer review.</p>
-        <p><strong>Strategic Value:</strong> An excellent source of raw data for high school statistics projects tracking consumer airline performance.</p>
-        <a class="resource-link" href="https://www.bts.gov/" target="_blank">BTS Airline Data Engine →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-foundational">Tier 1: Foundational</div>
-        <div class="card-title">#12: FlightGlobal Aviation Business News</div>
-        <div class="card-subtitle">Strategic Value: Corporate Fleet Strategy Monitoring</div>
-        <p><strong>Summary:</strong> Executive market monitoring tracking airline mergers, aircraft purchase orders, and global travel demand shifts.</p>
-        <p><strong>Strategic Value:</strong> Keeps business students informed on high-level corporate airline strategy and fleet buying choices.</p>
-        <a class="resource-link" href="https://www.flightglobal.com/" target="_blank">FlightGlobal News →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-medium">Tier 2: Medium</div>
-        <div class="card-title">#13: Airlines for America (A4A) Industry Tracker</div>
-        <div class="card-subtitle">Strategic Value: Microeconomic Fare Impact Assessment</div>
-        <p><strong>Summary:</strong> Economic impact sheets showing fuel price volatility, cargo shipping volume shifts, and trade policy updates.</p>
-        <p><strong>Strategic Value:</strong> Demonstrates how changing fuel costs and economic trends directly impact airline ticket pricing.</p>
-        <a class="resource-link" href="https://www.airlines.org/" target="_blank">Airlines for America →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-medium">Tier 2: Medium</div>
-        <div class="card-title">#14: Embry-Riddle Aviation Business Journal</div>
-        <div class="card-subtitle">Strategic Value: Regional Operating Budget Case Studies</div>
-        <p><strong>Summary:</strong> Academic case studies analyzing regional airport budgets, parking revenue models, and low-cost carrier setups.</p>
-        <p><strong>Strategic Value:</strong> Introduces high schoolers to university-level academic research on aviation business finance.</p>
-        <a class="resource-link" href="https://commons.erau.edu/" target="_blank">ERAU Research Archive →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-foundational">Tier 1: Foundational</div>
-        <div class="card-title">#15: National Business Aviation Association (NBAA) Careers</div>
-        <div class="card-subtitle">Strategic Value: FBO & Private Charter Management Outlines</div>
-        <p><strong>Summary:</strong> Corporate aviation portals tracking paths into private jet management, charter logistics, and fixed-base operator (FBO) setups.</p>
-        <p><strong>Strategic Value:</strong> Highlights lucrative management career tracks outside traditional commercial airline systems.</p>
-        <a class="resource-link" href="https://nbaa.org/" target="_blank">NBAA Student Network →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-high">Tier 3: High</div>
-        <div class="card-title">#16: FAA NextGen Aviation Modernization Tracker</div>
-        <div class="card-subtitle">Strategic Value: Satellite Optimization Metrics</div>
-        <p><strong>Summary:</strong> System layouts tracking the multi-billion dollar shift toward digital satellite tracking and automated gate systems.</p>
-        <p><strong>Strategic Value:</strong> Shows how replacing old radar systems with satellite tracks reduces fuel burn and speeds up flight routes.</p>
-        <a class="resource-link" href="https://www.faa.gov/nextgen" target="_blank">FAA NextGen System →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-highest">Tier 4: Highest</div>
-        <div class="card-title">#17: Airline Data Project (MIT)</div>
-        <div class="card-subtitle">Strategic Value: Carrier Financial Auditing Framework</div>
-        <p><strong>Summary:</strong> Granular financial charts tracking labor costs, fleet layout strategies, and operating expenses across major carriers.</p>
-        <p><strong>Strategic Value:</strong> The premier online tool for analyzing the underlying cost metrics of major commercial airlines.</p>
-        <a class="resource-link" href="http://airlinedata.mit.edu/" target="_blank">MIT Airline Data Hub →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-medium">Tier 2: Medium</div>
-        <div class="card-title">#18: International Civil Aviation Organization (ICAO) Aviation Training</div>
-        <div class="card-subtitle">Strategic Value: Cross-Border Overflight Agreements</div>
-        <p><strong>Summary:</strong> Comprehensive introductory summaries tracking economic rules for air travel and sovereign border agreements.</p>
-        <p><strong>Strategic Value:</strong> Teaches international relations students how countries negotiate overflight rights and cross-border travel rules.</p>
-        <a class="resource-link" href="https://www.icao.int/training" target="_blank">ICAO Global Training Portal →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-medium">Tier 2: Medium</div>
-        <div class="card-title">#19: Airport Cooperative Research Program (ACRP) Publications</div>
-        <div class="card-subtitle">Strategic Value: Field Operations Problem-Solving Templates</div>
-        <p><strong>Summary:</strong> Free research briefs exploring winter de-icing fluid storage, wildlife control, and emergency planning.</p>
-        <p><strong>Strategic Value:</strong> Offers practical, problem-solving templates for managing daily, real-world airport hazards.</p>
-        <a class="resource-link" href="https://www.trb.org/ACRP" target="_blank">TRB ACRP Repository →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-foundational">Tier 1: Foundational</div>
-        <div class="card-title">#20: Regional Airlines Association (RAA) Data Hub</div>
-        <div class="card-subtitle">Strategic Value: Commuter Flight Economic Systems</div>
-        <p><strong>Summary:</strong> Focuses on small regional carriers, tracing commuter pilot hiring trends and essential air service budgets.</p>
-        <p><strong>Strategic Value:</strong> Highlights the business economics connecting isolated small-town runways to global airport hubs.</p>
-        <a class="resource-link" href="https://www.raa.org/" target="_blank">RAA Network Portal →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-high">Tier 3: High</div>
-        <div class="card-title">#21: Cargo Network International Air Freight Logs</div>
-        <div class="card-subtitle">Strategic Value: Supply Chain Route Profiling</div>
-        <p><strong>Summary:</strong> Logistics spreadsheets detailing global supply chains, container dimensions, and warehouse distribution routing.</p>
-        <p><strong>Strategic Value:</strong> Explores the high-yield cargo freight business models that power overnight global shipping services.</p>
-        <a class="resource-link" href="https://www.iata.org/en/programs/cargo/" target="_blank">IATA Air Cargo Hub →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-foundational">Tier 1: Foundational</div>
-        <div class="card-title">#22: University Aviation Association (UAA) Scholarship Board</div>
-        <div class="card-subtitle">Strategic Value: Academic Financial Aid Navigation</div>
-        <p><strong>Summary:</strong> Connects high school seniors to university programs specializing in airline operations and airport management degrees.</p>
-        <p><strong>Strategic Value:</strong> Provides direct financial aid pathways for students seeking college degrees in aviation management.</p>
-        <a class="resource-link" href="https://www.uaa.aero/" target="_blank">UAA National Board →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-medium">Tier 2: Medium</div>
-        <div class="card-title">#23: Airport Technology Infrastructure Systems</div>
-        <div class="card-subtitle">Strategic Value: High-Speed Airfield Grid Architecture</div>
-        <p><strong>Summary:</strong> Engineering tracking notes detailing high-speed runway turnoffs, baggage scanning hardware, and runway lighting grids.</p>
-        <p><strong>Strategic Value:</strong> Covers the technical layout side of running an efficient airfield, from terminal gates to security sensors.</p>
-        <a class="resource-link" href="https://www.airport-technology.com/" target="_blank">Airport Technology Hub →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-highest">Tier 4: Highest</div>
-        <div class="card-title">#24: McGill University Air and Space Law Data</div>
-        <div class="card-subtitle">Strategic Value: Global Liability & Pricing Law Guardrails</div>
-        <p><strong>Summary:</strong> Academic research indexing liability frameworks, consumer ticket refund laws, and overflight pricing rules.</p>
-        <p><strong>Strategic Value:</strong> Crucial for understanding the global legal guardrails that shape airline pricing and passenger travel rights.</p>
-        <a class="resource-link" href="https://www.mcgill.ca/iasl/" target="_blank">McGill IASL Library →</a>
-    </div>
-
-    <div class="resource-card">
-        <div class="tier-badge-foundational">Tier 1: Foundational</div>
-        <div class="card-title">#25: AvJobs Aviation Career Center</div>
-        <div class="card-subtitle">Strategic Value: Corporate Dispatch Certification Trajectory</div>
-        <p><strong>Summary:</strong> A structured database detailing job descriptions and background criteria for airline dispatchers and route planners.</p>
-        <p><strong>Strategic Value:</strong> Helps teens identify the entry-level certifications and background skills required to land aviation office careers.</p>
-        <a class="resource-link" href="https://www.avjobs.com/" target="_blank">AvJobs Executive Search →</a>
-    </div>
-    """, unsafe_allow_html=True)
-    
+    with tab3:
+        st.markdown("### Step 4: Environment Installation & Launch Logistics")
+        st.write("Open your localized operating system terminal, access the development workspace folder containing your script, and execute the configuration runtime stack:")
+        
+        st.markdown("**1. System Package Dependency Assembly**")
+        st.code("pip install azure-ai-inference streamlit", language="bash")
+        
+        st.markdown("**2. Initialize Localized Web-Server App Client**")
+        st.code("streamlit run app.py", language="bash")
+        
+        st.success("✅ The web interface will launch automatically inside your default local browser at http://localhost:8501")
