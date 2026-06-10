@@ -201,7 +201,7 @@ if st.session_state.page == "Feed":
 
 # PAGE 2: PILOT HUB
 elif st.session_state.page == "Pilots":
-    st.markdown("## 🧭 Section 1: The Pilot Hub (Top 25)")
+    st.markdown("## 🧭 Section 1: The Pilot Hub")
     st.write("Structured modules built to optimize competitive credentials and accelerate primary flight training timelines.")
     st.write("---")
 
@@ -592,7 +592,7 @@ elif st.session_state.page == "Pilots":
 
 # PAGE 3: ATC HUB
 elif st.session_state.page == "ATC":
-    st.markdown("## 🎙️ Section 2: Air Traffic Control (Top 25)")
+    st.markdown("## 🎙️ Section 2: Air Traffic Control")
     st.write("Professional simulation tracks, metrics, and standard phraseology systems designed to master controller infrastructure.")
     st.write("---")
 
@@ -987,7 +987,7 @@ elif st.session_state.page == "ATC":
 
 # PAGE 4: FLIGHT ATTENDANT HUB
 elif st.session_state.page == "Crew":
-    st.markdown("## 🛒 Section 3: Flight Attendant / Air Hostess Hub (Top 25)")
+    st.markdown("## 🛒 Section 3: Flight Attendant / Air Hostess Hub")
     st.write("Comprehensive training modules, service protocols, and career toolkits designed to master cabin environment dynamics.")
     st.write("---")
 
