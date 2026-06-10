@@ -48,12 +48,26 @@ st.markdown("""
         padding: 24px;
         border-radius: 12px;
         border: 1px solid #cbd5e1 !important;
-        margin-bottom: 12px;
+        margin-bottom: 16px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
     }
     
     .resource-card p {
         color: #334155 !important;
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 8px;
+    }
+
+    .resource-link {
+        display: inline-block;
+        color: #1d4ed8 !important;
+        font-weight: bold;
+        text-decoration: none;
+        margin-top: 6px;
+    }
+    .resource-link:hover {
+        text-decoration: underline;
     }
     
     /* Vibrant Contrast Titles */
@@ -199,7 +213,6 @@ if st.session_state.page == "Feed":
     </div>
     """, unsafe_allow_html=True)
 
-
     st.markdown("""
     <div class="resource-card" style="margin-top: 15px;">
         <div class="card-title" style="color: #0f172a !important; font-size: 24px;">Jaswanth Mallareddi</div>
@@ -213,3 +226,310 @@ if st.session_state.page == "Feed":
     </div>
     """, unsafe_allow_html=True)
 
+# PAGE 2: PILOT ROADMAP (THE PILOT HUB - TOP 25)
+elif st.session_state.page == "Pilots":
+    st.markdown("### ✈️ Section 1: The Pilot Hub (Top 25)")
+    
+    # Category 1
+    st.markdown("#### 🥇 Foundational Academics & Checkride Essentials")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#1: FAA Pilot’s Handbook of Aeronautical Knowledge (PHAK)</div>
+        <div class="card-subtitle">Strategic Value: Bedrock Theoretical Knowledge</div>
+        <p><strong>Summary:</strong> The definitive textbook covering aerodynamic principles, aircraft systems, flight instruments, weather theory, and basic navigation.</p>
+        <p><strong>Strategic Value:</strong> Forms the absolute bedrock of theoretical knowledge required to pass any aviation written exam or oral checkride globally.</p>
+        <a class="resource-link" href="https://open.umn.edu/opentextbooks" target="_blank">Open Textbook Library Repository →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#2: FAA Airplane Flying Handbook (AFH)</div>
+        <div class="card-subtitle">Strategic Value: Practical Maneuver Standardization</div>
+        <p><strong>Summary:</strong> A comprehensive guide focusing on the physical mechanics of flight, including maneuvers, takeoffs, landings, and emergency procedures.</p>
+        <p><strong>Strategic Value:</strong> Bridges the gap between classroom theory and real-world stick-and-rudder skills, standardizing flight training maneuvers.</p>
+        <a class="resource-link" href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/airplane_handbook" target="_blank">FAA Document Gateway →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#3: Pilot Institute Free Private Pilot Ground School Primer</div>
+        <div class="card-subtitle">Strategic Value: Early Training Runway Visualization</div>
+        <p><strong>Summary:</strong> An introductory video-based course outlining the core requirements, costs, regulations, and basic physics involved in getting a license.</p>
+        <p><strong>Strategic Value:</strong> Acts as an accessible, high-yield introductory funnel for student pilots to visualize their entire training timeline before investing capital.</p>
+        <a class="resource-link" href="https://pilotinstitute.com/" target="_blank">Pilot Institute Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#4: Sporty’s Study Buddy Exam Prep Engine</div>
+        <div class="card-subtitle">Strategic Value: FAA Written Exam Optimization</div>
+        <p><strong>Summary:</strong> A dynamic, database-driven practice test module that generates authentic practice questions mimicking the actual FAA Private Pilot written test.</p>
+        <p><strong>Strategic Value:</strong> Optimizes exam readiness through targeted testing, allowing users to identify weak knowledge areas before taking official exams.</p>
+        <a class="resource-link" href="https://www.sportys.com/" target="_blank">Sporty's Online Prep →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#5: SkyVector Aeronautical Charts</div>
+        <div class="card-subtitle">Strategic Value: Airspace Mastery & Active Routing</div>
+        <p><strong>Summary:</strong> A real-time, global digital plotting tool providing VFR Sectionals, IFR High/Low charts, and live weather overlays.</p>
+        <p><strong>Strategic Value:</strong> Essential for mastering flight planning, visual tracking, and understanding complex airspace boundaries from a web browser.</p>
+        <a class="resource-link" href="https://skyvector.com/" target="_blank">SkyVector Live Map →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#6: King Schools Interactive Flight Exam Modules</div>
+        <div class="card-subtitle">Strategic Value: Complex Concept Simplification</div>
+        <p><strong>Summary:</strong> Interactive mini-modules focusing on challenging flight concepts like crosswind components, weight and balance, and airspace restrictions.</p>
+        <p><strong>Strategic Value:</strong> Simplifies complex mathematical and physics-based aviation principles through proven, memorable visual teaching styles.</p>
+        <a class="resource-link" href="https://kingschools.com/" target="_blank">King Schools Free Library →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#7: Boldmethod Flight Training Quizzes</div>
+        <div class="card-subtitle">Strategic Value: Critical Aeronautical Decision Making</div>
+        <p><strong>Summary:</strong> Highly visual, scenario-based quizzes addressing real-world aviation challenges, from systems failures to tricky weather scenarios.</p>
+        <p><strong>Strategic Value:</strong> Sharpens quick critical thinking and Aeronautical Decision Making (ADM) skills by putting users into simulated pilot dilemmas.</p>
+        <a class="resource-link" href="https://www.boldmethod.com/" target="_blank">Boldmethod Training Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#8: FAA Airman Certification Standards (ACS)</div>
+        <div class="card-subtitle">Strategic Value: Definitive Checkride Evaluation Metric</div>
+        <p><strong>Summary:</strong> The official regulatory document detailing the exact parameters, tolerances, and knowledge areas tested during a pilot practical exam.</p>
+        <p><strong>Strategic Value:</strong> Serves as the ultimate grading standard, ensuring pilots know exactly what constitutes a passing or failing performance on a checkride.</p>
+        <a class="resource-link" href="https://www.faa.gov/training_testing/testing/acs" target="_blank">FAA Airman Testing Standards →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 2
+    st.markdown("#### 🎮 Flight Simulation & Cockpit Flow Drills")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#9: X-Plane Scenery Gateway</div>
+        <div class="card-subtitle">Strategic Value: Spatial Layout Familiarization</div>
+        <p><strong>Summary:</strong> A collaborative database sharing highly accurate, community-vetted airport layouts and visual environments for flight simulation.</p>
+        <p><strong>Strategic Value:</strong> Enables highly realistic airport familiarization and taxi routing practice for students preparing to fly into real-world hubs.</p>
+        <a class="resource-link" href="https://gateway.x-plane.com/" target="_blank">X-Plane Scenery Hub →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#10: FreeChecklists.net Directory</div>
+        <div class="card-subtitle">Strategic Value: Standard Checklist Discipline</div>
+        <p><strong>Summary:</strong> A massive crowdsourced directory hosting standard operating checklists for hundreds of general aviation and commercial aircraft.</p>
+        <p><strong>Strategic Value:</strong> Teaches structural discipline by getting student pilots into the habit of using verified, sequential safety checklists.</p>
+        <a class="resource-link" href="http://www.freechecklists.net/" target="_blank">FreeChecklists Repository →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#11: SimBrief Enterprise Dispatch Engine</div>
+        <div class="card-subtitle">Strategic Value: Commercial Logistics Readiness</div>
+        <p><strong>Summary:</strong> A professional-grade web utility that generates highly realistic virtual flight plans, fuel calculations, and airline operational release documents.</p>
+        <p><strong>Strategic Value:</strong> Introduces students to advanced airline dispatching, flight planning, and route fuel management logistics.</p>
+        <a class="resource-link" href="https://www.simbrief.com/" target="_blank">SimBrief Routing Tool →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#12: Little Navmap Open-Source Navigation</div>
+        <div class="card-subtitle">Strategic Value: Free Navigational Math Practice</div>
+        <p><strong>Summary:</strong> A free, open-source flight planner and moving map display featuring airport diagrams, wind overlays, and elevation profiles.</p>
+        <p><strong>Strategic Value:</strong> Perfect for introducing cross-country flight planning, vector tracks, and airspace boundary rules without recurring costs.</p>
+        <a class="resource-link" href="https://albar965.github.io/littlenavmap.html" target="_blank">Little Navmap GitHub →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#13: VOR Navigation Web App Simulator</div>
+        <div class="card-subtitle">Strategic Value: Legacy Instrument Orientation Clarity</div>
+        <p><strong>Summary:</strong> An interactive, browser-based graphical utility for understanding how instrument needles move relative to ground stations.</p>
+        <p><strong>Strategic Value:</strong> Solves one of the hardest conceptual hurdles for new pilots: visualizing relative orientation using legacy radio navigation tools.</p>
+        <a class="resource-link" href="https://www.luizmonteiro.com/" target="_blank">LuizMonteiro VOR Sim →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#14: Garmin G1000 Glass Cockpit Interface Guide</div>
+        <div class="card-subtitle">Strategic Value: Advanced Interface Onboarding</div>
+        <p><strong>Summary:</strong> Official training handbooks breaking down the structure, flight instrument screens, and map menus of modern integrated glass avionics.</p>
+        <p><strong>Strategic Value:</strong> Accelerates situational awareness by allowing pilots to master digital avionics navigation menus before stepped training flights.</p>
+        <a class="resource-link" href="https://www.garmin.com/" target="_blank">Garmin Digital Manuals →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 3
+    st.markdown("#### 🌤️ Meteorology & Radio Communications")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#15: NOAA Aviation Weather Center (AWC)</div>
+        <div class="card-subtitle">Strategic Value: Primary Operational Weather Sourcing</div>
+        <p><strong>Summary:</strong> The central US portal providing METARs, TAFs, SIGMETs, convective outlooks, and satellite imagery for active flights.</p>
+        <p><strong>Strategic Value:</strong> The primary operational portal for pulling official pre-flight weather data and learning real-time weather monitoring.</p>
+        <a class="resource-link" href="https://aviationweather.gov/" target="_blank">Aviation Weather Live →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#16: Bad Elf METAR/TAF Decoding Tool</div>
+        <div class="card-subtitle">Strategic Value: Rapid Weather Code Literacy</div>
+        <p><strong>Summary:</strong> A clean web tool that translates condensed, coded text weather statements into plain, easily understood descriptions.</p>
+        <p><strong>Strategic Value:</strong> Speeds up weather literacy for beginners learning to decode critical variables like wind speed, ceiling heights, and pressure shifts.</p>
+        <a class="resource-link" href="https://bad-elf.com/" target="_blank">Bad Elf Decoder →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#17: LiveATC.net Global Audio Network</div>
+        <div class="card-subtitle">Strategic Value: Structural Phraseology Auditing</div>
+        <p><strong>Summary:</strong> A network streaming live radio traffic from thousands of air traffic control facilities and towers worldwide.</p>
+        <p><strong>Strategic Value:</strong> Helps students bridge the gap between textbook terms and real-world audio comprehension, improving listening habits early on.</p>
+        <a class="resource-link" href="https://www.liveatc.net/" target="_blank">LiveATC Global Feeds →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#18: PlaneEnglish: ARSim Free Training Tier</div>
+        <div class="card-subtitle">Strategic Value: Microphone Anxiety Reduction</div>
+        <p><strong>Summary:</strong> A web-accessible version of an AI-driven sandbox that analyzes and scores radio phrases for rhythm, structure, and accuracy.</p>
+        <p><strong>Strategic Value:</strong> Builds vocal muscle memory and reduces microphone anxiety through structured, interactive speaking exercises.</p>
+        <a class="resource-link" href="https://planeenglishsim.com/" target="_blank">PlaneEnglish Classroom →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#19: FAA AIM Chapter 4: Air Traffic Control Procedures</div>
+        <div class="card-subtitle">Strategic Value: Legal Procedures Framework</div>
+        <p><strong>Summary:</strong> The regulatory chapter defining official communication standards, radar services, transponder use, and airport operations.</p>
+        <p><strong>Strategic Value:</strong> Provides the legal guidelines for pilot-to-controller communications, establishing the rules of the road for public airspace.</p>
+        <a class="resource-link" href="https://www.faa.gov/air_traffic/publications/atpubs/aim_html/" target="_blank">FAA Aeronautical Information Manual →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#20: NASA/Ames Aviation Safety Reporting System (ASRS)</div>
+        <div class="card-subtitle">Strategic Value: Human-Error Case Studies</div>
+        <p><strong>Summary:</strong> A voluntary, anonymous reporting database detailing real-world flight crew errors, unexpected weather encounters, and aircraft malfunctions.</p>
+        <p><strong>Strategic Value:</strong> Allows students to study genuine, unfiltered human-error case studies to foster a culture focused on proactive safety management.</p>
+        <a class="resource-link" href="https://asrs.arc.nasa.gov/" target="_blank">NASA ASRS System Database →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 4
+    st.markdown("#### 💰 Scholarships & Specialized Video Ground Schools")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#21: AOPA High School Flight Training Scholarship Portal</div>
+        <div class="card-subtitle">Strategic Value: Capital Burden Mitigation</div>
+        <p><strong>Summary:</strong> An annual grant portal offering up to tens of thousands of dollars to high school students chasing primary private pilot certificates.</p>
+        <p><strong>Strategic Value:</strong> Directly lowers financial hurdles for young aviators, making it a high-value link for early student users.</p>
+        <a class="resource-link" href="https://www.aopa.org/training-and-safety/students/flight-training-scholarships" target="_blank">AOPA Scholarships →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#22: EAA Ray Aviation Scholarship Foundation Database</div>
+        <div class="card-subtitle">Strategic Value: Fully Funded Training Loops</div>
+        <p><strong>Summary:</strong> A funded grant system run through local experimental aircraft chapters that covers full flight training bills for local youths.</p>
+        <p><strong>Strategic Value:</strong> Leverages regional flying clubs to provide mentoring alongside financial assistance, boosting student completion rates.</p>
+        <a class="resource-link" href="https://www.eaa.org/eaa/youth/ray-aviation-scholarship" target="_blank">EAA Ray Scholarship Board →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#23: Free Pilot Training Online Ground Academy</div>
+        <div class="card-subtitle">Strategic Value: Cost-Free Academic Completeness</div>
+        <p><strong>Summary:</strong> Comprehensive, step-by-step video deep-dives going over the entire Private Pilot knowledge blueprint for zero cost.</p>
+        <p><strong>Strategic Value:</strong> Offers an excellent free alternative to premium video courses, making ground school accessible to all students.</p>
+        <a class="resource-link" href="https://www.youtube.com/c/FreePilotTraining" target="_blank">Free Pilot Training Network →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#24: The Finer Points: Professional Pilot Flight Training</div>
+        <div class="card-subtitle">Strategic Value: Advanced Stick-and-Rudder Techniques</div>
+        <p><strong>Summary:</strong> Educational videos focusing on flight deck organization, refined piloting techniques, stick-and-rudder feel, and safety tips.</p>
+        <p><strong>Strategic Value:</strong> Helps students master flight skills faster through sharp, actionable tips from senior flight instructors.</p>
+        <a class="resource-link" href="https://www.learnthefinerpoints.com/" target="_blank">The Finer Points Flight Resource →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#25: MzeroA Flight Training Free Resource Playlists</div>
+        <div class="card-subtitle">Strategic Value: Checkride Oral Pass Optimization</div>
+        <p><strong>Summary:</strong> Informative videos covering typical oral exam questions, checkride gotchas, and everyday safety procedures.</p>
+        <p><strong>Strategic Value:</strong> Excellent for last-minute oral checkride prep, helping turn complex regulations into clear talking points.</p>
+        <a class="resource-link" href="https://mzeroa.com/" target="_blank">MzeroA Online Platform →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+# PAGE 3: ATC ROADMAP
+elif st.session_state.page == "ATC":
+    st.markdown("### 🎙️ Air Traffic Control Matrix")
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: Advanced</div>
+        <div class="card-title">FAA Academy Training</div>
+        <div class="card-subtitle">Location: Oklahoma City, OK</div>
+        <p>Pass the AT-SA exam to get selected for terminal or en-route traffic management training at the central federal academy.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# PAGE 4: CREW ROADMAP
+elif st.session_state.page == "Crew":
+    st.markdown("### 💁‍♀️ Cabin Crew & Flight Attendant Matrix")
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">FAA Certificate of Demonstrated Proficiency</div>
+        <p>Issued after completing safety, evacuation, and medical emergency training programs hosted by an accredited airline.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# PAGE 5: MAINTENANCE
+elif st.session_state.page == "Maintenance":
+    st.markdown("### 🔧 Aviation Maintenance Technician (AMT)")
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: Advanced</div>
+        <div class="card-title">Airframe & Powerplant (A&P) License</div>
+        <div class="card-subtitle">FAA Part 147 Approved</div>
+        <p>The definitive certification allowing mechanics to inspect, service, and clear aircraft structures and engines for flight.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# PAGE 6: DRONE LOGISTICS
+elif st.session_state.page == "Drone":
+    st.markdown("### 🛸 Unmanned Aircraft Systems (UAS) Logistics")
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">FAA Part 107 Remote Pilot Certificate</div>
+        <p>Essential license required to operate small unmanned drone systems commercially for mapping, photography, or delivery logistics.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# PAGE 7: AEROBOT AI
+elif st.session_state.page == "AI":
+    st.markdown("### 🤖 AeroBot AI Copilot")
+    st.markdown("""
+    <div class="guidance-box">
+        Welcome to the flight deck assistant. Ask any question regarding training hour constraints, medical certificates, or pathway choices.
+    </div>
+    """)
+    
+    user_query = st.text_input("Ask AeroBot a question about aviation paths:", placeholder="e.g., How many hours do I need for a Commercial Pilot License?")
+    if user_query:
+        st.info(f"**AeroBot Response Engine:** Thanks for asking about *'{user_query}'*! To unlock dynamic live answers here, you can integrate an API key from OpenAI, Anthropic, or Gemini using `requests` or the official SDKs in your backend script.")
