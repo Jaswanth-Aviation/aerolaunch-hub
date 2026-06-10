@@ -1697,16 +1697,4 @@ elif st.session_state.page == "AirportManagement":
         <a class="resource-link" href="https://www.avjobs.com/" target="_blank">AvJobs Executive Search →</a>
     </div>
     """, unsafe_allow_html=True)
-
-# PAGE 8: AEROBOT AI
-elif st.session_state.page == "AI":
-    st.markdown("### 🤖 AeroBot AI Copilot")
-    st.markdown("""
-    <div class="guidance-box">
-        Welcome to the flight deck assistant. Ask any question regarding training hour constraints, medical certificates, or pathway choices.
-    </div>
-    """)
     
-    user_query = st.text_input("Ask AeroBot a question about aviation paths:", placeholder="e.g., How many hours do I need for a Commercial Pilot License?")
-    if user_query:
-        st.info(f"**AeroBot Response Engine:** Thanks for asking about *'{user_query}'*! To unlock dynamic live answers here, you can integrate an API key from OpenAI, Anthropic, or Gemini using `requests` or the official SDKs in your backend script.")
