@@ -11,7 +11,7 @@ st.set_page_config(
 # --- CLEAN WELCOMING LIGHT MODE STYLING ---
 st.markdown("""
 <style>
-    /* Targeted clean typography that leaves Streamlit system menus completely untouched */
+    /* Targeted clean typography */
     .stApp [data-testid="stMarkdownContainer"], 
     .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp li, .stApp span, .stApp div {
         font-family: "Times New Roman", Times, serif !important;
@@ -199,40 +199,36 @@ if st.session_state.page == "Feed":
     </div>
     """, unsafe_allow_html=True)
 
-    # --- ADVANCED SCAN SYSTEM ---
+    # --- IMAGE ABOVE BIO LAYOUT ---
     st.markdown("### 🧑‍✈️ About the Founder")
     
-    about_col1, about_col2 = st.columns([1, 4])
-    
-    with about_col1:
-        import os
-        founder_image = None
-        
-        # Comprehensive layout check: searches directory filenames for any variants
-        for file in os.listdir("."):
-            name_upper = file.upper()
-            if ("IMG_5662" in name_upper or "IMG_5663" in name_upper or "IMG_0247" in name_upper or "IMG_0248" in name_upper or name_upper.startswith("IMG_")) and (file.lower().endswith(".jpg") or file.lower().endswith(".jpeg")):
-                founder_image = file
-                break
-        
-        if founder_image:
-            st.image(founder_image, use_container_width=True)
-        else:
-            st.info("💡 Place your founder image file (e.g., IMG_5662.jpg or IMG_0248.jpg) into your active project directory folder to display it.")
-        
-    with about_col2:
-        st.markdown("""
-        <div class="resource-card" style="margin-bottom: 0px; height: 100%;">
-            <div class="card-title" style="color: #0f172a !important; font-size: 24px;">Jaswanth Mallareddi</div>
-            <div class="card-subtitle">Founder & Developer</div>
-            <p style='font-size: 17px; line-height: 1.6;'>
-                I am Jaswanth Mallareddi, a 16-year-old who is deeply interested in aviation! I wanted to give 
-                valuable opportunities to other future aviation industry students who will turn 16 soon. 
-                I have set up 25 high-quality websites for each section of the aviation industry provided, 
-                so I hope it is helpful for all you future aviation students!
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
+    # Check directory for image file
+    import os
+    founder_image = None
+    for file in os.listdir("."):
+        name_upper = file.upper()
+        if ("IMG_" in name_upper) and (file.lower().endswith(".jpg") or file.lower().endswith(".jpeg")):
+            founder_image = file
+            break
+            
+    # Render layout: Image is explicitly displayed FIRST (above), then the bio card follows below it
+    if founder_image:
+        st.image(founder_image, width=300)
+    else:
+        st.info("💡 Place your founder image file (e.g., IMG_5662.jpg) into your active project directory folder to display it right here above your bio!")
+
+    st.markdown("""
+    <div class="resource-card" style="margin-top: 15px;">
+        <div class="card-title" style="color: #0f172a !important; font-size: 24px;">Jaswanth Mallareddi</div>
+        <div class="card-subtitle">Founder & Developer</div>
+        <p style='font-size: 17px; line-height: 1.6;'>
+            I am Jaswanth Mallareddi, a 16-year-old who is deeply interested in aviation! I wanted to give 
+            valuable opportunities to other future aviation industry students who will turn 16 soon. 
+            I have set up 25 high-quality websites for each section of the aviation industry provided, 
+            so I hope it is helpful for all you future aviation students!
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # PAGE 2: PILOT HUB
 elif st.session_state.page == "Pilots":
@@ -657,280 +653,4 @@ elif st.session_state.page == "ATC":
         <div class="card-subtitle">Category: Legal Rulebook</div>
         <p style='font-size: 16px;'>The absolute legal handbook defining standard US phraseology, separation minimums, and vector guidelines.</p>
         <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> The definitive handbook for air traffic control, serving as the core reference source for any ATC training setup.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA Document Gateway: JO 7110.65 ↗️", "https://www.faa.gov/air_traffic/publications/", use_container_width=True)
-    st.write("")
-
-    #3
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">#3: IVAO ATC Online Academy Manuals</div>
-        <div class="card-subtitle">Category: Global Training System</div>
-        <p style='font-size: 16px;'>International training handbooks focusing on ICAO terminal rules, transition layer setups, and non-US vector standards.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Provides essential global perspective, teaching students how air traffic control operates outside North America.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to IVAO HQ Training Academy ↗️", "https://ivao.aero/", use_container_width=True)
-    st.write("")
-
-    #4
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
-        <div class="card-title">#4: Eurocontrol Training Zone Portal</div>
-        <div class="card-subtitle">Category: Airspace Congestion Flows</div>
-        <p style='font-size: 16px;'>Interactive training tracking air traffic flows, sector load balancing, and delay-reduction strategies across Europe.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Introduces high-level airspace management concepts, showing how to handle traffic flows between different countries.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to Eurocontrol Aviation Training Portal ↗️", "https://www.eurocontrol.int/", use_container_width=True)
-    st.write("")
-
-    #5
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">#5: EuroScope Radar Client Software Project</div>
-        <div class="card-subtitle">Category: Interface Simulation Software</div>
-        <p style='font-size: 16px;'>A highly detailed radar simulator client that replicates real-world European air traffic radar displays and tracker systems.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Gives students hands-on practice with professional-grade radar tools from home without needing expensive academy equipment.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to EuroScope Radar Engine ↗️", "https://www.euroscope.hu/", use_container_width=True)
-    st.write("")
-
-    #6
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
-        <div class="card-title">#6: OpenRadar Open-Source Tower Tracking Software</div>
-        <div class="card-subtitle">Category: Open-Source Tracking Client</div>
-        <p style='font-size: 16px;'>An open-source radar simulator focusing on terminal approach control and tower visual sweeps.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Provides an accessible tool for students to practice managing traffic arcs and local terminal arrivals.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to OpenRadar SourceForge Project ↗️", "https://sourceforge.net/projects/openradar/", use_container_width=True)
-    st.write("")
-
-    # SUBSECTION B
-    st.markdown("### 🛰️ Radar Vectoring Mechanics & Separation Rules")
-
-    #7
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">#7: ATC-Sim Browser Radar Vectoring Game</div>
-        <div class="card-subtitle">Category: Web Vector Sandbox</div>
-        <p style='font-size: 16px;'>A 2D browser simulator where players issue headings, altitudes, and speeds to feed arrivals onto final approach paths safely.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> A fast, interactive way to practice radar geometry and master vectoring techniques early in training.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to ATC-Sim Browser Radar Engine ↗️", "https://www.atc-sim.com/", use_container_width=True)
-    st.write("")
-
-    #8
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
-        <div class="card-title">#8: FAA Runway Incursion Prevention Training Simulator</div>
-        <div class="card-subtitle">Category: Ground Safety Matrix</div>
-        <p style='font-size: 16px;'>Interactive training tools designed to spot and prevent ground errors, runway incursions, and vehicle tracking mistakes.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Focuses heavily on ground safety, teaching students how to keep runways clear and prevent close calls on the tarmac.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA Runway Safety Portal ↗️", "https://www.faa.gov/airports/runway_safety/", use_container_width=True)
-    st.write("")
-
-    #9
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
-        <div class="card-title">#9: ICAO Document 4444 (Air Traffic Management Standards)</div>
-        <div class="card-subtitle">Category: International Protocol Treaty</div>
-        <p style='font-size: 16px;'>The master international treaty text standardizing air traffic rules, flight rules, and separation criteria worldwide.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> The core reference for international air traffic control, vital for understand global aviation standards.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to ICAO Store Reference Catalog ↗️", "https://store.icao.int/", use_container_width=True)
-    st.write("")
-
-    #10
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
-        <div class="card-title">#10: Standard Lateral and Vertical Separation Minimums Matrix</div>
-        <div class="card-subtitle">Category: Separation Minimums Charts</div>
-        <p style='font-size: 16px;'>Quick-reference tables outlining legal distance limits ($3\\text{ miles}$, $5\\text{ miles}$, or $1000\\text{ feet}$ vertically) required between planes.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Instills basic safety limits, helping controllers maintain legal margins and prevent separation violations.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to SKYbrary Separation Standards ↗️", "https://skybrary.aero/articles/separation-standards", use_container_width=True)
-    st.write("")
-
-    #11
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">#11: Wake Turbulence Category Separation Requirements</div>
-        <div class="card-subtitle">Category: Dynamic Vortex Spacing</div>
-        <p style='font-size: 16px;'>Tables outlining required distance buffers behind heavy jets to prevent light planes from hitting dangerous wingtip vortices.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Critical for avoiding wake turbulence accidents, helping controllers space departures safely based on weight class.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA Wake Turbulence Mitigation Portal ↗️", "https://www.faa.gov/nextgen/programs/wake_turbulence/", use_container_width=True)
-    st.write("")
-
-    #12
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
-        <div class="card-title">#12: Intercept Angle Mathematics for Instrument Approaches</div>
-        <div class="card-subtitle">Category: Mathematical Vectoring Arcs</div>
-        <p style='font-size: 16px;'>Guides outlining how to turn planes onto instrument final approaches ($30\\text{-degree}$ maximum limits) without overshooting the line.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Sharpens mental math skills, helping controllers issue smooth turns that align pilots perfectly with instrument approach paths.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA Instrument Procedures Handbook ↗️", "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/", use_container_width=True)
-    st.write("")
-
-    # SUBSECTION C
-    st.markdown("### 🎙️ Tower Operations & Airspace Infrastructure")
-
-    #13
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
-        <div class="card-title">#13: FAA Airport Sign and Marking Guide</div>
-        <div class="card-subtitle">Category: Tarmac Visual Systems</div>
-        <p style='font-size: 16px;'>Visual reference guides illustrating runway hold lines, taxi signs, direction indicators, and displaced threshold markers.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Essential for tower operators, helping them guide pilots accurately through complex airport layouts.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA Runway Safety Sign Manual ↗️", "https://www.faa.gov/airports/runway_safety/publications/", use_container_width=True)
-    st.write("")
-
-    #14
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">#14: Land and Hold Short Operations (LAHSO) Safety Limits</div>
-        <div class="card-subtitle">Category: Intersecting Capacity Rules</div>
-        <p style='font-size: 16px;'>Operating parameters for landing planes on intersecting runways and stopping them before the crossing point.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Increases airport capacity during peak hours while keeping strict safety margins between crossing aircraft.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA LAHSO Directives Matrix ↗️", "https://www.faa.gov/training_testing/testing/", use_container_width=True)
-    st.write("")
-
-    #15
-    st.markdown("""
-    <div class="resource-card">
-        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
-        <div class="card-title">#15: Airspace Classifications Dimensional Metric Matrix</div>
-        <div class="card-subtitle">Category: Airspace Sector Dimensions</div>
-        <p style='font-size: 16px;'>Dimensional charts illustrating the vertical and lateral boundaries of Class A, B, C, D, E, and G airspaces.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Provides the basic framework for airspace rules, defining when flights must establish contact with controllers.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA Airspace Classification Hub ↗️", "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/", use_container_width=True)
-
-# PAGE 4: CREW HUB
-elif st.session_state.page == "Crew":
-    st.markdown("## 💁‍♀️ Section 3: Cabin Crew & Flight Attendant Training")
-    st.write("Emergency evacuation metrics, health manuals, and CRM structures deployed to coordinate flight deck safety ecosystems.")
-    st.write("---")
-
-    st.markdown("""
-    <div class="resource-card">
-        <div class="card-title">#1: Inflight Safety Advisory Rules</div>
-        <div class="card-subtitle">Category: Emergency Systems</div>
-        <p style='font-size: 16px;'>Comprehensive guidelines mapping cabin safety checkpoints, rapid decompression profiles, and boarding security protocols.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Formulates deep structural discipline for future cabin supervisors handling high-stress evacuation logistics.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to Skybrary Cabin Safety Database ↗️", "https://skybrary.aero/articles/cabin-safety", use_container_width=True)
-
-# PAGE 5: MAINTENANCE ARCHITECTURE
-elif st.session_state.page == "Maintenance":
-    st.markdown("## 🔧 Section 4: Aircraft Maintenance Engineering (AMT)")
-    st.write("Structural blueprints, powerplants troubleshooting arrays, and avionics test benches mapped to preserve structural integrity.")
-    st.write("---")
-
-    st.markdown("""
-    <div class="resource-card">
-        <div class="card-title">#1: FAA Aviation Maintenance Technician Handbooks</div>
-        <div class="card-subtitle">Category: AMT Airframe Core Manual</div>
-        <p style='font-size: 16px;'>Official federal structural reference outlines covering aircraft materials, hydraulic mechanics, engine lifespans, and electrical telemetry loops.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Essential base dataset for engineers preparing to claim standard airframe and powerplant maintenance maintenance licenses.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA AMT Maintenance Library ↗️", "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation", use_container_width=True)
-
-# PAGE 6: DRONE LOGISTICS ENGINE
-elif st.session_state.page == "Drone":
-    st.markdown("## 🛸 Section 5: Unmanned Aerial Systems & Drone Operations")
-    st.write("Commercial delivery routing, remote pilot exam matrices, and commercial photography logistics pipelines.")
-    st.write("---")
-
-    st.markdown("""
-    <div class="resource-card">
-        <div class="card-title">#1: FAA Remote Pilot Part 107 Small UAS Framework</div>
-        <div class="card-subtitle">Category: Commercial Drone Certification</div>
-        <p style='font-size: 16px;'>Official structural guidelines tracking small commercial drone procedures, sUAS weight parameters, low-altitude regulations, and industry briefs analyzing commercial drone business setups and insurance options.</p>
-        <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Teaches young entrepreneurs how to structure a legal drone photography or inspection business safely.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    st.link_button("Deploy to DartDrones Online ↗️", "https://www.dartdrones.com/", use_container_width=True)
-
-# PAGE 7: AEROBOT GROUND KNOWLEDGE SYSTEM
-elif st.session_state.page == "AI":
-    st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
-    
-    st.markdown("""
-    <div class="resource-card">
-        <div class="card-title">AeroBot Training Terminal</div>
-        <div class="card-subtitle">Powered by Zapier AI Engine</div>
-        <p style='font-size: 16px;'>To provide a completely secure, unrestricted learning environment for young aviators, the AeroBot training core is hosted within our age-approved Zapier cloud network. Click the button below to clear tracking blocks and boot up the interactive flight instructor terminal.</p>
-        <div class="guidance-box">
-            <strong>📋 Student Note:</strong> You can quiz AeroBot on airspace tiers, weather codes, or aircraft weight balances. It will immediately generate precise FAA instruction patterns.
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.link_button("Launch AeroBot Training Interface 🚀", "https://schoolaichatbot.zapier.app/", use_container_width=True)
+            <strong>
