@@ -228,7 +228,7 @@ if st.session_state.page == "Feed":
 
 # PAGE 2: PILOT ROADMAP (THE PILOT HUB - TOP 25)
 elif st.session_state.page == "Pilots":
-    st.markdown("### ✈️ Section 1: The Pilot Hub (Top 25)")
+    st.markdown("### ✈️ Section 1: The Pilot Hub")
     
     # Category 1
     st.markdown("#### 🥇 Foundational Academics & Checkride Essentials")
