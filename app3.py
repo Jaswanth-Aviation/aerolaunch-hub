@@ -731,7 +731,7 @@ elif st.session_state.page == "ATC":
 
 # PAGE 4: CREW ROADMAP (THE FLIGHT ATTENDANT HUB - TOP 25)
 elif st.session_state.page == "Crew":
-    st.markdown("### 💁‍♀️ Section 3: Flight Attendant / Air Hostess Hub (Top 25)")
+    st.markdown("### 💁‍♀️ Section 3: Flight Attendant / Air Hostess Hub")
     
     # Category 1
     st.markdown("#### 🥇 Cabin Safety Protocols & Emergency Command")
@@ -988,7 +988,6 @@ elif st.session_state.page == "Maintenance":
     st.markdown("### 🔧 🛠️ Section 4: Aircraft Maintenance & Engineering (AMT) Hub")
     
     # Category 1
-    st.markdown("#### 🔁 Cross-Section Overlap (Repeated Links)")
     
     st.markdown("""
     <div class="resource-card">
