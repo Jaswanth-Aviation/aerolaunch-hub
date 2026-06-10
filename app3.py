@@ -729,14 +729,257 @@ elif st.session_state.page == "ATC":
     </div>
     """, unsafe_allow_html=True)
 
-# PAGE 4: CREW ROADMAP
+# PAGE 4: CREW ROADMAP (THE FLIGHT ATTENDANT HUB - TOP 25)
 elif st.session_state.page == "Crew":
-    st.markdown("### 💁‍♀️ Cabin Crew & Flight Attendant Matrix")
+    st.markdown("### 💁‍♀️ Section 3: Flight Attendant / Air Hostess Hub (Top 25)")
+    
+    # Category 1
+    st.markdown("#### 🥇 Cabin Safety Protocols & Emergency Command")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#1: ICAO Cabin Safety Training Manual (Doc 10002)</div>
+        <div class="card-subtitle">Strategic Value: Global Safety Criteria Alignment</div>
+        <p><strong>Summary:</strong> The global master manual detailing emergency commands, slide use, raft parameters, and survival gear layouts.</p>
+        <p><strong>Strategic Value:</strong> The primary textbook for cabin safety, ensuring student training meets international airline criteria.</p>
+        <a class="resource-link" href="https://store.icao.int/" target="_blank">ICAO Store Official Reference Catalog →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#2: FAA Advisory Circular 121-24C (Passenger Safety Briefings)</div>
+        <div class="card-subtitle">Strategic Value: Legal Briefing Compliance</div>
+        <p><strong>Summary:</strong> Legal standards detailing what must be included in passenger briefings and exit row instructions.</p>
+        <p><strong>Strategic Value:</strong> Ensures cabin safety presentations meet all legal criteria, preparing crews to handle safety checks confidently.</p>
+        <a class="resource-link" href="https://www.faa.gov/regulations_policies/advisory_circulars/" target="_blank">FAA Advisory Circular Repository →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#3: Skybrary Cabin Safety Compendium</div>
+        <div class="card-subtitle">Strategic Value: Dynamic Workflow Reference</div>
+        <p><strong>Summary:</strong> An open aviation safety database cataloging best responses for severe turbulence, cabin smoke, and sudden decompressions.</p>
+        <p><strong>Strategic Value:</strong> Provides an excellent reference source for building practical cabin safety guides and response workflows.</p>
+        <a class="resource-link" href="https://skybrary.aero/" target="_blank">SKYbrary Cabin Safety Gateway →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#4: Aircraft Emergency Evacuation Slide System Mechanics</div>
+        <div class="card-subtitle">Strategic Value: Operational Door Safety</div>
+        <p><strong>Summary:</strong> Technical overviews detailing door slide arming, pressure checks, and deployment triggers for various exit doors.</p>
+        <p><strong>Strategic Value:</strong> Eliminates door operation errors, ensuring slides are armed correctly for flight and disarmed safely for arrival.</p>
+        <a class="resource-link" href="https://skybrary.aero/" target="_blank">SKYbrary Emergency Evacuation Slides →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#5: IATA Dangerous Goods Regulations (DGR) Quick Reference</div>
+        <div class="card-subtitle">Strategic Value: Cabin Risk Hazard Neutralization</div>
+        <p><strong>Summary:</strong> Identification charts showing restricted items, lithium battery fire hazards, and spill control steps for cabins.</p>
+        <p><strong>Strategic Value:</strong> Helps crews spot and neutralize hidden hazardous materials in carry-on bags before departure.</p>
+        <a class="resource-link" href="https://www.iata.org/" target="_blank">IATA Dangerous Goods Documentation →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 2
+    st.markdown("#### 💼 Recruitment, Resumes & Interview Prep")
+    
     st.markdown("""
     <div class="resource-card">
         <div class="tier-badge-foundational">Tier 1: Foundational</div>
-        <div class="card-title">FAA Certificate of Demonstrated Proficiency</div>
-        <p>Issued after completing safety, evacuation, and medical emergency training programs hosted by an accredited airline.</p>
+        <div class="card-title">#6: Canva Flight Attendant Resume Layout Templates</div>
+        <div class="card-subtitle">Strategic Value: Resume Presentation Optimization</div>
+        <p><strong>Summary:</strong> Visual, professional resume layouts tailored to highlight customer service skills and safety certifications for airline applications.</p>
+        <p><strong>Strategic Value:</strong> Helps candidates format their experience clearly, matching the visual styles preferred by airline hiring teams.</p>
+        <a class="resource-link" href="https://www.canva.com/" target="_blank">Canva Professional Flight Attendant Templates →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#7: Indeed Career Guide: Flight Attendant Interview Steps</div>
+        <div class="card-subtitle">Strategic Value: STAR Formatted Interview Preparation</div>
+        <p><strong>Summary:</strong> Behavioral interview questions structured around Situation, Task, Action, and Result (STAR) formats used by airlines during recruitment.</p>
+        <p><strong>Strategic Value:</strong> Prepares applicants to give structured, professional answers that demonstrate real-world problem-solving skills.</p>
+        <a class="resource-link" href="https://www.indeed.com/" target="_blank">Indeed Career Guide: Flight Attendant Interview Steps →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#8: Verbal De-escalation Techniques for Confined Spaces</div>
+        <div class="card-subtitle">Strategic Value: Conflict Threat Resolution</div>
+        <p><strong>Summary:</strong> Practical guides on diffusing passenger arguments, calming upset travelers, and resolving seating disputes peacefully.</p>
+        <p><strong>Strategic Value:</strong> Gives crew members the communication skills needed to handle arguments before they escalate into serious safety risks.</p>
+        <a class="resource-link" href="https://skybrary.aero/" target="_blank">SKYbrary Managing Disruptive Passengers →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#9: Public Announcement (PA) Reading Script Database</div>
+        <div class="card-subtitle">Strategic Value: Professional Vocal Clarity Drills</div>
+        <p><strong>Summary:</strong> Practice scripts covering welcome messages, turbulence warnings, and customs instructions to practice clear speaking habits.</p>
+        <p><strong>Strategic Value:</strong> Improves vocal tone and clarity, helping crews deliver clear, professional announcements under pressure.</p>
+        <a class="resource-link" href="https://www.flightattendantcentral.com/" target="_blank">Flight Attendant PA Scripts Directory →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#10: DOT Airline Accessibility Guidelines</div>
+        <div class="card-subtitle">Strategic Value: Empathetic Compliance Framework</div>
+        <p><strong>Summary:</strong> Regulatory service guides showing how to assist solo young travelers, elderly passengers, and disabled flyers safely.</p>
+        <p><strong>Strategic Value:</strong> Ensures full compliance with passenger accessibility rules, providing professional, empathetic care for every flyer.</p>
+        <a class="resource-link" href="https://www.transportation.gov/" target="_blank">DOT Airline Accessibility Guidelines →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 3
+    st.markdown("#### 🍽️ Catering Logic & Galley Management")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#11: IATA Special Meal (SPML) Universal Code Matrix</div>
+        <div class="card-subtitle">Strategic Value: Catering Distribution Accuracy</div>
+        <p><strong>Summary:</strong> Standardized codes used to identify special passenger meals, including vegan, kosher, halal, and allergen-free options.</p>
+        <p><strong>Strategic Value:</strong> Prevents catering mix-ups, helping crews distribute specialized meals accurately to the right passengers.</p>
+        <a class="resource-link" href="https://www.iata.org/" target="_blank">IATA Passenger Special Meal Specifications →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#12: Widebody Aircraft Galley Latches & Safety Standards</div>
+        <div class="card-subtitle">Strategic Value: Mechanical Lockdown Securing</div>
+        <p><strong>Summary:</strong> Operating guides for locking meal carts, latching galley doors, and securing electrical ovens before take-off.</p>
+        <p><strong>Strategic Value:</strong> Prevents cart rollaways and injury risks by ensuring all galley gear is locked down tight during turbulence.</p>
+        <a class="resource-link" href="https://skybrary.aero/" target="_blank">SKYbrary Galley Safety Standards →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#13: FDA Retail & Food Service Regulation Logs</div>
+        <div class="card-subtitle">Strategic Value: Consumable Temperature Safety</div>
+        <p><strong>Summary:</strong> Health guidelines defining safe temperature ranges for holding and serving prepared meals on commercial routes.</p>
+        <p><strong>Strategic Value:</strong> Prevents food spoilage, ensuring all passenger meals remain safe and healthy throughout long journeys.</p>
+        <a class="resource-link" href="https://www.fda.gov/" target="_blank">FDA Retail & Food Service Regulation Logs →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#14: IATA Aircraft Cabin Waste Reduction Portal</div>
+        <div class="card-subtitle">Strategic Value: Bio-Waste Hub Disposal Regulatory Compliance</div>
+        <p><strong>Summary:</strong> International rules covering cabin sorting, recycling, and disposing of international bio-waste upon arrival.</p>
+        <p><strong>Strategic Value:</strong> Helps airlines comply with green target goals and international garbage disposal rules at global hubs.</p>
+        <a class="resource-link" href="https://www.iata.org/" target="_blank">IATA Aircraft Cabin Waste Reduction Portal →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 4
+    st.markdown("#### 🌐 IATA Geography & Flight Wellness")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#15: IATA Official Coding Engine Search</div>
+        <div class="card-subtitle">Strategic Value: Core Airport Coding Literacy</div>
+        <p><strong>Summary:</strong> Search tools and reference guides designed to help students master three-letter city codes like JFK, LHR, and DXB.</p>
+        <p><strong>Strategic Value:</strong> Fundamental skill that prevents luggage routing mistakes and speeds up check-in logistics.</p>
+        <a class="resource-link" href="https://www.iata.org/en/publications/directories/code-search/" target="_blank">IATA Official Coding Engine Search →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#16: TimeAndDate Global Zone Converter Maps</div>
+        <div class="card-subtitle">Strategic Value: Log Tracking & Rest Optimization</div>
+        <p><strong>Summary:</strong> Time zone charts showing how to calculate local arrival times and track day changes when crossing the International Date Line.</p>
+        <p><strong>Strategic Value:</strong> Helps crews manage flight logs accurately and schedule rest blocks properly on long multi-stop trips.</p>
+        <a class="resource-link" href="https://www.timeanddate.com/" target="_blank">TimeAndDate Global Zone Converter Maps →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#17: IATA Travel Centre Passport and Visa Requirements</div>
+        <div class="card-subtitle">Strategic Value: International Border Clearance Processing</div>
+        <p><strong>Summary:</strong> Border rules showing passport validity requirements, mandatory visas, and crew entry rules for different countries.</p>
+        <p><strong>Strategic Value:</strong> Helps crews cross international borders smoothly, avoiding customs issues or entry delays during layovers.</p>
+        <a class="resource-link" href="https://www.iatatravelcentre.com/" target="_blank">IATA Travel Centre Passport and Visa Requirements →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#18: Sterile Flight Deck Rule Operational Compliance</div>
+        <div class="card-subtitle">Strategic Value: Critical Focus Isolation</div>
+        <p><strong>Summary:</strong> Regulations banning all non-safety communications with the cockpit during low-altitude taxiing, takeoffs, and landings.</p>
+        <p><strong>Strategic Value:</strong> Prevents pilot distractions during critical phases of flight, ensuring the flight deck stays completely focused on safety.</p>
+        <a class="resource-link" href="https://www.faa.gov/" target="_blank">FAA Advisory Circular AC 121-32: Sterile Flight Deck →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#19: ICAO Fatigue Risk Management Portal</div>
+        <div class="card-subtitle">Strategic Value: Exhaustion Management Calibration</div>
+        <p><strong>Summary:</strong> System tracking sheets outlining legal duty limits, minimum rest breaks, and fatigue reporting tools for international crews.</p>
+        <p><strong>Strategic Value:</strong> Prevents extreme exhaustion risks by ensuring airline schedules comply with legal safety rest margins.</p>
+        <a class="resource-link" href="https://www.icao.int/" target="_blank">ICAO Fatigue Risk Management Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#20: CDC Traveler's Health Blood Clots Guide</div>
+        <div class="card-subtitle">Strategic Value: Long-Haul Physiological Protection</div>
+        <p><strong>Summary:</strong> Leg movement guides and compression advice designed to maintain good blood flow on long-haul segments to prevent DVT.</p>
+        <p><strong>Strategic Value:</strong> Lowers blood clot risks from long sitting times, keeping crews safe and healthy across extended flights.</p>
+        <a class="resource-link" href="https://wwwnc.cdc.gov/travel" target="_blank">CDC Traveler's Health Blood Clots Guide →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 5
+    st.markdown("#### 🏥 High-Altitude Medicine & Crash Case Studies")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#21: Aerospace Medical Association (AsMA) Publications</div>
+        <div class="card-subtitle">Strategic Value: High-Altitude Crisis Management</div>
+        <p><strong>Summary:</strong> Clinical reference manuals tracking altitude strains on wounds, heart issues, asthma attacks, and stroke symptoms in pressurized cabins.</p>
+        <p><strong>Strategic Value:</strong> Gives crews the medical knowledge needed to treat serious health crises effectively at high cruise altitudes.</p>
+        <a class="resource-link" href="https://www.asma.org/" target="_blank">Aerospace Medical Association (AsMA) Publications →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#22: British Airtours Flight 28M Evacuation Analysis</div>
+        <div class="card-subtitle">Strategic Value: Structural Cabin Path Optimization</div>
+        <p><strong>Summary:</strong> A safety review of a 1985 engine fire that caused smoke to quickly fill the cabin, slowing down passenger evacuation steps.</p>
+        <p><strong>Strategic Value:</strong> Drove major updates in interior safety design, leading to wider exit row paths, clear floor lighting, and fire-resistant seat covers.</p>
+        <a class="resource-link" href="https://www.gov.uk/government/organisations/air-accidents-investigation-branch" target="_blank">UK AAIB Historical Accident Investigation Vault →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#23: Air Canada Flight 797 Technical Evaluation Archive</div>
+        <div class="card-subtitle">Strategic Value: Automated Fire Protection Standards</div>
+        <p><strong>Summary:</strong> A study of a hidden bathroom fire that spread through wall panels, knocking out power and filling the cabin with thick smoke.</p>
+        <p><strong>Strategic Value:</strong> Drove major cabin updates, making lavatory smoke alarms, automatic extinguishers, and path lights mandatory on all planes.</p>
+        <a class="resource-link" href="https://www.ntsb.gov/" target="_blank">NTSB Air Canada 797 Technical Evaluation Archive →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#24: US Airways Flight 1549 Hudson River Ditching Evacuation</div>
+        <div class="card-subtitle">Strategic Value: Command Loop Drills Validation</div>
+        <p><strong>Summary:</strong> A review of a dual-engine bird strike ditching, showing how fast, orderly cabin teams emptied the plane onto river rafts.</p>
+        <p><strong>Strategic Value:</strong> Proves the value of structured training drills, illustrating how perfect command loops make fast water evacuations possible.</p>
+        <a class="resource-link" href="https://www.ntsb.gov/" target="_blank">NTSB Hudson Ditching Operational Review →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#25: Flight Safety Foundation Cabin Crew Safety Digests</div>
+        <div class="card-subtitle">Strategic Value: Modern Cabin Asset Modernization Tracking</div>
+        <p><strong>Summary:</strong> A compilation of modern safety briefings tracking exit injuries, galley cart hazards, and changing cabin equipment standards.</p>
+        <p><strong>Strategic Value:</strong> Keeps safety training fresh, ensuring crew knowledge aligns with modern airline safety updates and research.</p>
+        <a class="resource-link" href="https://flightsafety.org/" target="_blank">Flight Safety Foundation Cabin Crew Safety Digests →</a>
     </div>
     """, unsafe_allow_html=True)
 
