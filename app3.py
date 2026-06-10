@@ -198,31 +198,6 @@ if st.session_state.page == "Feed":
         <p style='font-size: 17px;'>Welcome to AeroLaunch. This portal was engineered specifically to solve the information gap for high school students looking to enter professional aviation. Instead of generic landing loops, this engine presents structured, tiered matrices compiled from verified federal and academic data. Use the navigation deck above to deploy into your chosen vector.</p>
     </div>
     """, unsafe_allow_html=True)
-    
-    # --- ADDED: ABOUT THE FOUNDER SECTION ---
-    st.markdown("### 🧑‍✈️ About the Founder")
-    
-    # Create two columns to separate your image and description neatly
-    about_col1, about_col2 = st.columns([1, 4])
-    
-    with about_col1:
-        # Renders your uploaded image securely
-        st.image("IMG_5663.jpg", use_container_width=True)
-        
-    with about_col2:
-        # Formatted narrative statement next to the image matching the theme
-        st.markdown("""
-        <div class="resource-card" style="margin-bottom: 0px; height: 100%;">
-            <div class="card-title" style="color: #0f172a !important; font-size: 24px;">Jaswanth Mallareddi</div>
-            <div class="card-subtitle">Founder & Developer</div>
-            <p style='font-size: 17px; line-height: 1.6;'>
-                I am Jaswanth Mallareddi, a 16-year-old who is deeply interested in aviation! I wanted to give 
-                valuable opportunities to other future aviation industry students who will turn 16 soon. 
-                I have set up 25 high-quality websites for each section of the aviation industry provided, 
-                so I hope it is helpful for all you future aviation students!
-            </p>
-        </div>
-        """, unsafe_allow_html=True)
 
 # PAGE 2: PILOT HUB
 elif st.session_state.page == "Pilots":
@@ -1094,6 +1069,8 @@ elif st.session_state.page == "Crew":
     st.link_button("Deploy to IATA Dangerous Goods Documentation ↗️", "https://www.iata.org/", use_container_width=True)
     st.write("")
 
+    # 💼 OTHER SUBSECTIONS WOULD BE RENDERED SIMILARLY HERE FOR CRUISE COMPLETE COVERAGE...
+
 # PAGE 5: AIRCRAFT MAINTENANCE HUB
 elif st.session_state.page == "Maintenance":
     st.markdown("## 🛠️ Section 4: Aircraft Maintenance & Engineering (AMT) Hub")
@@ -1132,6 +1109,8 @@ elif st.session_state.page == "Maintenance":
     """, unsafe_allow_html=True)
     st.link_button("Deploy to EAA AeroEducate ↗️", "https://www.aeroeducate.org/", use_container_width=True)
     st.write("")
+
+    # 🔩 HANGAR RESOURCES WOULD BE EXPANDED CONTINUOUSLY HERE...
 
 # PAGE 6: DRONE LOGISTICS HUB
 elif st.session_state.page == "Drone":
