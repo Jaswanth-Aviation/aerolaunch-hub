@@ -983,18 +983,245 @@ elif st.session_state.page == "Crew":
     </div>
     """, unsafe_allow_html=True)
 
-# PAGE 5: MAINTENANCE
+# PAGE 5: MAINTENANCE (AIRCRAFT MAINTENANCE & ENGINEERING (AMT) HUB - TOP 25)
 elif st.session_state.page == "Maintenance":
-    st.markdown("### 🔧 Aviation Maintenance Technician (AMT)")
+    st.markdown("### 🔧 🛠️ Section 4: Aircraft Maintenance & Engineering (AMT) Hub")
+    
+    # Category 1
+    st.markdown("#### 🔁 Cross-Section Overlap (Repeated Links)")
+    
     st.markdown("""
     <div class="resource-card">
-        <div class="tier-badge-high">Tier 3: Advanced</div>
-        <div class="card-title">Airframe & Powerplant (A&P) License</div>
-        <div class="card-subtitle">FAA Part 147 Approved</div>
-        <p>The definitive certification allowing mechanics to inspect, service, and clear aircraft structures and engines for flight.</p>
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#1: FAA Aviation Handbooks & Manuals (General, Airframe, & Powerplant)</div>
+        <div class="card-subtitle">Strategic Value: Core Structural Reading Bedrock</div>
+        <p><strong>Summary:</strong> The core technical textbooks covering aerodynamics, structural sheet metal, and turbine engine mechanics.</p>
+        <p><strong>Strategic Value:</strong> Forms the foundational reading material for anyone learning aircraft maintenance and structural engineering.</p>
+        <a class="resource-link" href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation" target="_blank">FAA Handbooks Gateway →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#2: EAA AeroEducate Portal</div>
+        <div class="card-subtitle">Strategic Value: Youth STEM Activity Tracking</div>
+        <p><strong>Summary:</strong> An interactive, youth-focused STEM tracking system designed to log hands-on engineering activities.</p>
+        <p><strong>Strategic Value:</strong> Connects high schoolers to local manufacturing projects and youth engineering mentors.</p>
+        <a class="resource-link" href="https://www.aeroeducate.org/" target="_blank">EAA AeroEducate →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#3: Aircraft Electronics Association (AEA) Educational Foundation</div>
+        <div class="card-subtitle">Strategic Value: Avionics Capital Cost Mitigation</div>
+        <p><strong>Summary:</strong> A dedicated association platform providing thousands of dollars in scholarships explicitly for high schoolers.</p>
+        <p><strong>Strategic Value:</strong> Directly offsets the cost of avionics, wiring, and electronics training programs for teens.</p>
+        <a class="resource-link" href="https://aea.net/foundation/" target="_blank">AEA Foundation Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#4: SkillsUSA Aviation Maintenance Trades</div>
+        <div class="card-subtitle">Strategic Value: Teenage Technical Skills Competition</div>
+        <p><strong>Summary:</strong> A structured workforce program providing technical framework guidelines and competitive events for student mechanics.</p>
+        <p><strong>Strategic Value:</strong> Allows 16-year-olds to compete in high school divisions for precision assembly and safety wiring.</p>
+        <a class="resource-link" href="https://www.skillsusa.org/" target="_blank">SkillsUSA Main Site →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#5: FAA Safety Team (FAASTeam) Learning Center</div>
+        <div class="card-subtitle">Strategic Value: Industry Resume Credentialing</div>
+        <p><strong>Summary:</strong> The official safety portal hosting hundreds of free courses on human error, tool management, and parts inspections.</p>
+        <p><strong>Strategic Value:</strong> Earns teens official industry safety certificates to boost their resumes before turning 18.</p>
+        <a class="resource-link" href="https://www.faasafety.gov/" target="_blank">FAASTeam Online →</a>
     </div>
     """, unsafe_allow_html=True)
 
+    # Category 2
+    st.markdown("#### 🔩 Core Technical & Industry Resources")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#6: Aviation Mechanic Practical Test Standards (PTS)</div>
+        <div class="card-subtitle">Strategic Value: Practical Certification Standard Blueprint</div>
+        <p><strong>Summary:</strong> The official testing blueprint detailing the exact practical projects required to clear a mechanic license.</p>
+        <p><strong>Strategic Value:</strong> Provides the direct grading criteria for passing hands-on oral and practical technician exams.</p>
+        <a class="resource-link" href="https://www.faa.gov/training_testing/testing/pts" target="_blank">FAA Testing Library →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#7: Dynamic Regulatory System (DRS)</div>
+        <div class="card-subtitle">Strategic Value: Airworthiness Directive Direct Auditing</div>
+        <p><strong>Summary:</strong> The FAA’s central legal search engine for standard airworthiness certificates, directives, and component limits.</p>
+        <p><strong>Strategic Value:</strong> Introduces students to regulatory maintenance law and how to research mandatory aircraft safety recalls.</p>
+        <a class="resource-link" href="https://drs.faa.gov/" target="_blank">FAA DRS System →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#8: Aviation Maintenance Magazine</div>
+        <div class="card-subtitle">Strategic Value: Commercial Sector Trends Tracking</div>
+        <p><strong>Summary:</strong> A professional trade journal covering automated tooling, composites, and global fleet overhaul trends.</p>
+        <p><strong>Strategic Value:</strong> Keeps students updated on commercial MRO (Maintenance, Repair, and Overhaul) corporate operations.</p>
+        <a class="resource-link" href="https://www.aviationmaintenance.edu/" target="_blank">AMTSociety News →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#9: National Aviation Academy (NAA) Training Blog</div>
+        <div class="card-subtitle">Strategic Value: Hangar Lifecycle Operational Insight</div>
+        <p><strong>Summary:</strong> Informative visual breakdowns showing daily life inside turbine maintenance hangars and tool control stations.</p>
+        <p><strong>Strategic Value:</strong> Helps teens visualize the daily career workflow of an active heavy-jet maintenance technician.</p>
+        <a class="resource-link" href="https://www.naa.edu/" target="_blank">NAA Training Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#10: AMT Society Knowledge Center</div>
+        <div class="card-subtitle">Strategic Value: Peer-Vetted Craft Perfection</div>
+        <p><strong>Summary:</strong> A professional forum network detailing industry standard practices for safety wire patterns and sheet metal rivets.</p>
+        <p><strong>Strategic Value:</strong> Serves as a peer-vetted knowledge base for perfecting physical trade craft skills.</p>
+        <a class="resource-link" href="https://www.aviationmaintenance.edu/" target="_blank">AMTSociety Hub →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#11: Aircraft Component Type Certificate Data Sheets (TCDS)</div>
+        <div class="card-subtitle">Strategic Value: Operational Modifications Legality Verification</div>
+        <p><strong>Summary:</strong> The official weight, fuel, and engine limit sheets used to certify exact aircraft build specifications.</p>
+        <p><strong>Strategic Value:</strong> Vital for teaching students how to verify if an aircraft modification is legally airworthy.</p>
+        <a class="resource-link" href="https://www.faa.gov/aircraft/safety/certs/tdsn" target="_blank">FAA TCDS Database →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#12: Electronic Code of Federal Regulations (eCFR) Part 43</div>
+        <div class="card-subtitle">Strategic Value: Structural Regulatory Limitations Identification</div>
+        <p><strong>Summary:</strong> The baseline federal law defining what constitutes legal maintenance, rebuild alterations, and preventive tasks.</p>
+        <p><strong>Strategic Value:</strong> Gives 16-year-olds a clear understanding of what basic fixes a private pilot can legally perform themselves.</p>
+        <a class="resource-link" href="https://www.ecfr.gov/" target="_blank">eCFR Part 43 Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#13: Aircraft Electronics Association Avionics Magazine</div>
+        <div class="card-subtitle">Strategic Value: Next-Gen System Hardware Tracking</div>
+        <p><strong>Summary:</strong> Tech tracking articles breaking down modern glass cockpits, wiring setups, and digital radar components.</p>
+        <p><strong>Strategic Value:</strong> Focuses heavily on the electrical and computational side of modern avionics engineering.</p>
+        <a class="resource-link" href="https://aea.net/avionicsnews/" target="_blank">AEA Avionics News →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#14: Choose Aerospace Curriculum Network</div>
+        <div class="card-subtitle">Strategic Value: Secondary Education Program Architecture</div>
+        <p><strong>Summary:</strong> A dedicated high school training network framework providing direct entry paths into certified mechanic academies.</p>
+        <p><strong>Strategic Value:</strong> Helps high schools incorporate standardized aviation maintenance classes directly into teenage class schedules.</p>
+        <a class="resource-link" href="https://www.chooseaerospace.org/" target="_blank">Choose Aerospace →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#15: Northrop Rice Aviation Foundation Grants</div>
+        <div class="card-subtitle">Strategic Value: Entry Equipment Capital Allocation</div>
+        <p><strong>Summary:</strong> A funding system offering specialized tool grants and avionic system scholarships for student technicians.</p>
+        <p><strong>Strategic Value:</strong> Helps students buy expensive starting toolsets required for entry-level hangar apprenticeships.</p>
+        <a class="resource-link" href="http://www.nrafoundation.org/" target="_blank">NRAF Foundation →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#16: Boeing Technical Apprenticeship Program</div>
+        <div class="card-subtitle">Strategic Value: Alternative Workforce Entry Fast-Tracking</div>
+        <p><strong>Summary:</strong> Corporate outreach pathways showing how high school graduates step directly into assembly line careers.</p>
+        <p><strong>Strategic Value:</strong> Provides an actionable alternative to a traditional 4-year degree via direct aerospace manufacturer training.</p>
+        <a class="resource-link" href="https://jobs.boeing.com/" target="_blank">Boeing Careers Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#17: AOPA AMT Career Guide</div>
+        <div class="card-subtitle">Strategic Value: Fleet Domain Segment Planning</div>
+        <p><strong>Summary:</strong> A comprehensive breakdown showing the intersection of general aviation maintenance and commercial airline operations.</p>
+        <p><strong>Strategic Value:</strong> Helps students choose between working on small flight-school trainers or massive commercial airliners.</p>
+        <a class="resource-link" href="https://www.aopa.org/" target="_blank">AOPA Mechanic Paths →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#18: Aviation Maintenance Technician Society Awards</div>
+        <div class="card-subtitle">Strategic Value: Lifetime Learning Credit Tracking</div>
+        <p><strong>Summary:</strong> A specialized rewards program that logs continuous training milestones for apprentice technicians.</p>
+        <p><strong>Strategic Value:</strong> Encourages a culture of lifelong learning by tracking voluntary safety training credits.</p>
+        <a class="resource-link" href="https://www.faa.gov/mechanics/aviation_mechanic_awards" target="_blank">FAA William O'Brien Program →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#19: Engine Components Inc. (ECI) Technical Library</div>
+        <div class="card-subtitle">Strategic Value: Dynamic Piston Internal Mechanics Clarity</div>
+        <p><strong>Summary:</strong> Free graphic heavy manuals tracking piston engine wear, cylinder rebuilding, and piston clearances.</p>
+        <p><strong>Strategic Value:</strong> Excellent visual resource for understanding how internal combustion aircraft engines operate.</p>
+        <a class="resource-link" href="https://www.asoverhaul.com/" target="_blank">ECI Component Guides →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#20: Aviation Institute of Maintenance (AIM) High School Hub</div>
+        <div class="card-subtitle">Strategic Value: Early License Academic Acceleration</div>
+        <p><strong>Summary:</strong> Offers dual-enrollment class tracking and summer camp options for 16-year-olds exploring technical trades.</p>
+        <p><strong>Strategic Value:</strong> Allows high school juniors to earn college credits toward an airframe license early.</p>
+        <a class="resource-link" href="https://aviationmaintenance.edu/" target="_blank">AIM Aviation Hangar →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#21: Aircraft Mechanics Fraternal Association (AMFA) Education</div>
+        <div class="card-subtitle">Strategic Value: Active Network Mentorship Connection</div>
+        <p><strong>Summary:</strong> Trade union portal providing student mentoring connections with active airline line maintenance mechanics.</p>
+        <p><strong>Strategic Value:</strong> Connects student technicians with industry professionals to build career networks.</p>
+        <a class="resource-link" href="https://www.amfanational.org/" target="_blank">AMFA Union System →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#22: Women in Aviation International (WAI) Technical Scholarships</div>
+        <div class="card-subtitle">Strategic Value: Specialized Tech Block Equity</div>
+        <p><strong>Summary:</strong> Dedicated scholarship network awarding specialized funding blocks for airframe and avionics ratings.</p>
+        <p><strong>Strategic Value:</strong> Promotes diversity in the hangar by funding technical training for young women.</p>
+        <a class="resource-link" href="https://www.wai.org/scholarships" target="_blank">WAI Scholarships Hub →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#23: JSFirm Aviation Maintenance Job Board</div>
+        <div class="card-subtitle">Strategic Value: Live Hangar Proficiencies Demand Analysis</div>
+        <p><strong>Summary:</strong> A real-time hiring search engine showing what specific tool proficiencies and certificates are actively in high demand.</p>
+        <p><strong>Strategic Value:</strong> Allows students to spot current market wage trends and identify highly valued technical skills.</p>
+        <a class="resource-link" href="https://www.jsfirm.com/" target="_blank">JSFirm Hangar Search →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#24: ATP Flight School AMT Pipeline</div>
+        <div class="card-subtitle">Strategic Value: Fast-Track Logistics Deployment Outlines</div>
+        <p><strong>Summary:</strong> Accelerating training program outlines tracking commercial airline fleet support logistics.</p>
+        <p><strong>Strategic Value:</strong> Illustrates how fast-track training setups transition students rapidly from school to airline careers.</p>
+        <a class="resource-link" href="https://atpflightschool.com/" target="_blank">ATP AMT Career Program →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#25: Professional Aviation Maintenance Association (PAMA)</div>
+        <div class="card-subtitle">Strategic Value: Global Safety Updates Monitoring</div>
+        <p><strong>Summary:</strong> Core professional network hosting trade webinars and connecting high school chapters to active field events.</p>
+        <p><strong>Strategic Value:</strong> Keeps young technicians informed on changing global licensing and regulatory safety updates.</p>
+        <a class="resource-link" href="https://www.pama.org/" target="_blank">PAMA National Portal →</a>
+    </div>
+    """, unsafe_allow_html=True)
+    
 # PAGE 6: DRONE LOGISTICS
 elif st.session_state.page == "Drone":
     st.markdown("### 🛸 Unmanned Aircraft Systems (UAS) Logistics")
