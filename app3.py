@@ -1,3 +1,138 @@
+# ==========================================
+# 🔐 AUTHENTICATION GATEWAY (SIGN-IN / LOG-IN)
+# ==========================================
+
+# Initialize authentication session state variables if they don't exist
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+if "auth_mode" not in st.session_state:
+    st.session_state.auth_mode = "login"
+
+# CSS injection to style the login card seamlessly with your AeroLaunch UI
+st.markdown("""
+    <style>
+    .auth-container {
+        background-color: #f8fafc;
+        padding: 2.5rem;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        max-width: 480px;
+        margin: 2rem auto;
+    }
+    .auth-title {
+        text-align: center;
+        color: #1e3a8a;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    .auth-subtitle {
+        text-align: center;
+        color: #64748b;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+    }
+    .oauth-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border: 1px solid #cbd5e1;
+        padding: 0.6rem;
+        border-radius: 8px;
+        margin-bottom: 0.75rem;
+        cursor: pointer;
+        font-weight: 500;
+        text-decoration: none;
+        color: #334155;
+        transition: background-color 0.2s;
+    }
+    .oauth-button:hover {
+        background-color: #f1f5f9;
+    }
+    .divider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #94a3b8;
+        margin: 1.5rem 0;
+    }
+    .divider::before, .divider::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    .divider:not(:empty)::before { margin-right: .5em; }
+    .divider:not(:empty)::after { margin-left: .5em; }
+    </style>
+""", unsafe_allow_html=True)
+
+# Render Authentication UI if user is not verified
+if not st.session_state.logged_in:
+    
+    st.markdown('<div class="auth-container">', unsafe_allow_html=True)
+    
+    if st.session_state.auth_mode == "login":
+        st.markdown('<h2 class="auth-title">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
+        st.markdown('<p class="auth-subtitle">Sign in to access your aviation roadmaps</p>', unsafe_allow_html=True)
+        
+        # OAuth Single Sign-On Buttons
+        # Note: In production, these links point to your OAuth backend setup (e.g., Supabase, Firebase, or custom endpoints)
+        st.markdown('<a class="oauth-button" href="#">🐈 Continue with GitHub</a>', unsafe_allow_html=True)
+        st.markdown('<a class="oauth-button" href="#">🍏 Continue with Apple</a>', unsafe_allow_html=True)
+        
+        st.markdown('<div class="divider">or use email</div>', unsafe_allow_html=True)
+        
+        email = st.text_input("Email Address", placeholder="name@domain.com")
+        password = st.text_input("Password", type="password", placeholder="••••••••")
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Sign In →", use_container_width=True, type="primary"):
+            if email and password: # Replace with your real DB credential check logic
+                st.session_state.logged_in = True
+                st.rerun()
+            else:
+                st.error("Please enter both email and password credentials.")
+                
+        st.markdown("---")
+        if st.button("New to AeroLaunch? Create an account", use_container_width=True):
+            st.session_state.auth_mode = "signup"
+            st.rerun()
+
+    else:
+        st.markdown('<h2 class="auth-title">Create Account</h2>', unsafe_allow_html=True)
+        st.markdown('<p class="auth-subtitle">Join the AeroLaunch aviation track</p>', unsafe_allow_html=True)
+        
+        st.markdown('<a class="oauth-button" href="#">🐈 Sign up with GitHub</a>', unsafe_allow_html=True)
+        st.markdown('<a class="oauth-button" href="#">🍏 Sign up with Apple</a>', unsafe_allow_html=True)
+        
+        st.markdown('<div class="divider">or use email</div>', unsafe_allow_html=True)
+        
+        new_name = st.text_input("Full Name", placeholder="Alex Mercer")
+        new_email = st.text_input("Email Address", placeholder="name@domain.com")
+        new_password = st.text_input("Password", type="password", placeholder="Create a strong password")
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Complete Registration 🎉", use_container_width=True, type="primary"):
+            if new_name and new_email and new_password:
+                st.success("Account created successfully!")
+                st.session_state.logged_in = True
+                st.rerun()
+            else:
+                st.error("Please complete all registration fields.")
+                
+        st.markdown("---")
+        if st.button("Already have an account? Sign In", use_container_width=True):
+            st.session_state.auth_mode = "login"
+            st.rerun()
+            
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.stop() # Prevents the rest of the application code from rendering until logged_in is True
+
+# ==========================================
+# END OF AUTHENTICATION COUPLING
+# ==========================================
+
 import streamlit as st
 
 # --- CORE RESPONSE STRUCTURE CONFIGURATION ---
