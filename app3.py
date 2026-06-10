@@ -199,24 +199,6 @@ if st.session_state.page == "Feed":
     </div>
     """, unsafe_allow_html=True)
 
-    # --- IMAGE ABOVE BIO LAYOUT ---
-    st.markdown("### 🧑‍✈️ About the Founder")
-    
-    # Check directory for image file
-    import os
-    founder_image = None
-    for file in os.listdir("."):
-        name_upper = file.upper()
-        if ("IMG_" in name_upper) and (file.lower().endswith(".jpg") or file.lower().endswith(".jpeg")):
-            founder_image = file
-            break
-            
-    # Render layout: Image is explicitly displayed FIRST (above), then the bio card follows below it
-    if founder_image:
-        st.image(founder_image, width=300)
-    else:
-        st.info("💡 Place your founder image file (e.g., IMG_5662.jpg) into your active project directory folder to display it right here above your bio!")
-
     st.markdown("""
     <div class="resource-card" style="margin-top: 15px;">
         <div class="card-title" style="color: #0f172a !important; font-size: 24px;">Jaswanth Mallareddi</div>
