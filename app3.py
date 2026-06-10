@@ -189,7 +189,7 @@ if st.session_state.page == "Feed":
 
 # PAGE 2: PILOT HUB
 elif st.session_state.page == "Pilots":
-    st.markdown("## 🧭 Section 1: The Pilot Hub")
+    st.markdown("## 🧭 Section 1: The Pilot Hub (Top 25)")
     st.write("Structured modules built to optimize competitive credentials and accelerate primary flight training timelines.")
     st.write("---")
 
@@ -316,7 +316,6 @@ elif st.session_state.page == "Pilots":
     st.link_button("Deploy to FAA Airman Testing Standards ↗️", "https://www.faa.gov/training_testing/testing/acs", use_container_width=True)
     st.write("")
 
-
     # SUBSECTION B
     st.markdown("### 🎮 Flight Simulation & Cockpit Flow Drills")
     
@@ -409,7 +408,6 @@ elif st.session_state.page == "Pilots":
     """, unsafe_allow_html=True)
     st.link_button("Deploy to Garmin Digital Manuals ↗️", "https://support.garmin.com/", use_container_width=True)
     st.write("")
-
 
     # SUBSECTION C
     st.markdown("### 🌤️ Meteorology & Radio Communications")
@@ -504,7 +502,6 @@ elif st.session_state.page == "Pilots":
     st.link_button("Deploy to NASA ASRS System Database ↗️", "https://asrs.arc.nasa.gov/", use_container_width=True)
     st.write("")
 
-
     # SUBSECTION D
     st.markdown("### 💰 Scholarships & Specialized Video Ground Schools")
     
@@ -584,53 +581,398 @@ elif st.session_state.page == "Pilots":
 
 # PAGE 3: ATC HUB
 elif st.session_state.page == "ATC":
-    st.markdown("### 🎙️ Air Traffic Control Vector Matrix")
-    st.write("Professional simulation tracks and phraseology baselines designed to secure federal placement pathways.")
+    st.markdown("## 🎙️ Section 2: Air Traffic Control (Top 25)")
+    st.write("Professional simulation tracks, metrics, and standard phraseology systems designed to master controller infrastructure.")
+    st.write("---")
+
+    # SUBSECTION A
+    st.markdown("### 🥇 Virtual ATC Frameworks & Master Rules")
+
+    #1
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#1: VATSIM S1 Controller Training Syllabus</div>
+        <div class="card-subtitle">Category: Basic Ground Management</div>
+        <p style='font-size: 16px;'>The fundamental gateway manual covering clearance formats, airport ground layouts, and taxi safety protocols.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Ideal for teaching the basics of ground management before students move on to active radar sequencing.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to VATSIM United States Training Portal ↗️", "https://vatsim.net/", use_container_width=True)
     st.write("")
 
-    # Tier 1
+    #2
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
-        <div class="card-title">VATSIM Virtual Controller Certification (S1, S2)</div>
-        <div class="card-subtitle">Provider: Virtual Air Traffic Simulation Network</div>
-        <p style='font-size: 16px;'>A global, high-fidelity simulation network where student controllers go through rigorous exams and practical tests to manage real virtual pilot flights using actual ATC phraseology.</p>
+        <div class="card-title">#2: FAA Order JO 7110.65 (Air Traffic Control Manual)</div>
+        <div class="card-subtitle">Category: Legal Rulebook</div>
+        <p style='font-size: 16px;'>The absolute legal handbook defining standard US phraseology, separation minimums, and vector guidelines.</p>
         <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> You must pass real-world-style ATC entry exams and practical training to control virtual aircraft. Real-world controllers use this to keep their situational awareness locked in.
+            <strong>📋 Strategic Value:</strong> The definitive handbook for air traffic control, serving as the core reference source for any ATC training setup.
         </div>
     </div>
     """, unsafe_allow_html=True)
-    st.link_button("Deploy to VATSIM Network ↗️", "https://vatsim.net/", use_container_width=True)
+    st.link_button("Deploy to FAA Document Gateway: JO 7110.65 ↗️", "https://www.faa.gov/air_traffic/publications/", use_container_width=True)
     st.write("")
 
-    # Tier 2 - FAA Manuals
+    #3
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">FAA Academy Prep / Green ATC Basics</div>
-        <div class="card-subtitle">Provider: Federal Aviation Administration Manuals</div>
-        <p style='font-size: 16px;'>Self-directed study manuals detailing the baseline regulatory infrastructure for safe aircraft handling and radar vector tracking coordinates.</p>
+        <div class="card-title">#3: IVAO ATC Online Academy Manuals</div>
+        <div class="card-subtitle">Category: Global Training System</div>
+        <p style='font-size: 16px;'>International training handbooks focusing on ICAO terminal rules, transition layer setups, and non-US vector standards.</p>
         <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Studying FAA Order JO 7110.65 (the official ATC bible) and the Pilot/Controller Glossary gives you a massive advantage before entering university terminal radar training programs.
+            <strong>📋 Strategic Value:</strong> Provides essential global perspective, teaching students how air traffic control operates outside North America.
         </div>
     </div>
     """, unsafe_allow_html=True)
-    st.link_button("Deploy to FAA Air Traffic Manuals ↗️", "https://www.faa.gov/air_traffic/publications/", use_container_width=True)
+    st.link_button("Deploy to IVAO HQ Training Academy ↗️", "https://ivao.aero/", use_container_width=True)
     st.write("")
 
-    # Tier 2 - LiveATC
+    #4
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#4: Eurocontrol Training Zone Portal</div>
+        <div class="card-subtitle">Category: Airspace Congestion Flows</div>
+        <p style='font-size: 16px;'>Interactive training tracking air traffic flows, sector load balancing, and delay-reduction strategies across Europe.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Introduces high-level airspace management concepts, showing how to handle traffic flows between different countries.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Eurocontrol Aviation Training Portal ↗️", "https://www.eurocontrol.int/", use_container_width=True)
+    st.write("")
+
+    #5
     st.markdown("""
     <div class="resource-card">
         <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
-        <div class="card-title">LiveATC Audio Log Portfolio Build</div>
-        <div class="card-subtitle">Provider: LiveATC Network</div>
-        <p style='font-size: 16px;'>Direct real-time streaming audio feeds from international terminal radar control facilities and active tower frequencies worldwide.</p>
+        <div class="card-title">#5: EuroScope Radar Client Software Project</div>
+        <div class="card-subtitle">Category: Interface Simulation Software</div>
+        <p style='font-size: 16px;'>A highly detailed radar simulator client that replicates real-world European air traffic radar displays and tracker systems.</p>
         <div class="guidance-box">
-            <strong>📋 Strategic Value:</strong> Keeping a logbook of hours spent listening to busy Class B airspace (like Chicago O'Hare or Atlanta) trains your ear to parse rapid-fire commands at operational speed.
+            <strong>📋 Strategic Value:</strong> Gives students hands-on practice with professional-grade radar tools from home without needing expensive academy equipment.
         </div>
     </div>
     """, unsafe_allow_html=True)
-    st.link_button("Deploy to LiveATC Audio Feed ↗️", "https://www.liveatc.net/", use_container_width=True)
+    st.link_button("Deploy to EuroScope Radar Engine ↗️", "https://www.euroscope.hu/", use_container_width=True)
+    st.write("")
+
+    #6
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#6: OpenRadar Open-Source Tower Tracking Software</div>
+        <div class="card-subtitle">Category: Open-Source Tracking Client</div>
+        <p style='font-size: 16px;'>An open-source radar simulator focusing on terminal approach control and tower visual sweeps.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Provides an accessible tool for students to practice managing traffic arcs and local terminal arrivals.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to OpenRadar SourceForge Project ↗️", "https://sourceforge.net/projects/openradar/", use_container_width=True)
+    st.write("")
+
+    # SUBSECTION B
+    st.markdown("### 🛰️ Radar Vectoring Mechanics & Separation Rules")
+
+    #7
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#7: ATC-Sim Browser Radar Vectoring Game</div>
+        <div class="card-subtitle">Category: Web Vector Sandbox</div>
+        <p style='font-size: 16px;'>A 2D browser simulator where players issue headings, altitudes, and speeds to feed arrivals onto final approach paths safely.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> A fast, interactive way to practice radar geometry and master vectoring techniques early in training.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to ATC-Sim Browser Radar Engine ↗️", "https://www.atc-sim.com/", use_container_width=True)
+    st.write("")
+
+    #8
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#8: FAA Runway Incursion Prevention Training Simulator</div>
+        <div class="card-subtitle">Category: Ground Safety Matrix</div>
+        <p style='font-size: 16px;'>Interactive training tools designed to spot and prevent ground errors, runway incursions, and vehicle tracking mistakes.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Focuses heavily on ground safety, teaching students how to keep runways clear and prevent close calls on the tarmac.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Runway Safety Portal ↗️", "https://www.faa.gov/airports/runway_safety/", use_container_width=True)
+    st.write("")
+
+    #9
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#9: ICAO Document 4444 (Air Traffic Management Standards)</div>
+        <div class="card-subtitle">Category: International Protocol Treaty</div>
+        <p style='font-size: 16px;'>The master international treaty text standardizing air traffic rules, flight rules, and separation criteria worldwide.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> The core reference for international air traffic control, vital for understanding global aviation standards.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to ICAO Store Reference Catalog ↗️", "https://store.icao.int/", use_container_width=True)
+    st.write("")
+
+    #10
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#10: Standard Lateral and Vertical Separation Minimums Matrix</div>
+        <div class="card-subtitle">Category: Separation Minimums Charts</div>
+        <p style='font-size: 16px;'>Quick-reference tables outlining legal distance limits ($3\text{ miles}$, $5\text{ miles}$, or $1000\text{ feet}$ vertically) required between planes.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Instills basic safety limits, helping controllers maintain legal margins and prevent separation violations.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to SKYbrary Separation Standards ↗️", "https://skybrary.aero/articles/separation-standards", use_container_width=True)
+    st.write("")
+
+    #11
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#11: Wake Turbulence Category Separation Requirements</div>
+        <div class="card-subtitle">Category: Dynamic Vortex Spacing</div>
+        <p style='font-size: 16px;'>Tables outlining required distance buffers behind heavy jets to prevent light planes from hitting dangerous wingtip vortices.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Critical for avoiding wake turbulence accidents, helping controllers space departures safely based on weight class.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Wake Turbulence Mitigation Portal ↗️", "https://www.faa.gov/nextgen/programs/wake_turbulence/", use_container_width=True)
+    st.write("")
+
+    #12
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#12: Intercept Angle Mathematics for Instrument Approaches</div>
+        <div class="card-subtitle">Category: Mathematical Vectoring Arcs</div>
+        <p style='font-size: 16px;'>Guides outlining how to turn planes onto instrument final approaches ($30\text{-degree}$ maximum limits) without overshooting the line.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Sharpens mental math skills, helping controllers issue smooth turns that align pilots perfectly with instrument approach paths.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Instrument Procedures Handbook ↗️", "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/", use_container_width=True)
+    st.write("")
+
+    # SUBSECTION C
+    st.markdown("### 🎙️ Tower Operations & Airspace Infrastructure")
+
+    #13
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#13: FAA Airport Sign and Marking Guide</div>
+        <div class="card-subtitle">Category: Tarmac Visual Systems</div>
+        <p style='font-size: 16px;'>Visual reference guides illustrating runway hold lines, taxi signs, direction indicators, and displaced threshold markers.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Essential for tower operators, helping them guide pilots accurately through complex airport layouts.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Runway Safety Sign Manual ↗️", "https://www.faa.gov/airports/runway_safety/publications/", use_container_width=True)
+    st.write("")
+
+    #14
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#14: Land and Hold Short Operations (LAHSO) Safety Limits</div>
+        <div class="card-subtitle">Category: Intersecting Capacity Rules</div>
+        <p style='font-size: 16px;'>Operating parameters for landing planes on intersecting runways and stopping them before the crossing point.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Increases airport capacity during peak hours while keeping strict safety margins between crossing aircraft.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA LAHSO Directives Matrix ↗️", "https://www.faa.gov/training_testing/testing/", use_container_width=True)
+    st.write("")
+
+    #15
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#15: Airspace Classifications Dimensional Metric Matrix</div>
+        <div class="card-subtitle">Category: Airspace Sector Dimensions</div>
+        <p style='font-size: 16px;'>Dimensional charts illustrating the vertical and lateral boundaries of Class A, B, C, D, E, and G airspaces.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Provides the basic framework for airspace rules, defining when flights must establish contact with controllers.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Airspace Classification Hub ↗️", "https://www.faa.gov/air_traffic/publications/atpubs/aim_html/", use_container_width=True)
+    st.write("")
+
+    #16
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#16: Standard Terminal Arrival Route (STAR) Chart Profiles</div>
+        <div class="card-subtitle">Category: Standard Arrival Routing</div>
+        <p style='font-size: 16px;'>Standard instrument arrival charts detailing predefined routes, speed limits, and altitude restrictions for incoming jets.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Streamlines approach control workloads by automatically organizing arrivals onto standard terminal paths.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Terminal Procedures Publication (d-TPP) ↗️", "https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/dtpp/", use_container_width=True)
+    st.write("")
+
+    #17
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#17: Holding Pattern Entry Geometric Calculation Worksheets</div>
+        <div class="card-subtitle">Category: Delay Orbit Routing</div>
+        <p style='font-size: 16px;'>Math guides detailing direct, parallel, and teardrop entry profiles for holding patterns based on arrival angles.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Essential for managing traffic delays, helping controllers predict airframe paths during holding adjustments.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to CFI Notebook Holding Procedures ↗️", "https://www.cfinotebook.net/", use_container_width=True)
+    st.write("")
+
+    #18
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#18: Reduced Vertical Separation Minimum (RVSM) Flight Levels</div>
+        <div class="card-subtitle">Category: High-Altitude Space Metrics</div>
+        <p style='font-size: 16px;'>Rules reducing standard vertical spacing from $2000\text{ feet}$ to $1000\text{ feet}$ for advanced aircraft flying between FL290 and FL410.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Doubles high-altitude airspace capacity, making it vital for modern enroute sequencing training.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA RVSM Documentation Portal ↗️", "https://www.faa.gov/air_traffic/separation/rvsm/", use_container_width=True)
+    st.write("")
+
+    # SUBSECTION D
+    st.markdown("### 🧠 Aptitude Testing & Emergency Scenarios")
+
+    #19
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#19: ATSA Air Traffic Selection Assessment Prep Guide</div>
+        <div class="card-subtitle">Category: Federal Screening Blueprints</div>
+        <p style='font-size: 16px;'>Official overviews explaining the structure, sections, and passing scores required for the FAA's entry-level controller aptitude test.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Critical starting point for aspiring controllers, showing them what to expect before taking official entry tests.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA ATC Career Hiring Portal ↗️", "https://www.faa.gov/be-atc", use_container_width=True)
+    st.write("")
+
+    #20
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#20: JobTestPrep ATSA Free Practice Modules</div>
+        <div class="card-subtitle">Category: Conflict Screening Games</div>
+        <p style='font-size: 16px;'>Sample math games and interactive puzzles testing a user's ability to clear intersecting conflicts under tight time limits.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Sharpens early decision-making habits, helping candidates improve their reaction times for the official ATSA test.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to JobTestPrep ATSA Modules ↗️", "https://www.jobtestprep.com/", use_container_width=True)
+    st.write("")
+
+    #21
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-highest">🏆 Tier 1: Highest Value</span><br>
+        <div class="card-title">#21: Transponder Squawk Code Matrix (7500, 7600, 7700)</div>
+        <div class="card-subtitle">Category: Emergency Code Matrix</div>
+        <p style='font-size: 16px;'>A quick-reference sheet for emergency transponder codes: 7500 (Hijack), 7600 (Radio Failure), and 7700 (General Emergency).</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Allows controllers to instantly identify flight emergencies on radar screens without needing verbal radio contact.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to AOPA Transponder Squawk Guidelines ↗️", "https://www.aopa.org/", use_container_width=True)
+    st.write("")
+
+    #22
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-foundational">⚓ Tier 4: Foundational Value</span><br>
+        <div class="card-title">#22: FAA Light Gun Signals Reference Chart</div>
+        <div class="card-subtitle">Category: Visual Auxiliary Signals</div>
+        <p style='font-size: 16px;'>Procedures for using airport light guns and tracking predictable pilot paths when a flight loses all radio contact.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Keeps traffic flowing safely during radio outages by providing a reliable backup communication method.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to FAA Light Gun Reference Chart ↗️", "https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/", use_container_width=True)
+    st.write("")
+
+    # SUBSECTION E
+    st.markdown("### 📊 Historical Case Studies & Safety Logs")
+
+    #23
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#23: Tenerife Airport Disaster Systemic Breakdown Analysis</div>
+        <div class="card-subtitle">Category: Phraseology Human Factors Study</div>
+        <p style='font-size: 16px;'>A safety review of the 1977 runway collision, highlighting how vague phrasing, radio blockages, and stress led to error.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> The premier lesson on radio safety, showing why the industry shifted to strict, unambiguous phraseology.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to SKYbrary Tenerife Collision Analysis ↗️", "https://skybrary.aero/", use_container_width=True)
+    st.write("")
+
+    #24
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-high">⚡ Tier 2: High Value</span><br>
+        <div class="card-title">#24: Uberlingen Mid-Air Collision TCAS Priority Study</div>
+        <div class="card-subtitle">Category: Ground vs. Automation Priority Logic</div>
+        <p style='font-size: 16px;'>An analysis of a mid-air crash caused when a controller's vectors directly contradicted automated onboard collision alerts (TCAS).</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Teaches critical system priorities, establishing that automated cockpit warnings always override ground instructions during alerts.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to SKYbrary Uberlingen Review ↗️", "https://skybrary.aero/", use_container_width=True)
+    st.write("")
+
+    #25
+    st.markdown("""
+    <div class="resource-card">
+        <span class="tier-badge-medium">⚓ Tier 3: Medium Value</span><br>
+        <div class="card-title">#25: Flight Safety Foundation: Continuous ATC Integrity Reports</div>
+        <div class="card-subtitle">Category: Real-Time Active Risk Metrics</div>
+        <p style='font-size: 16px;'>Regular safety reports tracking modern near-miss statistics, systemic software glitches, and controller fatigue risks.</p>
+        <div class="guidance-box">
+            <strong>📋 Strategic Value:</strong> Keeps curriculum content up to date with modern safety trends and active systemic air traffic risks.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    st.link_button("Deploy to Flight Safety Foundation Safety Digest Logs ↗️", "https://flightsafety.org/", use_container_width=True)
 
 # PAGE 4: AEROBOT GROUND KNOWLEDGE SYSTEM
 elif st.session_state.page == "AI":
