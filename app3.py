@@ -1221,14 +1221,242 @@ elif st.session_state.page == "Maintenance":
     </div>
     """, unsafe_allow_html=True)
     
-# PAGE 6: DRONE LOGISTICS
+# PAGE 6: DRONE LOGISTICS (UNCREWED AERIAL SYSTEMS (UAS) & DRONE LOGISTICS HUB - TOP 25)
 elif st.session_state.page == "Drone":
-    st.markdown("### 🛸 Unmanned Aircraft Systems (UAS) Logistics")
+    st.markdown("### 🛸 Section 5: Uncrewed Aerial Systems (UAS) & Drone Logistics Hub")
+    
+    # Category 1
+    st.markdown("#### 🥇 Cross-Section Overlap & Baseline Frameworks")
+    
     st.markdown("""
     <div class="resource-card">
         <div class="tier-badge-foundational">Tier 1: Foundational</div>
-        <div class="card-title">FAA Part 107 Remote Pilot Certificate</div>
-        <p>Essential license required to operate small unmanned drone systems commercially for mapping, photography, or delivery logistics.</p>
+        <div class="card-title">#1: EAA AeroEducate Portal</div>
+        <div class="card-subtitle">Strategic Value: High School Engineering Integration</div>
+        <p><strong>Summary:</strong> High school STEM activity tracker focusing on drone structural assemblies and programmatic flight paths.</p>
+        <p><strong>Strategic Value:</strong> Integrates uncrewed flight logic into foundational high school engineering tasks.</p>
+        <a class="resource-link" href="https://www.aeroeducate.org/" target="_blank">EAA AeroEducate →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#2: Aircraft Electronics Association (AEA) Educational Foundation</div>
+        <div class="card-subtitle">Strategic Value: Autonomous Radio Telemetry Funding</div>
+        <p><strong>Summary:</strong> Funding portal expanding into drone avionics, sensor arrays, and remote frequency tracking certifications.</p>
+        <p><strong>Strategic Value:</strong> Provides unique funding for students building custom autonomous radio telemetry hardware.</p>
+        <a class="resource-link" href="https://aea.net/foundation/" target="_blank">AEA Foundation Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#3: NOAA Aviation Weather Center (AWC)</div>
+        <div class="card-subtitle">Strategic Value: Micro-Meteorological Risk Mitigation</div>
+        <p><strong>Summary:</strong> Real-time wind velocity, icing levels, and cloud ceiling tracker required for safe low-altitude drone operations.</p>
+        <p><strong>Strategic Value:</strong> Critical for avoiding micro-meteorological wind shear that could crash light consumer drones.</p>
+        <a class="resource-link" href="https://aviationweather.gov/" target="_blank">Aviation Weather Live →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#4: SkyVector Aeronautical Charts</div>
+        <div class="card-subtitle">Strategic Value: Airspace Classification Literacy</div>
+        <p><strong>Summary:</strong> Interactive digital VFR charts mapping out airport airspace rings that commercial drones must avoid or clear.</p>
+        <p><strong>Strategic Value:</strong> Essential for learning how to read airspace classes to prevent illegal drone flights near airports.</p>
+        <a class="resource-link" href="https://skyvector.com/" target="_blank">SkyVector Live Map →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#5: NTSB Aviation Investigation Search</div>
+        <div class="card-subtitle">Strategic Value: Regulatory Impact Trends Tracking</div>
+        <p><strong>Summary:</strong> The federal incident database tracking commercial drone flyaways, systemic battery failures, and airspace near-misses.</p>
+        <p><strong>Strategic Value:</strong> Teaches students how hardware failure trends directly alter commercial drone flight regulations.</p>
+        <a class="resource-link" href="https://www.ntsb.gov/" target="_blank">NTSB CAROL Query →</a>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Category 2
+    st.markdown("#### 🎮 Drone Flight Rules & Programming")
+    
+    st.markdown("""
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#6: FAA Recreational UAS Safety Test (TRUST)</div>
+        <div class="card-subtitle">Strategic Value: Legal Recreational Entry Credential</div>
+        <p><strong>Summary:</strong> The mandatory federal safety test that 16-year-olds can take online for free to legalize recreational flights.</p>
+        <p><strong>Strategic Value:</strong> The immediate, legal entry-level credential needed before a teenager can fly any hobby drone outside.</p>
+        <a class="resource-link" href="https://www.faa.gov/uas/recreational_pilots/safety_test" target="_blank">FAA TRUST Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#7: FAA Part 107 Small UAS Remote Pilot Study Guide</div>
+        <div class="card-subtitle">Strategic Value: Commercial Pilot License Earning</div>
+        <p><strong>Summary:</strong> The official government framework covering radio signals, loading limits, and airspace restrictions for drone pilots.</p>
+        <p><strong>Strategic Value:</strong> Serves as the master study text for earning a commercial drone license at the legal minimum age of 16.</p>
+        <a class="resource-link" href="https://www.faa.gov/uas" target="_blank">FAA Uncrewed Systems Hub →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#8: Drone Pilot Ground School Free Resources</div>
+        <div class="card-subtitle">Strategic Value: High-Yield Exam Calibration</div>
+        <p><strong>Summary:</strong> High-yield visual flashcards and practice quizzes prepping high schoolers for the official Part 107 commercial test.</p>
+        <p><strong>Strategic Value:</strong> Speeds up exam prep through specialized practice tools designed for young learners.</p>
+        <a class="resource-link" href="https://uavcoach.com/" target="_blank">UAV Coach Training →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#9: QGroundControl Autonomous Mission Planner</div>
+        <div class="card-subtitle">Strategic Value: Automated Delivery System Mapping</div>
+        <p><strong>Summary:</strong> The open-source manual teaching students how to code automatic waypoint flight maps and geographic boundary fences.</p>
+        <p><strong>Strategic Value:</strong> Builds programmatic skills in autonomous delivery mapping and automated grid survey flying.</p>
+        <a class="resource-link" href="http://qgroundcontrol.com/" target="_blank">QGroundControl Project →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#10: UAV Coach Community Forums</div>
+        <div class="card-subtitle">Strategic Value: Managed Peer-to-Enterprise Networking</div>
+        <p><strong>Summary:</strong> A safe, moderated network where young operators ask hardware optimization questions and discuss camera setups.</p>
+        <p><strong>Strategic Value:</strong> Connects hobbyists with seasoned commercial remote pilots running active mapping businesses.</p>
+        <a class="resource-link" href="https://uavcoach.com/community/" target="_blank">UAV Coach Community →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#11: FAA DroneZone Portal</div>
+        <div class="card-subtitle">Strategic Value: Federal Asset Registration Workflow</div>
+        <p><strong>Summary:</strong> The official dashboard used to register hardware assets, apply for altitude waivers, and report operations.</p>
+        <p><strong>Strategic Value:</strong> Teaches regulatory discipline by introducing students to official government asset registration systems.</p>
+        <a class="resource-link" href="https://faadronezone-access.faa.gov/" target="_blank">FAA DroneZone →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#12: Aloft Air Control (LAANC Authorization)</div>
+        <div class="card-subtitle">Strategic Value: Real-Time Air Traffic Digital Interface</div>
+        <p><strong>Summary:</strong> A live platform used to request near-instant automated clearances to fly inside airport airspace rings.</p>
+        <p><strong>Strategic Value:</strong> Demonstrates how modern digital automation interfaces with air traffic control systems in real-time.</p>
+        <a class="resource-link" href="https://www.aloft.ai/" target="_blank">Aloft Remote Ops →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#13: Pix4D Drone Mapping Academy</div>
+        <div class="card-subtitle">Strategic Value: Industrial Terrain Modeling Data Skills</div>
+        <p><strong>Summary:</strong> Free entry-level guides explaining how drones stitch together aerial photographs to construct 3D terrain models.</p>
+        <p><strong>Strategic Value:</strong> Bridges the gap between basic stick-and-rudder flying and high-paying industrial data mapping careers.</p>
+        <a class="resource-link" href="https://www.pix4d.com/" target="_blank">Pix4D Training →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#14: DroneDeploy Educational Resources</div>
+        <div class="card-subtitle">Strategic Value: Trans-Industrial Sector Applications Analysis</div>
+        <p><strong>Summary:</strong> Classroom layout modules tracking drone data use across modern agriculture, surveying, and thermal rescue tasks.</p>
+        <p><strong>Strategic Value:</strong> Shows students how uncrewed aviation is actively transforming traditional non-aviation industries.</p>
+        <a class="resource-link" href="https://www.dronedeploy.com/" target="_blank">DroneDeploy System →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#15: ArduPilot Open-Source Autopilot Software</div>
+        <div class="card-subtitle">Strategic Value: Hardware Stabilization Coding Logic</div>
+        <p><strong>Summary:</strong> Comprehensive software documentation teaching teens how to configure open-source code for custom drone frames.</p>
+        <p><strong>Strategic Value:</strong> Promotes hands-on robotics skills by demonstrating how software logic stabilizes multi-rotor systems.</p>
+        <a class="resource-link" href="https://ardupilot.org/" target="_blank">ArduPilot Project Site →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#16: MultiGP Drone Racing League</div>
+        <div class="card-subtitle">Strategic Value: High-Speed Reflex and Frequency Coordination</div>
+        <p><strong>Summary:</strong> The global competitive network tracking local FPV (First Person View) racing clubs and custom-built frame events.</p>
+        <p><strong>Strategic Value:</strong> Sharpens high-speed reflex coordination and deepens understanding of radio frequency management.</p>
+        <a class="resource-link" href="https://www.multigp.com/" target="_blank">MultiGP League Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#17: Commercial UAV News</div>
+        <div class="card-subtitle">Strategic Value: Cargo Network Sector Identification</div>
+        <p><strong>Summary:</strong> Industry news tracking cargo delivery networks, automated flight laws, and medical drone distribution systems.</p>
+        <p><strong>Strategic Value:</strong> Helps students identify active market sectors, such as package delivery logistics and infrastructure inspection.</p>
+        <a class="resource-link" href="https://www.commercialuavnews.com/" target="_blank">Commercial UAV Portal →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#18: ASTM International Uncrewed Systems Standards</div>
+        <div class="card-subtitle">Strategic Value: Global Manufacturing Quality Validation</div>
+        <p><strong>Summary:</strong> Universal manufacturing criteria covering drone parachute safety systems, remote tracking signals, and build limits.</p>
+        <p><strong>Strategic Value:</strong> Teaches engineering students the standardization rules required to sell consumer hardware globally.</p>
+        <a class="resource-link" href="https://www.astm.org/" target="_blank">ASTM UAS Catalog →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-foundational">Tier 1: Foundational</div>
+        <div class="card-title">#19: FAA B4UFLY Airspace Awareness App</div>
+        <div class="card-subtitle">Strategic Value: GPS Pre-Flight Safety Verification</div>
+        <p><strong>Summary:</strong> An interactive map tool that uses your phone's GPS to show local flight rules and temporary flight restrictions.</p>
+        <p><strong>Strategic Value:</strong> Provides an immediate pre-flight safety check to prevent accidental violations of temporary airspace bans.</p>
+        <a class="resource-link" href="https://www.faa.gov/uas/recreational_pilots/b4ufly" target="_blank">FAA Safety Geofencing →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#20: Association for Unmanned Vehicle Systems International (AUVSI)</div>
+        <div class="card-subtitle">Strategic Value: Cross-Domain Autonomous Systems Research</div>
+        <p><strong>Summary:</strong> The primary trade association tracking drone logistics jobs, legal frameworks, and global autonomy breakthroughs.</p>
+        <p><strong>Strategic Value:</strong> Offers a broad view of international uncrewed robotics trends across air, land, and sea.</p>
+        <a class="resource-link" href="https://www.auvsi.org/" target="_blank">AUVSI Network →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-highest">Tier 4: Highest</div>
+        <div class="card-title">#21: Women and Drones Education Platform</div>
+        <div class="card-subtitle">Strategic Value: Gender Diversity Development Outreach</div>
+        <p><strong>Summary:</strong> Focuses on STEM high school outreach, offering specialized scholarships and professional flight mentoring for girls.</p>
+        <p><strong>Strategic Value:</strong> Supports gender diversity in autonomous aviation through targeted youth development programs.</p>
+        <a class="resource-link" href="https://womenanddrones.com/" target="_blank">Women and Drones Hub →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#22: Center for the Study of the Drone at Bard</div>
+        <div class="card-subtitle">Strategic Value: Ethical & Surveillance Analytical Thinking</div>
+        <p><strong>Summary:</strong> An academic tracking clearinghouse posting deep research on how military and consumer drones impact global safety.</p>
+        <p><strong>Strategic Value:</strong> Encourages critical thinking regarding the ethical, legal, and privacy implications of drone surveillance.</p>
+        <a class="resource-link" href="https://dronecenter.bard.edu/" target="_blank">Bard Drone Center →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#23: Drone-Made Global Mapping Regulations</div>
+        <div class="card-subtitle">Strategic Value: Cross-Border Content Creation Verification</div>
+        <p><strong>Summary:</strong> A comprehensive index listing drone travel rules and legal pilot parameters for nearly every country.</p>
+        <p><strong>Strategic Value:</strong> Vital for travel content creators and international drone operators checking foreign legal limits.</p>
+        <a class="resource-link" href="https://www.drone-made.com/" target="_blank">Drone-Made Travel Hub →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-high">Tier 3: High</div>
+        <div class="card-title">#24: InterDrone Educational Archive</div>
+        <div class="card-subtitle">Strategic Value: Fleet Trajectory Machine Vision Insights</div>
+        <p><strong>Summary:</strong> Access to recorded panels discussing autonomous drone fleets, machine vision tracking, and engineering setups.</p>
+        <p><strong>Strategic Value:</strong> Exposes high schoolers to expert opinions on the future trajectory of drone fleet logistics.</p>
+        <a class="resource-link" href="https://www.interdrone.com/" target="_blank">InterDrone Platform →</a>
+    </div>
+
+    <div class="resource-card">
+        <div class="tier-badge-medium">Tier 2: Medium</div>
+        <div class="card-title">#25: DartDrone Training Resources</div>
+        <div class="card-subtitle">Strategic Value: Enterprise Business Architecture Diagnostic</div>
+        <p><strong>Summary:</strong> Free diagnostic test tracks and industry briefs analyzing commercial drone business setups and insurance options.</p>
+        <p><strong>Strategic Value:</strong> Teaches young entrepreneurs how to structure a legal drone photography or inspection business safely.</p>
+        <a class="resource-link" href="https://www.dartdrones.com/" target="_blank">DartDrones Online →</a>
     </div>
     """, unsafe_allow_html=True)
 
