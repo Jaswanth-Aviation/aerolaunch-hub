@@ -199,22 +199,20 @@ if st.session_state.page == "Feed":
     </div>
     """, unsafe_allow_html=True)
 
-    # --- CRASH-PROOF ABOUT THE FOUNDER SECTION ---
+    # --- UPDATED: CAPITALIZATION-PROOF FOUNDER SECTION ---
     st.markdown("### 🧑‍✈️ About the Founder")
     
-    # Split content into layout columns for visual appeal
     about_col1, about_col2 = st.columns([1, 4])
     
     with about_col1:
         import os
-        # Smart scan: Look dynamically inside the directory for any founder photo starting with 'IMG_'
         founder_image = None
+        # Scan folder files and force checking to handle both uppercase and lowercase 'IMG' variations safely
         for file in os.listdir("."):
-            if file.lower().startswith("img_") and file.lower().endswith(".jpg"):
+            if file.upper().startswith("IMG_") and (file.lower().endswith(".jpg") or file.lower().endswith(".jpeg")):
                 founder_image = file
-                break  # Pick the first matching photo structure discovered
+                break
         
-        # Deploy image gracefully if found; hides empty frame if file goes missing
         if founder_image:
             st.image(founder_image, use_container_width=True)
         else:
