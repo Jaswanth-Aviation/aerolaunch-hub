@@ -218,7 +218,7 @@ if st.session_state.page == "Feed":
         <div class="card-title" style="color: #0f172a !important; font-size: 24px;">Jaswanth Mallareddi</div>
         <div class="card-subtitle">Founder & Developer</div>
         <p style='font-size: 17px; line-height: 1.6;'>
-            I am Jaswanth Mallareddi, a 16-year-old who is deeply interested in aviation! I wanted to give 
+            Hi, I am Jaswanth Mallareddi, a 16-year-old who is deeply interested in aviation! I wanted to give 
             valuable opportunities to other future aviation industry students who will turn 16 soon. 
             I have set up 25 high-quality websites for each section of the aviation industry provided, 
             so I hope it is helpful for all you future aviation students!
