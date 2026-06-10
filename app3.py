@@ -199,7 +199,7 @@ if st.session_state.page == "Feed":
     </div>
     """, unsafe_allow_html=True)
 
-    # --- UPDATED: CAPITALIZATION-PROOF FOUNDER SECTION ---
+    # --- ADVANCED SCAN SYSTEM ---
     st.markdown("### 🧑‍✈️ About the Founder")
     
     about_col1, about_col2 = st.columns([1, 4])
@@ -207,16 +207,18 @@ if st.session_state.page == "Feed":
     with about_col1:
         import os
         founder_image = None
-        # Scan folder files and force checking to handle both uppercase and lowercase 'IMG' variations safely
+        
+        # Comprehensive layout check: searches directory filenames for any variants
         for file in os.listdir("."):
-            if file.upper().startswith("IMG_") and (file.lower().endswith(".jpg") or file.lower().endswith(".jpeg")):
+            name_upper = file.upper()
+            if ("IMG_5662" in name_upper or "IMG_5663" in name_upper or "IMG_0247" in name_upper or "IMG_0248" in name_upper or name_upper.startswith("IMG_")) and (file.lower().endswith(".jpg") or file.lower().endswith(".jpeg")):
                 founder_image = file
                 break
         
         if founder_image:
             st.image(founder_image, use_container_width=True)
         else:
-            st.info("💡 Place your founder image file (starting with 'IMG_') in this project folder to show it here.")
+            st.info("💡 Place your founder image file (e.g., IMG_5662.jpg or IMG_0248.jpg) into your active project directory folder to display it.")
         
     with about_col2:
         st.markdown("""
