@@ -1,4 +1,13 @@
 # ==========================================
+# 1. CORE IMPORTS (MUST BE FIRST)
+# ==========================================
+import streamlit as st
+
+# If you have a page config setup, put it right here too:
+st.set_page_config(page_title="AeroLaunch", page_icon="✈️", layout="wide")
+
+
+# ==========================================
 # 🔐 AUTHENTICATION GATEWAY (SIGN-IN / LOG-IN)
 # ==========================================
 
