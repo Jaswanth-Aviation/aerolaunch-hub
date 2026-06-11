@@ -3,7 +3,7 @@
 # ==========================================
 import streamlit as st
 
-# If you have a page config setup, put it right here too:
+# Setup page layout configuration cleanly
 st.set_page_config(page_title="AeroLaunch", page_icon="✈️", layout="wide")
 
 # ==========================================
@@ -20,11 +20,12 @@ if "auth_mode" not in st.session_state:
 if st.query_params.get("session") == "active":
     st.session_state.logged_in = True
 
-# --- RENDER BACKUP INTERFACE WORKSPACE IF UNVERIFIED ---
+# --- RENDER INTERFACE WORKSPACE IF UNVERIFIED ---
 if not st.session_state.logged_in:
-    st.markdown('<div class="auth-container">', unsafe_allow_html=True)
-    st.markdown('<h2 class="auth-title">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
-    st.info("✈️ Auto-Authenticating Sandbox Pilot Access Core...")
+    st.markdown('<div class="auth-container" style="text-align: center; padding: 40px;">', unsafe_allow_html=True)
+    st.markdown('<h2 class="auth-title" style="font-size: 32px; color: #1e293b;">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
+    st.markdown('<p style="font-size: 16px; color: #64748b;">Your dashboard auto-refresh link engine is active.</p>', unsafe_allow_html=True)
+    st.markdown('<br>', unsafe_allow_html=True)
     
     # Simple, foolproof action gate button without tricky layout nested boxes
     if st.button("Initialize Flight Deck Control Terminal 🚀", use_container_width=True, type="primary"):
@@ -33,56 +34,27 @@ if not st.session_state.logged_in:
         st.rerun()
         
     st.markdown('</div>', unsafe_allow_html=True)
-    st.stop()
-        
-        # OAuth Single Sign-On Buttons
-        # Note: In production, these links point to your OAuth backend setup (e.g., Supabase, Firebase, or custom endpoints)
-               
-        email = st.text_input("Email Address", placeholder="name@domain.com")
-        password = st.text_input("Password", type="password", placeholder="••••••••")
-        
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Sign In →", use_container_width=True, type="primary"):
-            if email and password: # Replace with your real DB credential check logic
-                st.session_state.logged_in = True
-                st.rerun()
-            else:
-                st.error("Please enter both email and password credentials.")
-                
-        st.markdown("---")
-        if st.button("New to AeroLaunch? Create an account", use_container_width=True):
-            st.session_state.auth_mode = "signup"
-            st.rerun()
-
-    else:
-        st.markdown('<h2 class="auth-title">Create Account</h2>', unsafe_allow_html=True)
-        st.markdown('<p class="auth-subtitle">Join the AeroLaunch aviation track</p>', unsafe_allow_html=True)
-                
-        new_name = st.text_input("Full Name", placeholder="Alex Mercer")
-        new_email = st.text_input("Email Address", placeholder="name@domain.com")
-        new_password = st.text_input("Password", type="password", placeholder="Create a strong password")
-        
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Complete Registration 🎉", use_container_width=True, type="primary"):
-            if new_name and new_email and new_password:
-                st.success("Account created successfully!")
-                st.session_state.logged_in = True
-                st.rerun()
-            else:
-                st.error("Please complete all registration fields.")
-                
-        st.markdown("---")
-        if st.button("Already have an account? Sign In", use_container_width=True):
-            st.session_state.auth_mode = "login"
-            st.rerun()
-            
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.stop() # Prevents the rest of the application code from rendering until logged_in is True
+    st.stop()  # Stops execution right here until the user clicks the button
 
 # ==========================================
-# END OF AUTHENTICATION COUPLING
+# 🧭 SIDEBAR SESSION & LOGOUT CONTROL
 # ==========================================
+with st.sidebar:
+    st.markdown("### 👤 User Session")
+    st.success("🟢 Status: Connected as Pilot")
+    st.markdown("---")
+    
+    # One-click button to securely end the session, wipe parameters, and reset the login screen
+    if st.button("🚪 Log Out & Clear Session", use_container_width=True):
+        st.session_state.logged_in = False
+        st.session_state.auth_mode = "login"
+        st.query_params.clear()
+        st.rerun()
 
+# ==========================================
+# --- Your Navigation Deck starts below ---
+# ==========================================
+    
 import streamlit as st
 
 # --- CORE RESPONSE STRUCTURE CONFIGURATION ---
