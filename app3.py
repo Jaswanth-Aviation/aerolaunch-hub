@@ -93,9 +93,7 @@ if not st.session_state.logged_in:
         
         # OAuth Single Sign-On Buttons
         # Note: In production, these links point to your OAuth backend setup (e.g., Supabase, Firebase, or custom endpoints)
-       
-        st.markdown('<div class="divider">or use email</div>', unsafe_allow_html=True)
-        
+               
         email = st.text_input("Email Address", placeholder="name@domain.com")
         password = st.text_input("Password", type="password", placeholder="••••••••")
         
