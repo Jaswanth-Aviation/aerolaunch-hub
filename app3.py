@@ -1592,7 +1592,7 @@ elif st.session_state.page == "Community":
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    default_handle = st.session_state.get("user_email", "Anonymous Pilot")
+    default_handle = st.session_state.get("user_email", "AeroLaunch Member")
     
     with st.form("community_chat_form", clear_on_submit=True):
         chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello to the crew...")
