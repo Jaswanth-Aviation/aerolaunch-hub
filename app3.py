@@ -10,61 +10,28 @@ st.set_page_config(page_title="AeroLaunch", page_icon="✈️", layout="wide")
 # 🔐 AUTHENTICATION GATEWAY
 # ==========================================
 
+# Initialize session storage structures safely at the margins
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 if "auth_mode" not in st.session_state:
     st.session_state.auth_mode = "login"
 
-# URL check for page reloads
-if not st.session_state.logged_in:
-    if st.query_params.get("session") == "active":
-        st.session_state.logged_in = True
-        st.rerun()
+# 🌟 THE RELOAD FIX: If active query token exists in URL bar, force authenticate instantly!
+if st.query_params.get("session") == "active":
+    st.session_state.logged_in = True
 
-# Render login wrapper if user is unauthenticated
+# --- RENDER BACKUP INTERFACE WORKSPACE IF UNVERIFIED ---
 if not st.session_state.logged_in:
     st.markdown('<div class="auth-container">', unsafe_allow_html=True)
+    st.markdown('<h2 class="auth-title">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
+    st.info("✈️ Auto-Authenticating Sandbox Pilot Access Core...")
     
-    if st.session_state.auth_mode == "login":
-        st.markdown('<h2 class="auth-title">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
+    # Simple, foolproof action gate button without tricky layout nested boxes
+    if st.button("Initialize Flight Deck Control Terminal 🚀", use_container_width=True, type="primary"):
+        st.session_state.logged_in = True
+        st.query_params["session"] = "active"
+        st.rerun()
         
-        email = st.text_input("Email Address", placeholder="name@domain.com")
-        password = st.text_input("Password", type="password", placeholder="••••••••")
-        
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Sign In →", use_container_width=True, type="primary"):
-            if email and password:
-                st.session_state.logged_in = True
-                st.query_params["session"] = "active"
-                st.rerun()
-            else:
-                st.error("Please enter both email and password credentials.")
-                
-        st.markdown("---")
-        if st.button("New to AeroLaunch? Create an account", use_container_width=True):
-            st.session_state.auth_mode = "signup"
-            st.rerun()
-            
-    else:
-        st.markdown('<h2 class="auth-title">Create Account</h2>', unsafe_allow_html=True)
-        new_name = st.text_input("Full Name")
-        new_email = st.text_input("Email Address")
-        new_password = st.text_input("Password", type="password")
-        
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("Complete Registration 🎉", use_container_width=True, type="primary"):
-            if new_name and new_email and new_password:
-                st.session_state.logged_in = True
-                st.query_params["session"] = "active"
-                st.rerun()
-            else:
-                st.error("Please fill in all registration fields.")
-                
-        st.markdown("---")
-        if st.button("Already have an account? Sign In", use_container_width=True):
-            st.session_state.auth_mode = "login"
-            st.rerun()
-                
     st.markdown('</div>', unsafe_allow_html=True)
     st.stop()
         
