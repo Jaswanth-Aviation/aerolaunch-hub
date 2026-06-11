@@ -1,40 +1,35 @@
 # ==========================================
-# 1. CORE IMPORTS (MUST BE FIRST)
+# 1. CORE IMPORTS & CONFIGS
 # ==========================================
 import streamlit as st
 
-# Setup page layout configuration cleanly
 st.set_page_config(page_title="AeroLaunch", page_icon="✈️", layout="wide")
+
+# 🔍 LOOK RIGHT HERE IN YOUR FILE: 
+# If you see st.write("keyboard_double_arrow_left") or st.markdown(...) 
+# printing that text anywhere around here, DELETE IT REMOTELY!
 
 # ==========================================
 # 🔐 AUTHENTICATION GATEWAY
 # ==========================================
-
-# Initialize session storage structures safely at the margins
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
-if "auth_mode" not in st.session_state:
-    st.session_state.auth_mode = "login"
 
-# 🌟 THE RELOAD FIX: If active query token exists in URL bar, force authenticate instantly!
 if st.query_params.get("session") == "active":
     st.session_state.logged_in = True
 
-# --- RENDER INTERFACE WORKSPACE IF UNVERIFIED ---
 if not st.session_state.logged_in:
     st.markdown('<div class="auth-container" style="text-align: center; padding: 40px;">', unsafe_allow_html=True)
-    st.markdown('<h2 class="auth-title" style="font-size: 32px; color: #1e293b;">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
-    st.markdown('<p style="font-size: 16px; color: #64748b;">Your dashboard auto-refresh link engine is active.</p>', unsafe_allow_html=True)
+    st.markdown('<h2 class="auth-title" style="font-size: 32px;">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
     st.markdown('<br>', unsafe_allow_html=True)
     
-    # Simple, foolproof action gate button without tricky layout nested boxes
-    if st.button("Initialize Flight Deck Control Terminal 🚀", use_container_width=True, type="primary"):
+    if st.button("Enter Flight Deck Controls 🚀", use_container_width=True, type="primary"):
         st.session_state.logged_in = True
         st.query_params["session"] = "active"
         st.rerun()
         
     st.markdown('</div>', unsafe_allow_html=True)
-    st.stop()  # Stops execution right here until the user clicks the button
+    st.stop()
 
 # ==========================================
 # 🧭 SIDEBAR SESSION & LOGOUT CONTROL
@@ -44,10 +39,8 @@ with st.sidebar:
     st.success("🟢 Status: Connected as Pilot")
     st.markdown("---")
     
-    # One-click button to securely end the session, wipe parameters, and reset the login screen
     if st.button("🚪 Log Out & Clear Session", use_container_width=True):
         st.session_state.logged_in = False
-        st.session_state.auth_mode = "login"
         st.query_params.clear()
         st.rerun()
 
