@@ -88,7 +88,7 @@ if not st.session_state.logged_in:
         # OAuth Single Sign-On Buttons
         # Note: In production, these links point to your OAuth backend setup (e.g., Supabase, Firebase, or custom endpoints)
         st.markdown('<a class="oauth-button" href="#">🐈 Continue with GitHub</a>', unsafe_allow_html=True)
-        st.markdown('<a class="oauth-button" href="#">🍏 Continue with Apple</a>', unsafe_allow_html=True)
+        st.markdown('<a class="oauth-button" href="#"> Continue with Apple</a>', unsafe_allow_html=True)
         
         st.markdown('<div class="divider">or use email</div>', unsafe_allow_html=True)
         
@@ -340,6 +340,10 @@ with nav_cols[5]:
 with nav_cols[6]:
     if st.button("🤖 AeroBot AI", use_container_width=True, type="primary" if st.session_state.page == "AI" else "secondary"):
         st.session_state.page = "AI"
+        st.rerun()
+with nav_cols[7]:
+    if st.button("🌐 Community", use_container_width=True, type="primary" if st.session_state.page == "Community" else "secondary"):
+        st.session_state.page = "Community"
         st.rerun()
 
 st.write("") 
@@ -1621,4 +1625,68 @@ elif st.session_state.page == "AI":
     
     st.link_button("Launch AeroBot Training Interface 🚀", "https://schoolaichatbot.zapier.app/", use_container_width=True)
 
+# PAGE 8: GLOBAL COMMUNITY CHAT
+elif st.session_state.page == "Community":
+    st.markdown("### 🌐 AeroLaunch Global Community Hub")
+    st.write("Welcome to the community chat! Share updates, coordinate projects, or talk aviation with your peers.")
+    
+    st.markdown("---")
+    
+    import json
+    import os
+    from datetime import datetime
 
+    # File-based database path to persist chat history globally
+    CHAT_DB = "community_chat_history.json"
+
+    # Helper functions to handle global chat I/O files safely
+    def load_global_chat():
+        if os.path.exists(CHAT_DB):
+            try:
+                with open(CHAT_DB, "r") as f:
+                    return json.load(f)
+            except:
+                return []
+        return []
+
+    def save_global_message(username, text):
+        history = load_global_chat()
+        new_msg = {
+            "user": username,
+            "text": text,
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
+        }
+        history.append(new_msg)
+        # Cap the history log at the last 100 messages to prevent bloated text files
+        with open(CHAT_DB, "w") as f:
+            json.dump(history[-100:], f, indent=4)
+
+    # 1. Load Current Shared Log History
+    global_messages = load_global_chat()
+
+    # 2. Display Chat Container Layout Window
+    chat_container = st.container()
+    
+    with chat_container:
+        if not global_messages:
+            st.info("The chat lounge is currently quiet. Be the first to start the conversation!")
+        else:
+            for msg in global_messages:
+                # Format layout cleanly inside your chat container box space
+                st.markdown(f"**💬 {msg['user']}** <span style='color:gray; font-size:0.8rem;'>({msg['timestamp']})</span>", unsafe_allow_html=True)
+                st.markdown(f"*{msg['text']}*")
+                st.markdown("<div style='margin-bottom: 12px; border-bottom: 1px dashed #e2e8f0;'></div>", unsafe_allow_html=True)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # 3. Message Input Interaction Tool
+    # Automatically pulls the user's register data or assigns a clean fallback handle
+    default_handle = st.session_state.get("user_email", "Anonymous Pilot")
+    
+    with st.form("community_chat_form", clear_on_submit=True):
+        chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello to the crew...")
+        submit_chat = st.form_submit_button("Broadcast to Runway 🚀", use_container_width=True)
+        
+        if submit_chat and chat_text.strip():
+            save_global_message(default_handle, chat_text.strip())
+            st.rerun()
