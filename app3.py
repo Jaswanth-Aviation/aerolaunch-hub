@@ -39,6 +39,7 @@ if not st.session_state.logged_in:
 # ==========================================
 # 🧭 SIDEBAR SESSION & LOGOUT CONTROL
 # ==========================================
+# Adding '', None or an emoji inside st.sidebar removes default text headers
 with st.sidebar:
     st.markdown("### 👤 User Session")
     st.success("🟢 Status: Connected as Pilot")
