@@ -93,12 +93,7 @@ if not st.session_state.logged_in:
         
         # OAuth Single Sign-On Buttons
         # Note: In production, these links point to your OAuth backend setup (e.g., Supabase, Firebase, or custom endpoints)
-       # 🐈 GitHub Authentication Link
-        st.markdown('<a class="oauth-button" href="https://your-backend-project.supabase.co/auth/v1/authorize?provider=github" target="_self">🐈 Continue with GitHub</a>', unsafe_allow_html=True)
-
-        # 🍏 Apple Authentication Link
-        st.markdown('<a class="oauth-button" href="https://your-backend-project.supabase.co/auth/v1/authorize?provider=apple" target="_self">🍏 Continue with Apple</a>', unsafe_allow_html=True)
-        
+       
         st.markdown('<div class="divider">or use email</div>', unsafe_allow_html=True)
         
         email = st.text_input("Email Address", placeholder="name@domain.com")
@@ -120,9 +115,6 @@ if not st.session_state.logged_in:
     else:
         st.markdown('<h2 class="auth-title">Create Account</h2>', unsafe_allow_html=True)
         st.markdown('<p class="auth-subtitle">Join the AeroLaunch aviation track</p>', unsafe_allow_html=True)
-        
-        st.markdown('<a class="oauth-button" href="#">🐈 Sign up with GitHub</a>', unsafe_allow_html=True)
-        st.markdown('<a class="oauth-button" href="#">🍏 Sign up with Apple</a>', unsafe_allow_html=True)
         
         st.markdown('<div class="divider">or use email</div>', unsafe_allow_html=True)
         
