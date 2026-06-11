@@ -113,9 +113,7 @@ if not st.session_state.logged_in:
     else:
         st.markdown('<h2 class="auth-title">Create Account</h2>', unsafe_allow_html=True)
         st.markdown('<p class="auth-subtitle">Join the AeroLaunch aviation track</p>', unsafe_allow_html=True)
-        
-        st.markdown('<div class="divider">or use email</div>', unsafe_allow_html=True)
-        
+                
         new_name = st.text_input("Full Name", placeholder="Alex Mercer")
         new_email = st.text_input("Email Address", placeholder="name@domain.com")
         new_password = st.text_input("Password", type="password", placeholder="Create a strong password")
