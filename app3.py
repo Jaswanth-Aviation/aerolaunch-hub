@@ -44,6 +44,19 @@ with st.sidebar:
         st.query_params.clear()
         st.rerun()
 
+# Force-hide the broken icon text if it leaks onto the screen
+st.markdown(
+    """
+    <style>
+    /* Searches your page for that specific text block and renders it completely invisible */
+    div[data-testid="stMarkdownContainer"]:-webkit-any(:contains("keyboard_double_arrow_left"), :contains("double_arrow_right")) {
+        display: none !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # ==========================================
 # --- Your Navigation Deck starts below ---
 # ==========================================
