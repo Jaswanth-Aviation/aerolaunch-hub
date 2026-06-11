@@ -5,38 +5,6 @@ import streamlit as st
 
 st.set_page_config(page_title="AeroLaunch", page_icon="✈️", layout="wide")
 
-# ==========================================
-# 🎨 GLOBAL CSS STYLE INJECTIONS & BUG FIXES
-# ==========================================
-st.markdown(
-    """
-    <style>
-    /* 1. Target any text block containing the rogue icon code and completely erase it from view */
-    div[data-testid="stMarkdownContainer"] {
-        color: inherit;
-    }
-    
-    /* Absolute selector to target and render the broken text hidden */
-    span:contains("keyboard_double_arrow"), 
-    div:contains("keyboard_double_arrow"),
-    p:contains("keyboard_double_arrow"),
-    span:contains("double_arrow_right") {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0px !important;
-        margin: 0px !important;
-        padding: 0px !important;
-    }
-
-    /* 2. Alternative fix: If it's floating as raw unstyled body text, block its visibility */
-    body::before {
-        content: "";
-        display: none !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-
 # 🔍 LOOK RIGHT HERE IN YOUR FILE: 
 # If you see st.write("keyboard_double_arrow_left") or st.markdown(...) 
 # printing that text anywhere around here, DELETE IT REMOTELY!
