@@ -79,7 +79,13 @@ st.markdown("""
 # Render Authentication UI if user is not verified
 if not st.session_state.logged_in:
     
-    st.markdown('<div class="auth-container">', unsafe_allow_html=True)
+    st.markdown("""
+        <div style="background-color: #eff6ff; border: 2px solid #3b82f6; border-radius: 12px; padding: 1rem; text-align: center; margin-bottom: 2rem;">
+            <h1 style="color: #1d4ed8; font-family: sans-serif; margin: 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px;">
+                AeroLaunch <span style="font-size: 1.2rem; vertical-align: middle;">🔗</span>
+            </h1>
+        </div>
+    """, unsafe_allow_html=True)
     
     if st.session_state.auth_mode == "login":
         st.markdown('<h2 class="auth-title">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
