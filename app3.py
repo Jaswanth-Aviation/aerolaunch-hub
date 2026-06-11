@@ -6,7 +6,6 @@ import streamlit as st
 # If you have a page config setup, put it right here too:
 st.set_page_config(page_title="AeroLaunch", page_icon="✈️", layout="wide")
 
-
 # ==========================================
 # 🔐 AUTHENTICATION GATEWAY
 # ==========================================
@@ -29,7 +28,6 @@ if not st.session_state.logged_in:
     if st.session_state.auth_mode == "login":
         st.markdown('<h2 class="auth-title">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
         
-        # 🌟 Cleared the spacing around these input components completely:
         email = st.text_input("Email Address", placeholder="name@domain.com")
         password = st.text_input("Password", type="password", placeholder="••••••••")
         
