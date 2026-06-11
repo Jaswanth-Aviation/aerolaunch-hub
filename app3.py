@@ -308,48 +308,40 @@ st.markdown("""
 if "page" not in st.session_state:
     st.session_state.page = "Feed"
 
-# Step 1: Force allocate exactly 8 clear slots in a grid row
+# Allocate exactly 8 distinct spots across the horizontal bar layout
 nav_cols = st.columns(8)
 
-# Step 2: Safely map all 8 buttons to slots 0 through 7
 with nav_cols[0]:
     if st.button("🏠 Home Feed", use_container_width=True, type="primary" if st.session_state.page == "Feed" else "secondary"):
         st.session_state.page = "Feed"
         st.rerun()
-
 with nav_cols[1]:
     if st.button("🧭 Pilot Roadmap", use_container_width=True, type="primary" if st.session_state.page == "Pilots" else "secondary"):
         st.session_state.page = "Pilots"
         st.rerun()
-
 with nav_cols[2]:
     if st.button("🎙️ ATC Roadmap", use_container_width=True, type="primary" if st.session_state.page == "ATC" else "secondary"):
         st.session_state.page = "ATC"
         st.rerun()
-
 with nav_cols[3]:
     if st.button("💁‍♀️ Crew Roadmap", use_container_width=True, type="primary" if st.session_state.page == "Crew" else "secondary"):
         st.session_state.page = "Crew"
         st.rerun()
-
 with nav_cols[4]:
     if st.button("🔧 Maintenance", use_container_width=True, type="primary" if st.session_state.page == "Maintenance" else "secondary"):
         st.session_state.page = "Maintenance"
         st.rerun()
-
 with nav_cols[5]:
     if st.button("🛸 Drone Logistics", use_container_width=True, type="primary" if st.session_state.page == "Drone" else "secondary"):
         st.session_state.page = "Drone"
         st.rerun()
-
 with nav_cols[6]:
-    if st.button("🤖 AeroBot AI", use_container_width=True, type="primary" if st.session_state.page == "AIChatbot" else "secondary"):
-        st.session_state.page = "AIChatbot"
+    if st.button("🤖 AeroBot AI", use_container_width=True, type="primary" if st.session_state.page == "AI" else "secondary"):
+        st.session_state.page = "AI"  # Matches your exact PAGE 7 condition
         st.rerun()
-
 with nav_cols[7]:
     if st.button("🌐 Community", use_container_width=True, type="primary" if st.session_state.page == "Community" else "secondary"):
-        st.session_state.page = "Community"
+        st.session_state.page = "Community"  # Matches your exact PAGE 8 condition
         st.rerun()
 
 st.write("")
@@ -1613,7 +1605,7 @@ elif st.session_state.page == "Drone":
         <a class="resource-link" href="https://www.dartdrones.com/" target="_blank">DartDrones Online →</a>
     </div>
     """, unsafe_allow_html=True)
-    
+
 # PAGE 7: AEROBOT GROUND KNOWLEDGE SYSTEM
 elif st.session_state.page == "AI":
     st.markdown("### 🤖 AeroBot: Avionics Ground Instructor")
@@ -1642,10 +1634,8 @@ elif st.session_state.page == "Community":
     import os
     from datetime import datetime
 
-    # File-based database path to persist chat history globally
     CHAT_DB = "community_chat_history.json"
 
-    # Helper functions to handle global chat I/O files safely
     def load_global_chat():
         if os.path.exists(CHAT_DB):
             try:
@@ -1663,14 +1653,10 @@ elif st.session_state.page == "Community":
             "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
         }
         history.append(new_msg)
-        # Cap the history log at the last 100 messages to prevent bloated text files
         with open(CHAT_DB, "w") as f:
             json.dump(history[-100:], f, indent=4)
 
-    # 1. Load Current Shared Log History
     global_messages = load_global_chat()
-
-    # 2. Display Chat Container Layout Window
     chat_container = st.container()
     
     with chat_container:
@@ -1678,15 +1664,12 @@ elif st.session_state.page == "Community":
             st.info("The chat lounge is currently quiet. Be the first to start the conversation!")
         else:
             for msg in global_messages:
-                # Format layout cleanly inside your chat container box space
                 st.markdown(f"**💬 {msg['user']}** <span style='color:gray; font-size:0.8rem;'>({msg['timestamp']})</span>", unsafe_allow_html=True)
                 st.markdown(f"*{msg['text']}*")
                 st.markdown("<div style='margin-bottom: 12px; border-bottom: 1px dashed #e2e8f0;'></div>", unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # 3. Message Input Interaction Tool
-    # Automatically pulls the user's register data or assigns a clean fallback handle
     default_handle = st.session_state.get("user_email", "Anonymous Pilot")
     
     with st.form("community_chat_form", clear_on_submit=True):
