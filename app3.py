@@ -308,7 +308,7 @@ st.markdown("""
 if "page" not in st.session_state:
     st.session_state.page = "Feed"
 
-nav_cols = st.columns(7)
+nav_cols = st.columns(8)
 
 with nav_cols[0]:
     if st.button("🏠 Home Feed", use_container_width=True, type="primary" if st.session_state.page == "Feed" else "secondary"):
