@@ -8,29 +8,28 @@ st.set_page_config(page_title="AeroLaunch", page_icon="✈️", layout="wide")
 
 
 # ==========================================
-# 🔐 AUTHENTICATION GATEWAY (TERMINAL-FREE REFRESH FIX)
+# 🔐 AUTHENTICATION GATEWAY
 # ==========================================
 
-# 1. Use an invisible text input hack linked to browser history state
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 if "auth_mode" not in st.session_state:
     st.session_state.auth_mode = "login"
 
-# 2. Check query parameters (Streamlit keeps these even during page reloads!)
+# URL check for page reloads
 if not st.session_state.logged_in:
     if st.query_params.get("session") == "active":
         st.session_state.logged_in = True
         st.rerun()
 
-# --- RENDER AUTHENTICATION CARD PORTAL IF NOT LOGGED IN ---
+# Render login wrapper if user is unauthenticated
 if not st.session_state.logged_in:
-    
     st.markdown('<div class="auth-container">', unsafe_allow_html=True)
     
     if st.session_state.auth_mode == "login":
         st.markdown('<h2 class="auth-title">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
         
+        # 🌟 Cleared the spacing around these input components completely:
         email = st.text_input("Email Address", placeholder="name@domain.com")
         password = st.text_input("Password", type="password", placeholder="••••••••")
         
@@ -38,7 +37,6 @@ if not st.session_state.logged_in:
         if st.button("Sign In →", use_container_width=True, type="primary"):
             if email and password:
                 st.session_state.logged_in = True
-                # 🌟 THE FIX: Save the login status directly in the browser's address query bar
                 st.query_params["session"] = "active"
                 st.rerun()
             else:
@@ -50,7 +48,6 @@ if not st.session_state.logged_in:
             st.rerun()
             
     else:
-        # --- SIGN UP SCREEN CARD ---
         st.markdown('<h2 class="auth-title">Create Account</h2>', unsafe_allow_html=True)
         new_name = st.text_input("Full Name")
         new_email = st.text_input("Email Address")
@@ -60,7 +57,6 @@ if not st.session_state.logged_in:
         if st.button("Complete Registration 🎉", use_container_width=True, type="primary"):
             if new_name and new_email and new_password:
                 st.session_state.logged_in = True
-                # 🌟 THE FIX: Save the login status here too
                 st.query_params["session"] = "active"
                 st.rerun()
             else:
