@@ -8,88 +8,71 @@ st.set_page_config(page_title="AeroLaunch", page_icon="✈️", layout="wide")
 
 
 # ==========================================
-# 🔐 AUTHENTICATION GATEWAY (SIGN-IN / LOG-IN)
+# 🔐 AUTHENTICATION GATEWAY (TERMINAL-FREE REFRESH FIX)
 # ==========================================
 
-# Initialize authentication session state variables if they don't exist
+# 1. Use an invisible text input hack linked to browser history state
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 if "auth_mode" not in st.session_state:
     st.session_state.auth_mode = "login"
 
-# CSS injection to style the login card seamlessly with your AeroLaunch UI
-st.markdown("""
-    <style>
-    .auth-container {
-        background-color: #f8fafc;
-        padding: 2.5rem;
-        border-radius: 16px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        max-width: 480px;
-        margin: 2rem auto;
-    }
-    .auth-title {
-        text-align: center;
-        color: #1e3a8a;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-    .auth-subtitle {
-        text-align: center;
-        color: #64748b;
-        margin-bottom: 2rem;
-        font-size: 0.9rem;
-    }
-    .oauth-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: white;
-        border: 1px solid #cbd5e1;
-        padding: 0.6rem;
-        border-radius: 8px;
-        margin-bottom: 0.75rem;
-        cursor: pointer;
-        font-weight: 500;
-        text-decoration: none;
-        color: #334155;
-        transition: background-color 0.2s;
-    }
-    .oauth-button:hover {
-        background-color: #f1f5f9;
-    }
-    .divider {
-        display: flex;
-        align-items: center;
-        text-align: center;
-        color: #94a3b8;
-        margin: 1.5rem 0;
-    }
-    .divider::before, .divider::after {
-        content: '';
-        flex: 1;
-        border-bottom: 1px solid #e2e8f0;
-    }
-    .divider:not(:empty)::before { margin-right: .5em; }
-    .divider:not(:empty)::after { margin-left: .5em; }
-    </style>
-""", unsafe_allow_html=True)
+# 2. Check query parameters (Streamlit keeps these even during page reloads!)
+if not st.session_state.logged_in:
+    if st.query_params.get("session") == "active":
+        st.session_state.logged_in = True
+        st.rerun()
 
-# Render Authentication UI if user is not verified
+# --- RENDER AUTHENTICATION CARD PORTAL IF NOT LOGGED IN ---
 if not st.session_state.logged_in:
     
-    st.markdown("""
-        <div style="background-color: #eff6ff; border: 2px solid #3b82f6; border-radius: 12px; padding: 1rem; text-align: center; margin-bottom: 2rem;">
-            <h1 style="color: #1d4ed8; font-family: sans-serif; margin: 0; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px;">
-                AeroLaunch <span style="font-size: 1.2rem; vertical-align: middle;"></span>
-            </h1>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<div class="auth-container">', unsafe_allow_html=True)
     
     if st.session_state.auth_mode == "login":
         st.markdown('<h2 class="auth-title">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
-        st.markdown('<p class="auth-subtitle">Sign in to access your aviation roadmaps</p>', unsafe_allow_html=True)
+        
+        email = st.text_input("Email Address", placeholder="name@domain.com")
+        password = st.text_input("Password", type="password", placeholder="••••••••")
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Sign In →", use_container_width=True, type="primary"):
+            if email and password:
+                st.session_state.logged_in = True
+                # 🌟 THE FIX: Save the login status directly in the browser's address query bar
+                st.query_params["session"] = "active"
+                st.rerun()
+            else:
+                st.error("Please enter both email and password credentials.")
+                
+        st.markdown("---")
+        if st.button("New to AeroLaunch? Create an account", use_container_width=True):
+            st.session_state.auth_mode = "signup"
+            st.rerun()
+            
+    else:
+        # --- SIGN UP SCREEN CARD ---
+        st.markdown('<h2 class="auth-title">Create Account</h2>', unsafe_allow_html=True)
+        new_name = st.text_input("Full Name")
+        new_email = st.text_input("Email Address")
+        new_password = st.text_input("Password", type="password")
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("Complete Registration 🎉", use_container_width=True, type="primary"):
+            if new_name and new_email and new_password:
+                st.session_state.logged_in = True
+                # 🌟 THE FIX: Save the login status here too
+                st.query_params["session"] = "active"
+                st.rerun()
+            else:
+                st.error("Please fill in all registration fields.")
+                
+        st.markdown("---")
+        if st.button("Already have an account? Sign In", use_container_width=True):
+            st.session_state.auth_mode = "login"
+            st.rerun()
+                
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.stop()
         
         # OAuth Single Sign-On Buttons
         # Note: In production, these links point to your OAuth backend setup (e.g., Supabase, Firebase, or custom endpoints)
