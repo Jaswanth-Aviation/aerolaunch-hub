@@ -338,7 +338,7 @@ with nav_cols[6]:
     if st.button("🤖 AeroBot AI", use_container_width=True, type="primary" if st.session_state.page == "AI" else "secondary"):
         st.session_state.page = "AI"
         st.rerun()
-with nav_cols[7]:
+with nav_cols[8]:
     if st.button("🌐 Community", use_container_width=True, type="primary" if st.session_state.page == "Community" else "secondary"):
         st.session_state.page = "Community"
         st.rerun()
