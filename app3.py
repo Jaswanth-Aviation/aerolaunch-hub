@@ -1711,7 +1711,7 @@ elif st.session_state.page == "Community":
             # 🚨 ACCOUNT DELETION ZONE
     st.markdown("---")
     st.markdown("#### 🚨 Account Actions")
-    with st.expander("⚠️ Danger Zone: Delete Account Profile"):
+    with st.expander("Delete Account Profile"):
         st.write("Deleting your account will permanently remove your profile credentials and avatar from the community roster database.")
         
         with st.form("delete_account_form"):
