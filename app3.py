@@ -168,31 +168,10 @@ with st.sidebar:
 # ==========================================
 st.markdown("""
 <style>
-    /* 1. target the glitchy text block specifically to remove it safely */
-    span:has(:-webkit-any(:contains("keyboard_double_arrow_left"), :contains("double_arrow_right"))) {
-        font-size: 0px !important;
-        color: transparent !important;
+    div[data-testid="stMarkdownContainer"]:-webkit-any(:contains("keyboard_double_arrow_left"), :contains("double_arrow_right")) {
         display: none !important;
     }
 
-    /* 2. Style the actual sidebar toggle button cleanly with a standard material icon look */
-    button[data-testid="sidebar-toggle"] {
-        background-color: #ffffff !important;
-        border: 1px solid #cbd5e1 !important;
-        border-radius: 6px !important;
-        padding: 4px 8px !important;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
-    }
-    
-    button[data-testid="sidebar-toggle"]::after {
-        content: "☰" !important;
-        font-family: inherit !important;
-        font-size: 16px !important;
-        color: #1d4ed8 !important;
-        font-weight: bold !important;
-    }
-
-    /* 3. Apply the default premium typography family rules across the app framework */
     .stApp [data-testid="stMarkdownContainer"], 
     .stApp h1, .stApp h2, .stApp h3, .stApp p, .stApp li, .stApp span, .stApp div {
         font-family: "Times New Roman", Times, serif !important;
@@ -219,6 +198,114 @@ st.markdown("""
         font-size: 38px; 
         font-weight: 800; 
         letter-spacing: -0.03em;
+    }
+    
+    .resource-card {
+        background: #ffffff !important;
+        padding: 24px;
+        border-radius: 12px;
+        border: 1px solid #cbd5e1 !important;
+        margin-bottom: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    .resource-card p {
+        color: #334155 !important;
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 8px;
+    }
+
+    .resource-link {
+        display: inline-block;
+        color: #1d4ed8 !important;
+        font-weight: bold;
+        text-decoration: none;
+        margin-top: 6px;
+    }
+    .resource-link:hover {
+        text-decoration: underline;
+    }
+    
+    .card-title {
+        color: #1d4ed8 !important;
+        font-size: 21px;
+        font-weight: 700;
+        margin-top: 4px;
+        margin-bottom: 2px;
+        letter-spacing: -0.01em;
+    }
+    
+    .card-subtitle {
+        font-size: 12px;
+        color: #64748b !important;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 14px;
+    }
+    
+    .guidance-box {
+        background-color: #f1f5f9 !important;
+        border-left: 4px solid #1d4ed8 !important;
+        padding: 15px;
+        border-radius: 6px;
+        margin-top: 14px;
+        font-size: 15px;
+        color: #1e293b !important;
+        line-height: 1.6;
+    }
+
+    .tier-badge-highest {
+        background-color: #fef9c3 !important;
+        color: #713f12 !important;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border: 1px solid #eab308 !important;
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+    .tier-badge-high {
+        background-color: #dbeafe !important;
+        color: #1e40af !important;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border: 1px solid #60a5fa !important;
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+    .tier-badge-medium {
+        background-color: #d1fae5 !important;
+        color: #065f46 !important;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border: 1px solid #34d399 !important;
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+    .tier-badge-foundational {
+        background-color: #f1f5f9 !important;
+        color: #475569 !important;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border: 1px solid #cbd5e1 !important;
+        display: inline-block;
+        margin-bottom: 8px;
     }
 </style>
 """, unsafe_allow_html=True)
