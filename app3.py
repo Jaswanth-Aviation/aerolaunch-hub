@@ -1585,8 +1585,19 @@ elif st.session_state.page == "Community":
     # Initialize profile accent color selection state if not already set
     if "user_avatar_bg" not in st.session_state:
         st.session_state.user_avatar_bg = "#1d4ed8"  # Default clean aviation blue
+        
+    # Initialize a mock chat history in session state to hold messages and images dynamically
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = [
+            {
+                "name": "System Core",
+                "color": "#ef4444",
+                "text": "Welcome to the Flight Deck chat area! Feel free to share your training updates, milestones, or upload flight charts and images to discuss with the crew.",
+                "image": None
+            }
+        ]
     
-    # CRITICAL FIX: All 4 tabs are created together here so 'tab_session' is defined!
+    # All 4 tabs initialized perfectly together
     tab_directory, tab_lounge, tab_settings, tab_session = st.tabs([
         "👥 Community Directory", 
         "💬 Flight Deck Chat", 
@@ -1674,30 +1685,66 @@ elif st.session_state.page == "Community":
                 """, unsafe_allow_html=True)
 
     # ------------------------------------------
-    # TAB 2: GLOBAL CHAT LOUNGE
+    # TAB 2: GLOBAL CHAT LOUNGE (WITH IMAGE SUPPORT)
     # ------------------------------------------
     with tab_lounge:
         st.markdown("#### 💬 Global Flight Deck Chat Lounge")
         
+        # Render entire message timeline dynamically from session state feed storage
         chat_container = st.container()
         with chat_container:
-            st.markdown(f"""
-            <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
-                <img src="{get_initials_avatar('System Core', '#ef4444')}" width="32" style="border-radius: 50%;">
-                <div>
-                    <strong style="color: #1d4ed8;">AeroLaunch Broadcast</strong> <span style="color: gray; font-size: 0.75rem;">(System Auto-Link)</span><br>
-                    <span style="font-size: 14px; color: #334155;">Welcome to the Flight Deck chat area! Keep conversations focused on flight training and aviation milestones.</span>
+            for message in st.session_state.chat_history:
+                msg_avatar = get_initials_avatar(message["name"], message["color"])
+                st.markdown(f"""
+                <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px;">
+                    <img src="{msg_avatar}" width="36" style="border-radius: 50%; border: 1px solid #cbd5e1;">
+                    <div style="flex-grow: 1;">
+                        <strong style="color: #1d4ed8; font-size: 15px;">{message['name']}</strong> 
+                        <span style="color: #94a3b8; font-size: 11px; margin-left: 5px;">Broadcast Link</span><br>
+                        <span style="font-size: 14px; color: #334155; line-height: 1.4;">{message['text']}</span>
+                    </div>
                 </div>
-            </div>
-            <div style='margin-bottom: 8px; border-bottom: 1px dashed #e2e8f0;'></div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
+                
+                # If an image attachment exists for this specific message post, render it cleanly
+                if message["image"] is not None:
+                    # Uses columns layout to nicely indent the picture right under the text message block
+                    img_col1, img_col2 = st.columns([1, 10])
+                    with img_col2:
+                        st.image(message["image"], use_container_width=False, width=320)
+                
+                st.markdown("<div style='margin-bottom: 12px; border-bottom: 1px dashed #e2e8f0;'></div>", unsafe_allow_html=True)
 
+        # Broadcast Form Box Engine
         with st.form("community_chat_form", clear_on_submit=True):
-            chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello to the crew...")
+            chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello or explain your picture upload...")
+            
+            # The Image File Selector interface element
+            uploaded_chat_img = st.file_uploader(
+                "Attach a cockpit image or chart layout to your message (Optional):", 
+                type=["png", "jpg", "jpeg", "webp"]
+            )
+            
             submit_chat = st.form_submit_button("Broadcast to Lounge 🛰️", type="primary")
-            if submit_chat and chat_text.strip():
-                st.success("Message dispatched successfully!")
-                st.rerun()
+            
+            if submit_chat:
+                current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
+                
+                # Process transmission only if there's text or an attached file present
+                if chat_text.strip() or uploaded_chat_img is not None:
+                    img_data = None
+                    if uploaded_chat_img is not None:
+                        # Read binary stream bytes straight from the uploader object component
+                        img_data = uploaded_chat_img.read()
+                    
+                    # Package content matrix payload data and push straight up into our live feed array tracking matrix
+                    st.session_state.chat_history.append({
+                        "name": current_nickname,
+                        "color": st.session_state.user_avatar_bg,
+                        "text": chat_text.strip() if chat_text.strip() else "📁 Shared an image attachment:",
+                        "image": img_data
+                    })
+                    st.rerun()
 
     # ------------------------------------------
     # TAB 3: CLEAN PILOT ACCOUNT DELETION
@@ -1747,7 +1794,7 @@ elif st.session_state.page == "Community":
             <h4 style="margin: 0; color: #0f172a;">{current_nickname}</h4>
             <p style="margin: 4px 0 16px 0; color: #64748b; font-size: 14px;">@{current_username}</p>
             <div style="background-color: #d1fae5; color: #065f46; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 10px; border: 1px solid #a7f3d0;">
-                🟢 Status: Connected as Pilot
+                🟢 Status: Connected
             </div>
         </div>
         """, unsafe_allow_html=True)
