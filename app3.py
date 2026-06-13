@@ -47,8 +47,16 @@ def get_avatar_url(nickname):
 st.set_page_config(page_title="AeroLaunch", page_icon="✈️", layout="wide")
 
 # ==========================================
-# 🔐 AUTHENTICATION GATEWAY
+# 🔐 AUTHENTICATION GATEWAY & SESSION STABILITY
 # ==========================================
+# Double-check query parameters to prevent the app from resetting on subsequent page selections or form entries
+if st.query_params.get("session") == "active" and st.query_params.get("current_user"):
+    st.session_state.logged_in = True
+    st.session_state.user_username = st.query_params["current_user"]
+    users = load_users()
+    if st.session_state.user_username in users:
+        st.session_state.user_display_name = users[st.session_state.user_username]["name"]
+
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 if "user_username" not in st.session_state:
@@ -56,14 +64,7 @@ if "user_username" not in st.session_state:
 if "user_display_name" not in st.session_state:
     st.session_state.user_display_name = ""
 
-# Handle query parameter sessions safely
-if st.query_params.get("session") == "active" and "current_user" in st.query_params:
-    st.session_state.logged_in = True
-    st.session_state.user_username = st.query_params["current_user"]
-    users = load_users()
-    if st.session_state.user_username in users:
-        st.session_state.user_display_name = users[st.session_state.user_username]["name"]
-
+# Display login wall if user session is inactive
 if not st.session_state.logged_in:
     st.markdown('<div class="auth-container" style="text-align: center; padding: 20px 40px 10px 40px;">', unsafe_allow_html=True)
     st.markdown('<h2 class="auth-title" style="font-size: 36px; color: #1d4ed8; font-family: \'Times New Roman\'; font-weight: bold;">Welcome to AeroLaunch</h2>', unsafe_allow_html=True)
@@ -76,7 +77,8 @@ if not st.session_state.logged_in:
         with st.form("login_form"):
             st.markdown("### Pilot Login Deck")
             login_user = st.text_input("Username", placeholder="e.g. pilot1")
-            login_pass = st.text_input("Password", type="password")
+            # type="password" automatically provides a built-in interactive unhide/eye icon icon to view the text string
+            login_pass = st.text_input("Password", type="password", placeholder="Enter account password")
             submit_login = st.form_submit_button("Enter Flight Deck Controls 🚀", use_container_width=True, type="primary")
             
             if submit_login:
@@ -84,6 +86,8 @@ if not st.session_state.logged_in:
                     st.session_state.logged_in = True
                     st.session_state.user_username = login_user
                     st.session_state.user_display_name = users[login_user]["name"]
+                    
+                    # Lock into both session parameters and structural URL properties to stick during reruns
                     st.query_params["session"] = "active"
                     st.query_params["current_user"] = login_user
                     st.success("Access Granted! Accessing main deck...")
@@ -97,7 +101,7 @@ if not st.session_state.logged_in:
             new_user = st.text_input("Choose Unique Username (lowercase, no spaces)").strip().lower()
             new_name = st.text_input("Choose Display Nickname (Your dynamic avatar is built from this)")
             new_email = st.text_input("Email Address")
-            new_pass = st.text_input("Account Password", type="password")
+            new_pass = st.text_input("Account Password", type="password", placeholder="Click the built-in eye icon to unhide and verify your password")
             submit_signup = st.form_submit_button("Register Account & Deploy Profile 📡", use_container_width=True)
             
             if submit_signup:
@@ -118,11 +122,10 @@ if not st.session_state.logged_in:
 
     st.stop()
 
-# Load real-time database user definitions for navigation and layouts
+# Secondary validation framework to make sure the app state doesn't reset when additional elements execute
 users_data = load_users()
 current_username = st.session_state.user_username
 
-# Security check to guarantee session synchronization
 if current_username not in users_data:
     st.session_state.logged_in = False
     st.query_params.clear()
@@ -131,7 +134,7 @@ if current_username not in users_data:
 current_nickname = users_data[current_username]["name"]
 
 # ==========================================
-# 🧭 SIDEBAR SESSION & LOGOUT CONTROL
+# 🧭 SIDEBAR SESSION & WORKING LOGOUT CONTROL
 # ==========================================
 with st.sidebar:
     st.markdown("### 👤 User Session")
@@ -149,7 +152,8 @@ with st.sidebar:
     st.success("🟢 Status: Connected as Pilot")
     st.markdown("---")
     
-    if st.button("🚪 Log Out & Clear Session", use_container_width=True):
+    # Functional explicit logout button clearing states cleanly
+    if st.button("🚪 Log Out & Clear Session", use_container_width=True, type="secondary"):
         st.session_state.logged_in = False
         st.session_state.user_username = ""
         st.session_state.user_display_name = ""
@@ -199,16 +203,6 @@ st.markdown("""
         line-height: 1.5;
         margin-bottom: 8px;
     }
-    .resource-link {
-        display: inline-block;
-        color: #1d4ed8 !important;
-        font-weight: bold;
-        text-decoration: none;
-        margin-top: 6px;
-    }
-    .resource-link:hover {
-        text-decoration: underline;
-    }
     .card-title {
         color: #1d4ed8 !important;
         font-size: 21px;
@@ -223,19 +217,6 @@ st.markdown("""
         text-transform: uppercase;
         letter-spacing: 0.07em;
         margin-bottom: 14px;
-    }
-    .tier-badge-foundational {
-        background-color: #f1f5f9 !important;
-        color: #475569 !important;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: bold;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        border: 1px solid #cbd5e1 !important;
-        display: inline-block;
-        margin-bottom: 8px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -286,10 +267,9 @@ if st.session_state.page == "Feed":
 
 elif st.session_state.page in ["Pilots", "ATC", "Crew", "Maintenance", "Drone", "AI"]:
     st.info(f"Welcome to the **{st.session_state.page}** Roadmap section module. Your content databases remain structurally live.")
-    # (Placeholder representing your comprehensive aviation matrices #1-#25 from the background code)
 
 # ==========================================
-# 🌐 UPDATED COMMUNITY PAGE WITH CUSTOM PROFILE AVATARS
+# 🌐 THE COMMUNITY & DYNAMIC PROFILE ENGINE
 # ==========================================
 elif st.session_state.page == "Community":
     st.markdown("### 🌐 AeroLaunch Community Base")
@@ -371,7 +351,6 @@ elif st.session_state.page == "Community":
                 msg_nick = msg.get('nickname', msg['user'])
                 msg_avatar = get_avatar_url(msg_nick)
                 
-                # Render messages with micro inline avatars matching their sender nickname
                 st.markdown(f"""
                 <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
                     <img src="{msg_avatar}" width="32" style="border-radius: 50%; background: #f1f5f9; border: 1px solid #cbd5e1; margin-top: 3px;">
