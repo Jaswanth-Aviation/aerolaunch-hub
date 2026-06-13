@@ -1708,13 +1708,14 @@ elif st.session_state.page == "Community":
             send_global_message(current_username, current_nickname, chat_text.strip())
             st.rerun()
 
-   # 🚨 ACCOUNT DELETION DROP-DOWN
+   # 🚨 CLEAN ACCOUNT DELETION DROP-DOWN (EXTRACTED OUTSIDE OF CHAT ENGINE)
     st.markdown("---")
     st.markdown("#### 🚨 System Settings")
     
     with st.expander("⚙️ Account Deletion"):
+        # Explicit inline styles ensure a clean warning block layout
         st.markdown("""
-        <div class="danger-banner">
+        <div style="background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 14px; margin-bottom: 15px;">
             <strong style="color: #991b1b; font-size: 15px;">⚠️ Permanent Profile Erasure Action</strong>
             <p style="color: #7f1d1d; font-size: 13px; margin-top: 4px; margin-bottom: 0px;">
                 Deleting your profile vector will permanently scrub your active flight credentials from the server.
