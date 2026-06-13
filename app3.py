@@ -1586,30 +1586,22 @@ elif st.session_state.page == "Community":
     if "user_avatar_bg" not in st.session_state:
         st.session_state.user_avatar_bg = "#1d4ed8"  # Default clean aviation blue
         
-    # Initialize public lounge chat history in session state if not present
+    # Initialize global public chat history in session state (Text-Only)
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = [
             {
                 "name": "System Core",
                 "color": "#ef4444",
-                "text": "Welcome to the Flight Deck chat area! Feel free to share your training updates, milestones, or upload flight charts and images to discuss with the crew.",
-                "image": None
+                "text": "Welcome to the Flight Deck chat area! Feel free to share your training updates, milestones, and discuss topics with the crew."
             }
         ]
-        
-    # Initialize private/group DM channels store in session state if not present
-    if "dm_channels" not in st.session_state:
-        st.session_state.dm_channels = {
-            "🔒 Private DM: Ace Maverick": [
-                {"sender": "Ace Maverick", "color": "#0284c7", "text": "Hey there! Ready for the cross-country simulation check-ride tomorrow?"}
-            ],
-            "🔒 Private DM: Tower Boss": [
-                {"sender": "Tower Boss", "color": "#0d9488", "text": "Make sure to review the squawk code assignments before logging into the network."}
-            ],
-            "✈️ Crew Group: Bravo Flight Team": [
-                {"sender": "Alpha Pilot", "color": "#4f46e5", "text": "Pattern work at KOMA looks clear today. Let's practice crosswind landings."},
-                {"sender": "Ace Maverick", "color": "#0284c7", "text": "Copy that, setting up my winds profile now."}
-            ]
+
+    # Initialize private direct messages data pipeline if not already present
+    if "direct_messages" not in st.session_state:
+        st.session_state.direct_messages = {
+            "pilot": [{"sender": "Ace Maverick", "text": "Hey there! Ready for the cross-country simulation later?"}],
+            "control": [{"sender": "Tower Boss", "text": "Clearance delivery is open if you want to practice radio calls."}],
+            "alpha_flyer": []
         }
     
     # All 4 tabs initialized perfectly together
@@ -1641,14 +1633,22 @@ elif st.session_state.page == "Community":
         b64_svg = base64.b64encode(svg_code.encode('utf-8')).decode('utf-8')
         return f"data:image/svg+xml;base64,{b64_svg}"
 
+    # Setup core naming values
+    current_username = st.session_state.get("user_username", "jazzaviation")
+    current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
+
+    # Establish reference active list framework mapping for target directory links
+    active_roster = {
+        "Ace Maverick (@pilot)": {"handle": "pilot", "name": "Ace Maverick", "color": "#0284c7"},
+        "Tower Boss (@control)": {"handle": "control", "name": "Tower Boss", "color": "#0d9488"},
+        "Alpha Pilot (@alpha_flyer)": {"handle": "alpha_flyer", "name": "Alpha Pilot", "color": "#4f46e5"}
+    }
+
     # ------------------------------------------
     # TAB 1: COMMUNITY DIRECTORY & IDENTITY EDIT
     # ------------------------------------------
     with tab_directory:
         st.markdown("#### 🛠️ Edit Your Identity Profile")
-        
-        current_username = st.session_state.get("user_username", "jazzaviation")
-        current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
         
         col1, col2 = st.columns([1, 4])
         with col1:
@@ -1680,14 +1680,14 @@ elif st.session_state.page == "Community":
         st.markdown("#### 👥 Live Active Community Directory")
         
         grid_cols = st.columns(4)
-        mock_roster = [
+        mock_roster_list = [
             {"name": current_nickname, "handle": current_username, "color": st.session_state.user_avatar_bg},
             {"name": "Ace Maverick", "handle": "pilot", "color": "#0284c7"},
             {"name": "Tower Boss", "handle": "control", "color": "#0d9488"},
             {"name": "Alpha Pilot", "handle": "alpha_flyer", "color": "#4f46e5"}
         ]
         
-        for index, member in enumerate(mock_roster):
+        for index, member in enumerate(mock_roster_list):
             target_col = grid_cols[index % 4]
             with target_col:
                 member_avatar = get_initials_avatar(member["name"], member["color"])
@@ -1700,36 +1700,12 @@ elif st.session_state.page == "Community":
                 """, unsafe_allow_html=True)
 
     # ------------------------------------------
-    # TAB 2: GLOBAL CHAT LOUNGE & SECURE MESSAGING DECK
+    # TAB 2: GLOBAL CHAT LOUNGE & DIRECT MESSAGES (TEXT ONLY)
     # ------------------------------------------
     with tab_lounge:
         st.markdown("#### 💬 Global Flight Deck Chat Lounge")
         
-        # Super-clean CSS to strip away all background padding and text from the file box
-        st.markdown("""
-            <style>
-            div[data-testid="stFileUploader"] {
-                padding: 0px;
-                margin: 0px;
-            }
-            div[data-testid="stFileUploaderDropzone"] {
-                padding: 2px 10px !important;
-                background-color: transparent !important;
-                border: none !important;
-            }
-            div[data-testid="stFileUploaderDropzone"] [data-testid="stMarkdownContainer"] {
-                display: none !important;
-            }
-            div[data-testid="stFileUploaderDropzone"] button {
-                padding: 2px 10px !important;
-                font-size: 12px !important;
-                background-color: #f1f5f9 !important;
-                border: 1px solid #cbd5e1 !important;
-                color: #475569 !important;
-            }
-            </style>
-        """, unsafe_allow_html=True)
-        
+        # Public Chat Container View
         chat_container = st.container()
         with chat_container:
             for message in st.session_state.chat_history:
@@ -1743,92 +1719,69 @@ elif st.session_state.page == "Community":
                         <span style="font-size: 14px; color: #334155; line-height: 1.4;">{message['text']}</span>
                     </div>
                 </div>
+                <div style='margin-bottom: 12px; border-bottom: 1px dashed #e2e8f0;'></div>
                 """, unsafe_allow_html=True)
-                
-                if message["image"] is not None:
-                    img_col1, img_col2 = st.columns([1, 10])
-                    with img_col2:
-                        st.image(message["image"], use_container_width=False, width=320)
-                
-                st.markdown("<div style='margin-bottom: 12px; border-bottom: 1px dashed #e2e8f0;'></div>", unsafe_allow_html=True)
 
-        # Public Lounge chat input form
+        # Text-Only Global Chat Submission Form
         with st.form("community_chat_form", clear_on_submit=True):
             chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello to the crew...")
+            submit_chat = st.form_submit_button("Broadcast to Lounge 🛰️", type="primary", use_container_width=True)
             
-            action_col1, action_col2 = st.columns([2, 1])
-            with action_col1:
-                uploaded_chat_img = st.file_uploader(
-                    "📸 Attach Image", 
-                    type=["png", "jpg", "jpeg", "webp"],
-                    label_visibility="collapsed"
-                )
-                if uploaded_chat_img is not None:
-                    st.caption(f"📎 Ready: `{uploaded_chat_img.name}`")
-                    
-            with action_col2:
-                submit_chat = st.form_submit_button("Send 🛰️", type="primary", use_container_width=True)
-            
-            if submit_chat:
-                current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
-                if chat_text.strip() or uploaded_chat_img is not None:
-                    img_data = None
-                    if uploaded_chat_img is not None:
-                        img_data = uploaded_chat_img.read()
-                    
-                    st.session_state.chat_history.append({
-                        "name": current_nickname,
-                        "color": st.session_state.user_avatar_bg,
-                        "text": chat_text.strip() if chat_text.strip() else "📁 Shared an image attachment:",
-                        "image": img_data
-                    })
-                    st.rerun()
+            if submit_chat and chat_text.strip():
+                st.session_state.chat_history.append({
+                    "name": current_nickname,
+                    "color": st.session_state.user_avatar_bg,
+                    "text": chat_text.strip()
+                })
+                st.rerun()
 
         # ------------------------------------------
-        # NEW DESIGN BLOCK: DIRECT & GROUP CHATS DECK
+        # 🔒 DIRECT MESSAGES CODE SPACE (TEXT ONLY)
         # ------------------------------------------
-        st.markdown("<br><hr style='margin: 10px 0; border-color: #cbd5e1;'>", unsafe_allow_html=True)
-        st.markdown("#### 📬 Direct & Group Messages")
+        st.markdown("<br><hr style='border-top: 2px solid #e2e8f0;'>", unsafe_allow_html=True)
+        st.markdown("#### 🔒 Pilot Direct Messaging Core")
         
-        # Channel Active Router Dropdown Selector
-        chosen_channel = st.selectbox(
-            "Select an Active Message Feed:", 
-            options=list(st.session_state.dm_channels.keys()),
-            index=0
+        # User Selector Dropdown
+        selected_target_label = st.selectbox(
+            "Select an active pilot to message privately:", 
+            options=list(active_roster.keys())
         )
         
-        # Render targeted private channel timeline inside a visual chat card box
-        st.markdown(f"""
-        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 15px;">
-            <span style="font-size: 12px; font-weight: bold; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">📡 Secure Feed: {chosen_channel}</span>
-        </div>
-        """, unsafe_allow_html=True)
+        target_meta = active_roster[selected_target_label]
+        target_handle = target_meta["handle"]
         
-        # Display the localized conversation history inside this channel feed block
-        for dm in st.session_state.dm_channels[chosen_channel]:
-            dm_avatar = get_initials_avatar(dm["sender"], dm["color"])
-            st.markdown(f"""
-            <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; background-color: white; padding: 10px; border-radius: 8px; border: 1px solid #f1f5f9;">
-                <img src="{dm_avatar}" width="30" style="border-radius: 50%;">
-                <div>
-                    <strong style="color: #334155; font-size: 13px;">{dm['sender']}</strong><br>
-                    <span style="font-size: 13px; color: #475569;">{dm['text']}</span>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+        # Direct Message Feed Thread Container
+        dm_display_box = st.container()
+        with dm_display_box:
+            current_thread = st.session_state.direct_messages.get(target_handle, [])
             
-        # Inline form targeting the individual active channel selection state context
-        with st.form("private_message_form", clear_on_submit=True):
-            dm_input = st.text_input(f"Message {chosen_channel.split(': ')[-1]}...", placeholder="Type your secure reply here...")
-            submit_dm = st.form_submit_button("Dispatch Secure Message 🔒", type="secondary")
+            if not current_thread:
+                st.markdown(f"<span style='color: gray; font-size: 13px;'>No prior transmission link logged with {target_meta['name']}. Start the conversation below!</span>", unsafe_allow_html=True)
+            else:
+                for dm in current_thread:
+                    is_me = (dm["sender"] == current_nickname)
+                    sender_color = st.session_state.user_avatar_bg if is_me else target_meta["color"]
+                    avatar_link = get_initials_avatar(dm["sender"], sender_color)
+                    
+                    st.markdown(f"""
+                    <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; background-color: #f8fafc; padding: 10px; border-radius: 8px;">
+                        <img src="{avatar_link}" width="30" style="border-radius: 50%;">
+                        <div>
+                            <strong style="font-size: 13px; color: {'#1d4ed8' if is_me else '#475569'};">{dm['sender']}</strong><br>
+                            <span style="font-size: 13px; color: #334155;">{dm['text']}</span>
+                        </div>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+        # DM Input Form Box
+        with st.form(f"private_dm_form_{target_handle}", clear_on_submit=True):
+            dm_input_text = st.text_input(f"Secure Message to {target_meta['name']}:", placeholder="Type private message here...")
+            submit_dm_btn = st.form_submit_button(f"Dispatch Secure DM to {target_meta['name']} 🚀", type="secondary", use_container_width=True)
             
-            if submit_dm and dm_input.strip():
-                current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
-                # Append straight to the nested target channel array structure memory pointer
-                st.session_state.dm_channels[chosen_channel].append({
+            if submit_dm_btn and dm_input_text.strip():
+                st.session_state.direct_messages[target_handle].append({
                     "sender": current_nickname,
-                    "color": st.session_state.user_avatar_bg,
-                    "text": dm_input.strip()
+                    "text": dm_input_text.strip()
                 })
                 st.rerun()
 
@@ -1848,7 +1801,6 @@ elif st.session_state.page == "Community":
         """, unsafe_allow_html=True)
         
         with st.form("delete_account_form"):
-            current_username = st.session_state.get("user_username", "jazzaviation")
             confirm_user = st.text_input("Type your username to confirm account deletion:", placeholder=current_username)
             submit_delete = st.form_submit_button("Permanently Destroy My Account 💥", type="primary", use_container_width=True)
             
@@ -1869,9 +1821,6 @@ elif st.session_state.page == "Community":
     # ------------------------------------------
     with tab_session:
         st.markdown("#### 👤 Active Pilot Session")
-        
-        current_username = st.session_state.get("user_username", "jazzaviation")
-        current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
         
         session_avatar = get_initials_avatar(current_nickname, st.session_state.user_avatar_bg)
         st.markdown(f"""
