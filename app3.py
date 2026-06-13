@@ -1829,7 +1829,7 @@ elif st.session_state.page == "Community":
             <h4 style="margin: 0; color: #0f172a;">{current_nickname}</h4>
             <p style="margin: 4px 0 16px 0; color: #64748b; font-size: 14px;">@{current_username}</p>
             <div style="background-color: #d1fae5; color: #065f46; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 10px; border: 1px solid #a7f3d0;">
-                🟢 Status: Connected as Pilot
+                🟢 Status: Connected
             </div>
         </div>
         """, unsafe_allow_html=True)
