@@ -1111,7 +1111,7 @@ elif st.session_state.page == "Crew":
 
 # PAGE 5: MAINTENANCE (AIRCRAFT MAINTENANCE & ENGINEERING (AMT) HUB - TOP 25)
 elif st.session_state.page == "Maintenance":
-    st.markdown("### 🔧 🛠️ Section 4: Aircraft Maintenance & Engineering (AMT) Hub")
+    st.markdown("### 🛠️ Section 4: Aircraft Maintenance & Engineering (AMT) Hub")
     
     # Category 1
     
