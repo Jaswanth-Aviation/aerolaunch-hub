@@ -1708,7 +1708,7 @@ elif st.session_state.page == "Community":
             send_global_message(current_username, current_nickname, chat_text.strip())
             st.rerun()
 
-            # 🚨 ACCOUNT DELETION ZONE
+    # 🚨 ACCOUNT DELETION ZONE
     st.markdown("---")
     st.markdown("#### 🚨 Account Actions")
     with st.expander("Delete Account Profile"):
