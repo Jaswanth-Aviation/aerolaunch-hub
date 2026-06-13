@@ -1,15 +1,20 @@
 import streamlit as st
 
+# 1. This must always run first as an independent block
 st.set_page_config(
     page_title="AeroLaunch Community Base | Pilot Portal",
     page_icon="🌐",
     layout="wide",
     menu_items={
-        'Get Help': 'https://github.com/yourusername/yourrepo',
-        'Report a bug': "https://github.com/yourusername/yourrepo/issues",
-        'About': "# AeroLaunch Community Hub\nCreated by Jaswanth Mallareddi. A portfolio project designed for aviation innovation and pilot networking."
+        'Get Help': 'https://github.com/Jaswanth-Aviation/aerolaunch-hub',
+        'Report a bug': 'https://github.com/Jaswanth-Aviation/aerolaunch-hub/issues',
+        'About': '# AeroLaunch Community Hub\nCreated by Jaswanth Mallareddi. A portfolio project designed for aviation innovation and pilot networking.'
     }
 )
+
+# 2. Inject your Google Verification Meta Tag right underneath it
+st.markdown('<meta name="google-site-verification" content="SratphLQH9l1bcw65FrdBhyFi_d0i4wGVhuOCR027ks" />', unsafe_allow_html=True)
+
 # ==========================================
 # 1. CORE IMPORTS, DATABASE PERSISTENCE & CONFIG
 # ==========================================
