@@ -1,3 +1,15 @@
+import streamlit as st
+
+st.set_page_config(
+    page_title="AeroLaunch Community Base | Pilot Portal",
+    page_icon="🌐",
+    layout="wide",
+    menu_items={
+        'Get Help': 'https://github.com/yourusername/yourrepo',
+        'Report a bug': "https://github.com/yourusername/yourrepo/issues",
+        'About': "# AeroLaunch Community Hub\nCreated by Jaswanth Mallareddi. A portfolio project designed for aviation innovation and pilot networking."
+    }
+)
 # ==========================================
 # 1. CORE IMPORTS, DATABASE PERSISTENCE & CONFIG
 # ==========================================
