@@ -137,33 +137,6 @@ if current_username not in users_data:
 current_nickname = users_data[current_username]["name"]
 
 # ==========================================
-# 🧭 SIDEBAR SESSION & FUNCTIONAL LOGOUT
-# ==========================================
-with st.sidebar:
-    st.markdown("### 👤 User Session")
-    user_avatar_side = get_avatar_url(current_nickname)
-    
-    # Styled Profile Badge Card
-    st.markdown(f"""
-    <div style="text-align: center; padding: 10px; background-color: white; border-radius: 8px; border: 1px solid #cbd5e1; margin-bottom: 10px;">
-        <img src="{user_avatar_side}" width="55" style="border-radius: 50%; background: #f1f5f9; border: 2px solid #1d4ed8;"><br>
-        <strong style="font-size: 14px; color: #0f172a;">{current_nickname}</strong><br>
-        <span style="font-size: 11px; color: #64748b;">@{current_username}</span>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.success("🟢 Status: Connected as Pilot")
-    st.markdown("---")
-    
-    # Fully functional logout clearing the query states and application logs
-    if st.button("🚪 Log Out & Clear Session", use_container_width=True, type="secondary"):
-        st.session_state.logged_in = False
-        st.session_state.user_username = ""
-        st.session_state.user_display_name = ""
-        st.query_params.clear()
-        st.rerun()
-
-# ==========================================
 # 🎨 CLEAN WELCOMING LIGHT MODE STYLING
 # ==========================================
 st.markdown("""
@@ -1759,4 +1732,35 @@ elif st.session_state.page == "Community":
                     st.rerun()
                 else:
                     st.error("Confirmation signature mismatch. Deletion script halted.")
+
+# ------------------------------------------
+    # TAB 4: CLEAN INTEGRATED USER SESSION VIEW
+    # ------------------------------------------
+    with tab_session:
+        st.markdown("#### 👤 Active Pilot Session")
+        
+        current_username = st.session_state.get("user_username", "jazzaviation")
+        current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
+        
+        # Centered visual status card layout
+        session_avatar = get_initials_avatar(current_nickname, st.session_state.user_avatar_bg)
+        st.markdown(f"""
+        <div style="background-color: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; text-align: center; max-width: 400px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+            <img src="{session_avatar}" width="90" style="border-radius: 50%; margin-bottom: 12px; border: 3px solid #1d4ed8;">
+            <h4 style="margin: 0; color: #0f172a;">{current_nickname}</h4>
+            <p style="margin: 4px 0 16px 0; color: #64748b; font-size: 14px;">@{current_username}</p>
+            <div style="background-color: #d1fae5; color: #065f46; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 10px; border: 1px solid #a7f3d0;">
+                🟢 Status: Connected as Pilot
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        # Standard logout function execution trigger button
+        if st.button("🚪 Log Out & Clear Session", use_container_width=True, type="secondary"):
+            st.session_state.logged_in = False
+            st.query_params.clear()
+            st.rerun()
+                    
 
