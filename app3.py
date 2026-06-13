@@ -1708,15 +1708,30 @@ elif st.session_state.page == "Community":
             send_global_message(current_username, current_nickname, chat_text.strip())
             st.rerun()
 
-    # 🚨 ACCOUNT DELETION ZONE
+# 🚨 CLEAN ACCOUNT DELETION ZONE (NO CLUTTER)
     st.markdown("---")
     st.markdown("#### 🚨 Account Actions")
+    
     with st.expander("Delete Account Profile"):
-        st.write("Deleting your account will permanently remove your profile credentials and avatar from the community roster database.")
+        # Wrapped everything in a beautifully padded, clean warning alert box layout
+        st.markdown("""
+        <div style="background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+            <strong style="color: #991b1b; font-size: 16px;">⚠️ Warning: Permanent Action</strong>
+            <p style="color: #7f1d1d; font-size: 14px; margin-top: 6px; margin-bottom: 0px;">
+                Deleting your account will permanently remove your profile credentials, custom flight data, 
+                and avatar from the community roster database. This cannot be undone.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
         
+        # Space out the form to keep it from looking squeezed
         with st.form("delete_account_form"):
+            st.markdown("<p style='font-size: 15px; margin-bottom: -5px;'>To proceed, please confirm your identity:</p>", unsafe_allow_html=True)
             confirm_user = st.text_input("Type your username to confirm profile deletion:", placeholder=current_username)
-            submit_delete = st.form_submit_button("Permanently Destroy My Account 💥", type="primary")
+            
+            # Added a clean divider spacing break above the execution button
+            st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
+            submit_delete = st.form_submit_button("Permanently Destroy My Account 💥", type="primary", use_container_width=True)
             
             if submit_delete:
                 if confirm_user == current_username:
@@ -1738,3 +1753,4 @@ elif st.session_state.page == "Community":
                     st.rerun()
                 else:
                     st.error("Confirmation username match failed. Profile deletion aborted.")
+    
