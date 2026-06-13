@@ -1869,33 +1869,6 @@ elif st.session_state.page == "Community":
 
         # --- ADMIN REVEAL SYSTEM (FOR BOTH SANDBOX AND FEEDBACK COUNTERS) ---
         st.markdown("<br><hr style='border-top: 1px dashed #cbd5e1;'>", unsafe_allow_html=True)
-        st.markdown("##### 🔐 Developer Control Console")
-        is_admin = st.checkbox("Toggle Master Admin Mode (Developer View Only)", value=False)
-        
-        if is_admin:
-            st.info("👋 Master Developer Dashboard verified. Reviewing secure user telemetry streams:")
-            
-            admin_sub_tab1, admin_sub_tab2 = st.tabs(["💡 Compiled Ideas Sandbox", "📣 Site Feedback Logs"])
-            
-            with admin_sub_tab1:
-                for index, item in enumerate(st.session_state.sandbox_ideas):
-                    st.markdown(f"""
-                    <div style="background-color: #f1f5f9; border-left: 4px solid #1d4ed8; padding: 12px; border-radius: 4px; margin-bottom: 10px;">
-                        <strong>🚀 Concept {index + 1}: {item['title']}</strong><br>
-                        <span style="color: #64748b; font-size: 11px;">By: {item['author']}</span>
-                        <p style="color: #334155; font-size: 13px; margin-top: 5px; font-style: italic;">\"{item['pitch']}\"</p>
-                    </div>
-                    """, unsafe_allow_html=True)
-                    
-            with admin_sub_tab2:
-                for index, fb in enumerate(st.session_state.website_feedback):
-                    st.markdown(f"""
-                    <div style="background-color: #f0fdf4; border-left: 4px solid #16a34a; padding: 12px; border-radius: 4px; margin-bottom: 10px;">
-                        <strong>🔧 Feedback {index + 1}: [{fb['category']}]</strong><br>
-                        <span style="color: #64748b; font-size: 11px;">By: {fb['author']}</span>
-                        <p style="color: #14532d; font-size: 13px; margin-top: 5px;">{fb['details']}</p>
-                    </div>
-                    """, unsafe_allow_html=True)
 
     # ------------------------------------------
     # TAB 5: INTEGRATED USER SESSION VIEW
@@ -1910,7 +1883,7 @@ elif st.session_state.page == "Community":
             <h4 style="margin: 0; color: #0f172a;">{current_nickname}</h4>
             <p style="margin: 4px 0 16px 0; color: #64748b; font-size: 14px;">@{current_username}</p>
             <div style="background-color: #d1fae5; color: #065f46; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 10px; border: 1px solid #a7f3d0;">
-                🟢 Status: Connected as Pilot
+                🟢 Status: Connected
             </div>
         </div>
         """, unsafe_allow_html=True)
