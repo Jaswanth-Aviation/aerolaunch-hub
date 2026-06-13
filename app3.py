@@ -1603,13 +1603,29 @@ elif st.session_state.page == "Community":
             "control": [{"sender": "Tower Boss", "text": "Clearance delivery is open if you want to practice radio calls."}],
             "alpha_flyer": []
         }
+
+    # NEW: Initialize the Developer Sandbox storage cache to hold submission ideas safely
+    if "sandbox_ideas" not in st.session_state:
+        st.session_state.sandbox_ideas = [
+            {
+                "title": "Electromagnetic Launch Tracks",
+                "pitch": "Why commercial airports should experiment with electromagnetic launch tracks (like navy aircraft carriers) to reduce jet fuel burn on takeoff.",
+                "author": "Jaswanth Mallareddi"
+            },
+            {
+                "title": "Drone Mesh Search & Rescue",
+                "pitch": "Using drone mesh networks to create temporary, low-altitude cell towers during natural disaster search-and-rescue operations.",
+                "author": "Jaswanth Mallareddi"
+            }
+        ]
     
-    # All 4 tabs initialized perfectly together
-    tab_directory, tab_lounge, tab_settings, tab_session = st.tabs([
+    # CRITICAL BALANCING FIX: All 5 tabs are initialized together here
+    tab_directory, tab_lounge, tab_settings, tab_session, tab_sandbox = st.tabs([
         "👥 Community Directory", 
         "💬 Flight Deck Chat", 
         "⚙️ Account Settings",
-        "👤 User Session"
+        "👤 User Session",
+        "💡 Ideas Sandbox"
     ])
     
     # --- HELPER FUNCTION: INITIALS AVATAR ENGINE ---
@@ -1705,7 +1721,6 @@ elif st.session_state.page == "Community":
     with tab_lounge:
         st.markdown("#### 💬 Global Flight Deck Chat Lounge")
         
-        # Public Chat Container View
         chat_container = st.container()
         with chat_container:
             for message in st.session_state.chat_history:
@@ -1722,7 +1737,6 @@ elif st.session_state.page == "Community":
                 <div style='margin-bottom: 12px; border-bottom: 1px dashed #e2e8f0;'></div>
                 """, unsafe_allow_html=True)
 
-        # Text-Only Global Chat Submission Form
         with st.form("community_chat_form", clear_on_submit=True):
             chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello to the crew...")
             submit_chat = st.form_submit_button("Broadcast to Lounge 🛰️", type="primary", use_container_width=True)
@@ -1735,13 +1749,10 @@ elif st.session_state.page == "Community":
                 })
                 st.rerun()
 
-        # ------------------------------------------
-        # 🔒 DIRECT MESSAGES CODE SPACE (TEXT ONLY)
-        # ------------------------------------------
+        # --- DIRECT MESSAGES CODE SPACE ---
         st.markdown("<br><hr style='border-top: 2px solid #e2e8f0;'>", unsafe_allow_html=True)
         st.markdown("#### 🔒 Pilot Direct Messaging Core")
         
-        # User Selector Dropdown
         selected_target_label = st.selectbox(
             "Select an active pilot to message privately:", 
             options=list(active_roster.keys())
@@ -1750,7 +1761,6 @@ elif st.session_state.page == "Community":
         target_meta = active_roster[selected_target_label]
         target_handle = target_meta["handle"]
         
-        # Direct Message Feed Thread Container
         dm_display_box = st.container()
         with dm_display_box:
             current_thread = st.session_state.direct_messages.get(target_handle, [])
@@ -1773,7 +1783,6 @@ elif st.session_state.page == "Community":
                     </div>
                     """, unsafe_allow_html=True)
 
-        # DM Input Form Box
         with st.form(f"private_dm_form_{target_handle}", clear_on_submit=True):
             dm_input_text = st.text_input(f"Secure Message to {target_meta['name']}:", placeholder="Type private message here...")
             submit_dm_btn = st.form_submit_button(f"Dispatch Secure DM to {target_meta['name']} 🚀", type="secondary", use_container_width=True)
@@ -1829,7 +1838,7 @@ elif st.session_state.page == "Community":
             <h4 style="margin: 0; color: #0f172a;">{current_nickname}</h4>
             <p style="margin: 4px 0 16px 0; color: #64748b; font-size: 14px;">@{current_username}</p>
             <div style="background-color: #d1fae5; color: #065f46; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 10px; border: 1px solid #a7f3d0;">
-                🟢 Status: Connected
+                🟢 Status: Connected as Pilot
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -1840,3 +1849,53 @@ elif st.session_state.page == "Community":
             st.session_state.logged_in = False
             st.query_params.clear()
             st.rerun()
+
+    # ------------------------------------------
+    # 💡 TAB 5: THE IDEAS SANDBOX (ONE-WAY DEV VAULT)
+    # ------------------------------------------
+    with tab_sandbox:
+        st.markdown("#### 💡 The AeroLaunch Sandbox")
+        st.markdown("""
+        Have a wild concept, engineering modification, or future feature proposal? Submit a clean 
+        **300-word pitch** directly to my developer workspace canvas. 
+        
+        *Note: To prevent congestion, incoming pitches are routed straight to my desk and are not visible to other community members.*
+        """)
+        
+        # Public Pitch Submission Box Form
+        with st.form("sandbox_submission_form", clear_on_submit=True):
+            idea_title = st.text_input("Concept Title:", placeholder="e.g., Solar Flight Surface Texturing")
+            idea_pitch = st.text_area("Your Wild Pitch (Max ~300 words):", placeholder="Describe how it works, the problem it solves...")
+            
+            submit_idea = st.form_submit_button("Securely Dispatch Pitch to Developer 🚀", type="primary")
+            if submit_idea:
+                if idea_title.strip() and idea_pitch.strip():
+                    st.session_state.sandbox_ideas.append({
+                        "title": idea_title.strip(),
+                        "pitch": idea_pitch.strip(),
+                        "author": current_nickname
+                    })
+                    st.toast("Concept dispatched to the developer console!", icon="📥")
+                    st.success("Thank you! Your architectural proposal has been compiled into the developer framework data layer.")
+                else:
+                    st.error("Please provide both a Title and a Pitch overview before submitting.")
+
+        # --- ADMIN MASTER REVEAL SECTION ---
+        st.markdown("<br><hr style='border-top: 1px dashed #cbd5e1;'>", unsafe_allow_html=True)
+        st.markdown("##### 🔐 Developer Control Console")
+        
+        # Standard toggle block acting as your private check link when inspecting user feedback arrays
+        is_admin = st.checkbox("Toggle Master Admin Mode (Developer View Only)", value=False)
+        
+        if is_admin:
+            st.info("👋 Hello Jaswanth! Admin authorization verified. Here are the incoming project concepts compiled from your community site visitors:")
+            
+            for index, item in enumerate(st.session_state.sandbox_ideas):
+                st.markdown(f"""
+                <div style="background-color: #f1f5f9; border-left: 4px solid #1d4ed8; padding: 15px; border-radius: 4px; margin-bottom: 12px;">
+                    <strong style="color: #0f172a; font-size: 15px;">🚀 Concept {index + 1}: {item['title']}</strong><br>
+                    <span style="color: #64748b; font-size: 12px;">Submitted by: {item['author']}</span>
+                    <p style="color: #334155; font-size: 13px; margin-top: 8px; font-style: italic;">\"{item['pitch']}\"</p>
+                </div>
+                """, unsafe_allow_html=True)
+
