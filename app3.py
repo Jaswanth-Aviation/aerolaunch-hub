@@ -1712,7 +1712,7 @@ elif st.session_state.page == "Community":
     st.markdown("---")
     st.markdown("#### 🚨 Account Actions")
     
-    with st.expander("Delete Account Profile"):
+    with st.expander("Delete Profile"):
         # Wrapped everything in a beautifully padded, clean warning alert box layout
         st.markdown("""
         <div style="background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
