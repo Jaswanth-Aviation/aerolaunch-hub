@@ -1707,3 +1707,34 @@ elif st.session_state.page == "Community":
         if submit_chat and chat_text.strip():
             send_global_message(current_username, current_nickname, chat_text.strip())
             st.rerun()
+
+            # 🚨 ACCOUNT DELETION ZONE
+    st.markdown("---")
+    st.markdown("#### 🚨 Account Actions")
+    with st.expander("⚠️ Danger Zone: Delete Account Profile"):
+        st.write("Deleting your account will permanently remove your profile credentials and avatar from the community roster database.")
+        
+        with st.form("delete_account_form"):
+            confirm_user = st.text_input("Type your username to confirm profile deletion:", placeholder=current_username)
+            submit_delete = st.form_submit_button("Permanently Destroy My Account 💥", type="primary")
+            
+            if submit_delete:
+                if confirm_user == current_username:
+                    # 1. Pull the live user database records
+                    all_users = load_users()
+                    
+                    # 2. Pop out your specific account key
+                    if current_username in all_users:
+                        del all_users[current_username]
+                        save_users(all_users)
+                    
+                    # 3. Wipe current system session logs and kick back to landing wall
+                    st.session_state.logged_in = False
+                    st.session_state.user_username = ""
+                    st.session_state.user_display_name = ""
+                    st.query_params.clear()
+                    
+                    st.success("Your profile vector has been cleanly scrubbed from the database.")
+                    st.rerun()
+                else:
+                    st.error("Confirmation username match failed. Profile deletion aborted.")
