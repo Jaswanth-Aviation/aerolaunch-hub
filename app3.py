@@ -1708,49 +1708,35 @@ elif st.session_state.page == "Community":
             send_global_message(current_username, current_nickname, chat_text.strip())
             st.rerun()
 
-# 🚨 CLEAN ACCOUNT DELETION ZONE (NO CLUTTER)
+    # 🚨 FIXED ACCOUNT DELETION ZONE (CLEAN DROPDOWN)
     st.markdown("---")
-    st.markdown("#### 🚨 Account Actions")
+    st.markdown("#### 🚨 System Settings")
     
-    with st.expander("Delete Profile"):
-        # Wrapped everything in a beautifully padded, clean warning alert box layout
+    with st.expander("⚙️ Account Deletion"):
         st.markdown("""
-        <div style="background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
-            <strong style="color: #991b1b; font-size: 16px;">⚠️ Warning: Permanent Action</strong>
-            <p style="color: #7f1d1d; font-size: 14px; margin-top: 6px; margin-bottom: 0px;">
-                Deleting your account will permanently remove your profile credentials, custom flight data, 
-                and avatar from the community roster database. This cannot be undone.
+        <div style="background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 16px; margin-bottom: 15px;">
+            <strong style="color: #991b1b; font-size: 15px;">⚠️ Permanent Action Sourcing</strong>
+            <p style="color: #7f1d1d; font-size: 13px; margin-top: 4px; margin-bottom: 0px;">
+                Deleting your profile vector will permanently scrub your active flight credentials and data layouts from the global index file.
             </p>
         </div>
         """, unsafe_allow_html=True)
         
-        # Space out the form to keep it from looking squeezed
         with st.form("delete_account_form"):
-            st.markdown("<p style='font-size: 15px; margin-bottom: -5px;'>To proceed, please confirm your identity:</p>", unsafe_allow_html=True)
-            confirm_user = st.text_input("Type your username to confirm profile deletion:", placeholder=current_username)
-            
-            # Added a clean divider spacing break above the execution button
-            st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
+            confirm_user = st.text_input("Type your active username to execute deletion profile:", placeholder=current_username)
             submit_delete = st.form_submit_button("Permanently Destroy My Account 💥", type="primary", use_container_width=True)
             
             if submit_delete:
                 if confirm_user == current_username:
-                    # 1. Pull the live user database records
                     all_users = load_users()
-                    
-                    # 2. Pop out your specific account key
                     if current_username in all_users:
                         del all_users[current_username]
                         save_users(all_users)
                     
-                    # 3. Wipe current system session logs and kick back to landing wall
                     st.session_state.logged_in = False
                     st.session_state.user_username = ""
                     st.session_state.user_display_name = ""
                     st.query_params.clear()
-                    
-                    st.success("Your profile vector has been cleanly scrubbed from the database.")
                     st.rerun()
                 else:
-                    st.error("Confirmation username match failed. Profile deletion aborted.")
-    
+                    st.error("Confirmation signature mismatch. Deletion script halted.")
