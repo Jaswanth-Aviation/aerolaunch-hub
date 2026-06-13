@@ -1586,7 +1586,7 @@ elif st.session_state.page == "Community":
     if "user_avatar_bg" not in st.session_state:
         st.session_state.user_avatar_bg = "#1d4ed8"  # Default clean aviation blue
         
-    # Initialize a mock chat history in session state to hold messages and images dynamically
+    # Initialize chat history in session state
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = [
             {
@@ -1685,12 +1685,36 @@ elif st.session_state.page == "Community":
                 """, unsafe_allow_html=True)
 
     # ------------------------------------------
-    # TAB 2: GLOBAL CHAT LOUNGE (WITH IMAGE SUPPORT)
+    # TAB 2: GLOBAL CHAT LOUNGE (ICON FILE UPLOADER)
     # ------------------------------------------
     with tab_lounge:
         st.markdown("#### 💬 Global Flight Deck Chat Lounge")
         
-        # Render entire message timeline dynamically from session state feed storage
+        # Injection of clean CSS styling rules to streamline the bulky file uploader frame
+        st.markdown("""
+            <style>
+            /* Customizing the Streamlit file uploader area to be tight and compact */
+            div[data-testid="stFileUploader"] {
+                padding: 0px;
+                margin-top: -10px;
+            }
+            div[data-testid="stFileUploaderDropzone"] {
+                padding: 6px 12px;
+                border: 1px dashed #cbd5e1;
+                background-color: #f8fafc;
+                border-radius: 8px;
+            }
+            /* Hiding instructions and standard labels to minimize height footprint */
+            div[data-testid="stFileUploaderDropzone"] [data-testid="stMarkdownContainer"] {
+                display: none;
+            }
+            div[data-testid="stFileUploaderDropzone"] button {
+                margin: 0 auto;
+                padding: 4px 12px;
+            }
+            </style>
+        """, unsafe_allow_html=True)
+        
         chat_container = st.container()
         with chat_container:
             for message in st.session_state.chat_history:
@@ -1706,38 +1730,37 @@ elif st.session_state.page == "Community":
                 </div>
                 """, unsafe_allow_html=True)
                 
-                # If an image attachment exists for this specific message post, render it cleanly
                 if message["image"] is not None:
-                    # Uses columns layout to nicely indent the picture right under the text message block
                     img_col1, img_col2 = st.columns([1, 10])
                     with img_col2:
                         st.image(message["image"], use_container_width=False, width=320)
                 
                 st.markdown("<div style='margin-bottom: 12px; border-bottom: 1px dashed #e2e8f0;'></div>", unsafe_allow_html=True)
 
-        # Broadcast Form Box Engine
+        # Broadcast Submission Block Form
         with st.form("community_chat_form", clear_on_submit=True):
-            chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello or explain your picture upload...")
+            chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello to the crew...")
             
-            # The Image File Selector interface element
+            # Replaced the block text label with a clean inline label containing an attachment icon
             uploaded_chat_img = st.file_uploader(
-                "Attach a cockpit image or chart layout to your message (Optional):", 
+                "📸 Attach Cockpit Media / Route Flight Charts:", 
                 type=["png", "jpg", "jpeg", "webp"]
             )
             
+            # Confirmation indicator to show when a photo file is securely cached in local form storage memory
+            if uploaded_chat_img is not None:
+                st.markdown(f"**🟢 Selected Asset Locked:** `{uploaded_chat_img.name}`")
+                
             submit_chat = st.form_submit_button("Broadcast to Lounge 🛰️", type="primary")
             
             if submit_chat:
                 current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
                 
-                # Process transmission only if there's text or an attached file present
                 if chat_text.strip() or uploaded_chat_img is not None:
                     img_data = None
                     if uploaded_chat_img is not None:
-                        # Read binary stream bytes straight from the uploader object component
                         img_data = uploaded_chat_img.read()
                     
-                    # Package content matrix payload data and push straight up into our live feed array tracking matrix
                     st.session_state.chat_history.append({
                         "name": current_nickname,
                         "color": st.session_state.user_avatar_bg,
@@ -1794,7 +1817,7 @@ elif st.session_state.page == "Community":
             <h4 style="margin: 0; color: #0f172a;">{current_nickname}</h4>
             <p style="margin: 4px 0 16px 0; color: #64748b; font-size: 14px;">@{current_username}</p>
             <div style="background-color: #d1fae5; color: #065f46; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 10px; border: 1px solid #a7f3d0;">
-                🟢 Status: Connected
+                🟢 Status: Connected as Pilot
             </div>
         </div>
         """, unsafe_allow_html=True)
