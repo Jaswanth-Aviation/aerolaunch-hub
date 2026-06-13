@@ -1708,22 +1708,22 @@ elif st.session_state.page == "Community":
             send_global_message(current_username, current_nickname, chat_text.strip())
             st.rerun()
 
-    # 🚨 FIXED ACCOUNT DELETION ZONE (CLEAN DROPDOWN)
+   # 🚨 ACCOUNT DELETION DROP-DOWN
     st.markdown("---")
     st.markdown("#### 🚨 System Settings")
     
     with st.expander("⚙️ Account Deletion"):
         st.markdown("""
-        <div style="background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 16px; margin-bottom: 15px;">
-            <strong style="color: #991b1b; font-size: 15px;">⚠️ Permanent Action Sourcing</strong>
+        <div class="danger-banner">
+            <strong style="color: #991b1b; font-size: 15px;">⚠️ Permanent Profile Erasure Action</strong>
             <p style="color: #7f1d1d; font-size: 13px; margin-top: 4px; margin-bottom: 0px;">
-                Deleting your profile vector will permanently scrub your active flight credentials and data layouts from the global index file.
+                Deleting your profile vector will permanently scrub your active flight credentials from the server.
             </p>
         </div>
         """, unsafe_allow_html=True)
         
         with st.form("delete_account_form"):
-            confirm_user = st.text_input("Type your active username to execute deletion profile:", placeholder=current_username)
+            confirm_user = st.text_input("Type your username to confirm account deletion:", placeholder=current_username)
             submit_delete = st.form_submit_button("Permanently Destroy My Account 💥", type="primary", use_container_width=True)
             
             if submit_delete:
