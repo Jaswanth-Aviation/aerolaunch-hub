@@ -1685,32 +1685,32 @@ elif st.session_state.page == "Community":
                 """, unsafe_allow_html=True)
 
     # ------------------------------------------
-    # TAB 2: GLOBAL CHAT LOUNGE (ICON FILE UPLOADER)
+    # TAB 2: GLOBAL CHAT LOUNGE (Sleek Compact File Picker)
     # ------------------------------------------
     with tab_lounge:
         st.markdown("#### 💬 Global Flight Deck Chat Lounge")
         
-        # Injection of clean CSS styling rules to streamline the bulky file uploader frame
+        # Super-clean CSS to strip away all background padding and text from the file box
         st.markdown("""
             <style>
-            /* Customizing the Streamlit file uploader area to be tight and compact */
             div[data-testid="stFileUploader"] {
                 padding: 0px;
-                margin-top: -10px;
+                margin: 0px;
             }
             div[data-testid="stFileUploaderDropzone"] {
-                padding: 6px 12px;
-                border: 1px dashed #cbd5e1;
-                background-color: #f8fafc;
-                border-radius: 8px;
+                padding: 2px 10px !important;
+                background-color: transparent !important;
+                border: none !important;
             }
-            /* Hiding instructions and standard labels to minimize height footprint */
             div[data-testid="stFileUploaderDropzone"] [data-testid="stMarkdownContainer"] {
-                display: none;
+                display: none !important;
             }
             div[data-testid="stFileUploaderDropzone"] button {
-                margin: 0 auto;
-                padding: 4px 12px;
+                padding: 2px 10px !important;
+                font-size: 12px !important;
+                background-color: #f1f5f9 !important;
+                border: 1px solid #cbd5e1 !important;
+                color: #475569 !important;
             }
             </style>
         """, unsafe_allow_html=True)
@@ -1737,21 +1737,24 @@ elif st.session_state.page == "Community":
                 
                 st.markdown("<div style='margin-bottom: 12px; border-bottom: 1px dashed #e2e8f0;'></div>", unsafe_allow_html=True)
 
-        # Broadcast Submission Block Form
+        # Chat inputs form
         with st.form("community_chat_form", clear_on_submit=True):
             chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello to the crew...")
             
-            # Replaced the block text label with a clean inline label containing an attachment icon
-            uploaded_chat_img = st.file_uploader(
-                "📸 Attach Cockpit Media / Route Flight Charts:", 
-                type=["png", "jpg", "jpeg", "webp"]
-            )
+            # Using split columns inside the form to cleanly place buttons next to each other
+            action_col1, action_col2 = st.columns([2, 1])
             
-            # Confirmation indicator to show when a photo file is securely cached in local form storage memory
-            if uploaded_chat_img is not None:
-                st.markdown(f"**🟢 Selected Asset Locked:** `{uploaded_chat_img.name}`")
-                
-            submit_chat = st.form_submit_button("Broadcast to Lounge 🛰️", type="primary")
+            with action_col1:
+                uploaded_chat_img = st.file_uploader(
+                    "📸 Attach Image", 
+                    type=["png", "jpg", "jpeg", "webp"],
+                    label_visibility="collapsed" # Completely hides the large text label to keep it ultra compact
+                )
+                if uploaded_chat_img is not None:
+                    st.caption(f"📎 Ready: `{uploaded_chat_img.name}`")
+                    
+            with action_col2:
+                submit_chat = st.form_submit_button("Send 🛰️", type="primary", use_container_width=True)
             
             if submit_chat:
                 current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
@@ -1828,3 +1831,4 @@ elif st.session_state.page == "Community":
             st.session_state.logged_in = False
             st.query_params.clear()
             st.rerun()
+ 
