@@ -1603,70 +1603,88 @@ elif st.session_state.page == "AI":
     
     st.link_button("Launch AeroBot Training Interface 🚀", "https://schoolaichatbot.zapier.app/", use_container_width=True)
 
-# ==========================================
+   # ==========================================
 # 🌐 THE COMMUNITY & DYNAMIC PROFILE ENGINE
 # ==========================================
 elif st.session_state.page == "Community":
     st.markdown("### 🌐 AeroLaunch Community Base")
     
-    # Define our clean layout views: Directory, Lounge Chat, and System settings
+    # Clean workspace separation tabs
     tab_directory, tab_lounge, tab_settings = st.tabs([
         "👥 Community Directory", 
         "💬 Flight Deck Chat", 
         "⚙️ Account Settings"
     ])
     
+    # --- HELPER FUNCTION: INITIALS AVATAR ENGINE ---
+    def get_initials_avatar(full_name):
+        """Generates a clean, letter-based profile icon using user initials."""
+        parts = full_name.strip().split()
+        if len(parts) >= 2:
+            initials = f"{parts[0][0]}{parts[-1][0]}".upper()
+        elif len(parts) == 1 and parts[0]:
+            initials = parts[0][:2].upper()
+        else:
+            initials = "AV"
+        
+        # Returns an elegant SVG data vector with a bold blue aviation background
+        svg_code = f"""
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'>
+            <circle cx='50' cy='50' r='45' fill='#1d4ed8' />
+            <text x='50%' y='55%' font-family='"Times New Roman", Times, serif' font-size='36' font-weight='bold' fill='#ffffff' text-anchor='middle' dominant-baseline='middle'>{initials}</text>
+        </svg>
+        """
+        import base64
+        b64_svg = base64.b64encode(svg_code.encode('utf-8')).decode('utf-8')
+        return f"data:image/svg+xml;base64,{b64_svg}"
+
     # ------------------------------------------
     # TAB 1: DISPLAY THE DIRECTORY & PROFILE EDIT
     # ------------------------------------------
     with tab_directory:
         st.markdown("#### 🛠️ Edit Your Identity Profile")
         
-        # Pull profile specifics from local helper variables or session state defaults
-        current_username = st.session_state.get("user_username", "GuestPilot")
-        current_nickname = st.session_state.get("user_display_name", "AeroMember")
+        current_username = st.session_state.get("user_username", "jazzaviation")
+        current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
         
-        # Simple inline avatar checker function if not declared globally
-        def local_avatar_url(name_string):
-            return f"https://api.dicebear.com/7.x/bottts/svg?seed={name_string}"
-            
         col1, col2 = st.columns([1, 4])
         with col1:
-            st.image(local_avatar_url(current_nickname), caption="Your Live Avatar", width=110)
+            # Renders dynamic initials circle badge
+            avatar_data_url = get_initials_avatar(current_nickname)
+            st.image(avatar_data_url, caption="Your Profile Badge", width=110)
             
         with col2:
             with st.form("modify_profile_form"):
                 st.write(f"**System Handle ID:** `@{current_username}`")
                 changed_nickname = st.text_input("Change Your Display Nickname:", value=current_nickname)
-                save_profile_btn = st.form_submit_button("Save Changes & Re-roll Avatar 💾")
+                save_profile_btn = st.form_submit_button("Save Changes & Re-roll Initials 💾")
                 
                 if save_profile_btn:
                     if not changed_nickname.strip():
                         st.error("Nickname cannot be left blank.")
                     else:
                         st.session_state.user_display_name = changed_nickname.strip()
-                        st.success("Identity vector updated successfully!")
+                        st.success("Identity profile updated successfully!")
                         st.rerun()
 
         st.markdown("---")
         st.markdown("#### 👥 Live Active Community Directory")
         
-        # Simple rendering layout grid
         grid_cols = st.columns(4)
         mock_roster = [
             {"name": current_nickname, "handle": current_username},
-            {"name": "Alpha_Pilot", "handle": "alpha_flyer"},
-            {"name": "SkyBound_16", "handle": "sky_high"},
-            {"name": "ATC_Tower_Ops", "handle": "tower_control"}
+            {"name": "Ace Maverick", "handle": "pilot"},
+            {"name": "Tower Boss", "handle": "control"},
+            {"name": "Alpha Pilot", "handle": "alpha_flyer"}
         ]
         
         for index, member in enumerate(mock_roster):
             target_col = grid_cols[index % 4]
             with target_col:
-                render_url = local_avatar_url(member["name"])
+                member_avatar = get_initials_avatar(member["name"])
                 st.markdown(f"""
                 <div style="background-color: white; border: 1px solid #cbd5e1; border-radius: 10px; padding: 15px; text-align: center; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
-                    <img src="{render_url}" width="65" style="border-radius: 50%; margin-bottom: 8px; border: 2px solid #1d4ed8; background-color: #f1f5f9;"><br>
+                    <img src="{member_avatar}" width="65" style="border-radius: 50%; margin-bottom: 8px; border: 2px solid #1d4ed8; background-color: #f1f5f9;"><br>
                     <strong style="color: #0f172a; font-size: 15px;">{member['name']}</strong><br>
                     <span style="color: #64748b; font-size: 12px;">@{member['handle']}</span>
                 </div>
@@ -1678,13 +1696,11 @@ elif st.session_state.page == "Community":
     with tab_lounge:
         st.markdown("#### 💬 Global Flight Deck Chat Lounge")
         
-        # Display container window
         chat_container = st.container()
         with chat_container:
-            # Clean static structure fallback so chat doesn't depend on missing text files
             st.markdown(f"""
             <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
-                <img src="{local_avatar_url('System')}" width=32 style="border-radius: 50%;">
+                <img src="{get_initials_avatar('System Core')}" width="32" style="border-radius: 50%;">
                 <div>
                     <strong style="color: #1d4ed8;">AeroLaunch Broadcast</strong> <span style="color: gray; font-size: 0.75rem;">(System Auto-Link)</span><br>
                     <span style="font-size: 14px; color: #334155;">Welcome to the Flight Deck chat area! Keep conversations focused on flight training and aviation milestones.</span>
@@ -1701,12 +1717,24 @@ elif st.session_state.page == "Community":
                 st.rerun()
 
     # ------------------------------------------
-    # TAB 3: ISOLATED SECURITY & ACCOUNT DELETION
+    # TAB 3: ISOLATED THEME CONTROL & DELETION
     # ------------------------------------------
     with tab_settings:
-        st.markdown("#### 🚨 Pilot System Settings")
+        st.markdown("#### 🎨 Custom Display Theme Settings")
         
-        # Explicit warning card block
+        # Background Canvas Color Picker Widget
+        if "bg_color_pick" not in st.session_state:
+            st.session_state.bg_color_pick = "#f8fafc"
+            
+        chosen_color = st.color_picker("Choose website workspace background color:", st.session_state.bg_color_pick)
+        if chosen_color != st.session_state.bg_color_pick:
+            st.session_state.bg_color_pick = chosen_color
+            # Dynamically applies background change without manual reloading
+            st.markdown(f"<style>.stApp {{ background-color: {chosen_color} !important; }}</style>", unsafe_allow_html=True)
+            
+        st.markdown("---")
+        st.markdown("#### 🚨 Pilot Account Deletion")
+        
         st.markdown("""
         <div style="background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
             <strong style="color: #991b1b; font-size: 15px;">⚠️ Permanent Profile Erasure Action</strong>
@@ -1716,21 +1744,19 @@ elif st.session_state.page == "Community":
         </div>
         """, unsafe_allow_html=True)
         
-        # Self-contained isolation form
         with st.form("delete_account_form"):
-            current_username = st.session_state.get("user_username", "GuestPilot")
+            current_username = st.session_state.get("user_username", "jazzaviation")
             confirm_user = st.text_input("Type your username to confirm account deletion:", placeholder=current_username)
             submit_delete = st.form_submit_button("Permanently Destroy My Account 💥", type="primary", use_container_width=True)
             
             if submit_delete:
                 if confirm_user == current_username:
-                    # Clean out all app memory credentials cleanly
                     st.session_state.logged_in = False
                     st.session_state.user_username = ""
                     st.session_state.user_display_name = ""
-                    st.session_state.page = "Feed" # Reset route direction
+                    st.session_state.page = "Home Feed"
                     st.query_params.clear()
                     st.success("Account profile scrubbed.")
                     st.rerun()
                 else:
-                    st.error("Confirmation signature mismatch. Deletion script halted.")
+                    st.error("Confirmation signature mismatch. Deletion script halted.") 
