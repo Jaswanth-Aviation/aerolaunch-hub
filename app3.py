@@ -1586,11 +1586,12 @@ elif st.session_state.page == "Community":
     if "user_avatar_bg" not in st.session_state:
         st.session_state.user_avatar_bg = "#1d4ed8"  # Default clean aviation blue
     
-    # Clean workspace separation tabs (Background settings removed from Tab 3)
-    tab_directory, tab_lounge, tab_settings = st.tabs([
+    # CRITICAL FIX: All 4 tabs are created together here so 'tab_session' is defined!
+    tab_directory, tab_lounge, tab_settings, tab_session = st.tabs([
         "👥 Community Directory", 
         "💬 Flight Deck Chat", 
-        "⚙️ Account Settings"
+        "⚙️ Account Settings",
+        "👤 User Session"
     ])
     
     # --- HELPER FUNCTION: INITIALS AVATAR ENGINE ---
@@ -1604,7 +1605,6 @@ elif st.session_state.page == "Community":
         else:
             initials = "AV"
         
-        # Generates responsive high-res vector badge utilizing chosen accent hex color
         svg_code = f"""
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'>
             <circle cx='50' cy='50' r='45' fill='{bg_hex}' />
@@ -1616,7 +1616,7 @@ elif st.session_state.page == "Community":
         return f"data:image/svg+xml;base64,{b64_svg}"
 
     # ------------------------------------------
-    # TAB 1: DISPLAY THE DIRECTORY & PROFILE EDIT
+    # TAB 1: COMMUNITY DIRECTORY & IDENTITY EDIT
     # ------------------------------------------
     with tab_directory:
         st.markdown("#### 🛠️ Edit Your Identity Profile")
@@ -1626,7 +1626,6 @@ elif st.session_state.page == "Community":
         
         col1, col2 = st.columns([1, 4])
         with col1:
-            # Renders personal vector badge with custom runtime session state background color
             avatar_data_url = get_initials_avatar(current_nickname, st.session_state.user_avatar_bg)
             st.image(avatar_data_url, caption="Your Profile Badge", width=110)
             
@@ -1635,7 +1634,6 @@ elif st.session_state.page == "Community":
                 st.write(f"**System Handle ID:** `@{current_username}`")
                 changed_nickname = st.text_input("Change Your Display Nickname:", value=current_nickname)
                 
-                # Integrated the background custom color selector inside the identity profile form
                 new_avatar_color = st.color_picker(
                     "Customize your initial badge background accent:", 
                     value=st.session_state.user_avatar_bg
@@ -1702,7 +1700,7 @@ elif st.session_state.page == "Community":
                 st.rerun()
 
     # ------------------------------------------
-    # TAB 3: ISOLATED SYSTEM ACCOUNT ACTIONS
+    # TAB 3: CLEAN PILOT ACCOUNT DELETION
     # ------------------------------------------
     with tab_settings:
         st.markdown("#### 🚨 Pilot Account Deletion")
@@ -1733,8 +1731,8 @@ elif st.session_state.page == "Community":
                 else:
                     st.error("Confirmation signature mismatch. Deletion script halted.")
 
-# ------------------------------------------
-    # TAB 4: CLEAN INTEGRATED USER SESSION VIEW
+    # ------------------------------------------
+    # TAB 4: INTEGRATED USER SESSION VIEW
     # ------------------------------------------
     with tab_session:
         st.markdown("#### 👤 Active Pilot Session")
@@ -1742,7 +1740,6 @@ elif st.session_state.page == "Community":
         current_username = st.session_state.get("user_username", "jazzaviation")
         current_nickname = st.session_state.get("user_display_name", "Jaswanth Mallareddi")
         
-        # Centered visual status card layout
         session_avatar = get_initials_avatar(current_nickname, st.session_state.user_avatar_bg)
         st.markdown(f"""
         <div style="background-color: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; text-align: center; max-width: 400px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
@@ -1757,10 +1754,7 @@ elif st.session_state.page == "Community":
         
         st.markdown("<br>", unsafe_allow_html=True)
         
-        # Standard logout function execution trigger button
         if st.button("🚪 Log Out & Clear Session", use_container_width=True, type="secondary"):
             st.session_state.logged_in = False
             st.query_params.clear()
             st.rerun()
-                    
-
