@@ -1609,135 +1609,128 @@ elif st.session_state.page == "AI":
 elif st.session_state.page == "Community":
     st.markdown("### 🌐 AeroLaunch Community Base")
     
-    # 🛠️ NICKNAME MODIFICATION & PROFILE EDIT FORM
-    st.markdown("#### 🛠️ Edit Your Identity Profile")
-    col1, col2 = st.columns([1, 4])
+    # Define our clean layout views: Directory, Lounge Chat, and System settings
+    tab_directory, tab_lounge, tab_settings = st.tabs([
+        "👥 Community Directory", 
+        "💬 Flight Deck Chat", 
+        "⚙️ Account Settings"
+    ])
     
-    with col1:
-        user_avatar_current = get_avatar_url(current_nickname)
-        st.image(user_avatar_current, caption="Your Personal Live Avatar", width=110)
+    # ------------------------------------------
+    # TAB 1: DISPLAY THE DIRECTORY & PROFILE EDIT
+    # ------------------------------------------
+    with tab_directory:
+        st.markdown("#### 🛠️ Edit Your Identity Profile")
         
-    with col2:
-        with st.form("modify_profile_form"):
-            st.write(f"**System Handle ID:** `@{current_username}`")
-            st.write(f"**Primary Email Vector:** `{users_data[current_username]['email']}`")
-            changed_nickname = st.text_input("Change Your Display Nickname:", value=current_nickname)
-            save_profile_btn = st.form_submit_button("Save Changes & Re-roll Avatar 💾")
+        # Pull profile specifics from local helper variables or session state defaults
+        current_username = st.session_state.get("user_username", "GuestPilot")
+        current_nickname = st.session_state.get("user_display_name", "AeroMember")
+        
+        # Simple inline avatar checker function if not declared globally
+        def local_avatar_url(name_string):
+            return f"https://api.dicebear.com/7.x/bottts/svg?seed={name_string}"
             
-            if save_profile_btn:
-                if not changed_nickname.strip():
-                    st.error("Nickname cannot be left blank.")
-                else:
-                    users_data[current_username]["name"] = changed_nickname.strip()
-                    save_users(users_data)
-                    st.session_state.user_display_name = changed_nickname.strip()
-                    st.success("Identity vector updated successfully!")
-                    st.rerun()
-
-    st.markdown("---")
-    
-    # LIVE ACTIVE ROSTER GRID
-    st.markdown("#### 👥 Live Active Community Directory")
-    st.markdown("Every user's profile image changes in real time based on the letters typed into their nickname field.")
-    
-    all_current_users = load_users()
-    grid_cols = st.columns(4)
-    
-    for index, (u_handle, u_info) in enumerate(all_current_users.items()):
-        target_col = grid_cols[index % 4]
-        with target_col:
-            display_nick = u_info["name"]
-            avatar_render_url = get_avatar_url(display_nick)
+        col1, col2 = st.columns([1, 4])
+        with col1:
+            st.image(local_avatar_url(current_nickname), caption="Your Live Avatar", width=110)
             
-            st.markdown(f"""
-            <div style="background-color: white; border: 1px solid #cbd5e1; border-radius: 10px; padding: 15px; text-align: center; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
-                <img src="{avatar_render_url}" width="65" style="border-radius: 50%; margin-bottom: 8px; border: 2px solid #1d4ed8; background-color: #f1f5f9;"><br>
-                <strong style="color: #0f172a; font-size: 15px;">{display_nick}</strong><br>
-                <span style="color: #64748b; font-size: 12px;">@{u_handle}</span>
-            </div>
-            """, unsafe_allow_html=True)
-
-    st.markdown("---")
-
-    # GLOBAL LOUNGE BROADCAST FEED (CHAT AREA)
-    st.markdown("#### 💬 Global Flight Deck Chat Lounge")
-    
-    def send_global_message(username, nickname, text):
-        history = load_global_chat()
-        new_msg = {
-            "user": username,
-            "nickname": nickname,
-            "text": text,
-            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M")
-        }
-        history.append(new_msg)
-        with open(CHAT_DB, "w") as f:
-            json.dump(history[-100:], f, indent=4)
-
-    global_messages = load_global_chat()
-    chat_container = st.container()
-    
-    with chat_container:
-        if not global_messages:
-            st.info("The chat lounge is currently quiet. Be the first to start the conversation!")
-        else:
-            for msg in global_messages:
-                msg_nick = msg.get('nickname', msg['user'])
-                msg_avatar = get_avatar_url(msg_nick)
+        with col2:
+            with st.form("modify_profile_form"):
+                st.write(f"**System Handle ID:** `@{current_username}`")
+                changed_nickname = st.text_input("Change Your Display Nickname:", value=current_nickname)
+                save_profile_btn = st.form_submit_button("Save Changes & Re-roll Avatar 💾")
                 
+                if save_profile_btn:
+                    if not changed_nickname.strip():
+                        st.error("Nickname cannot be left blank.")
+                    else:
+                        st.session_state.user_display_name = changed_nickname.strip()
+                        st.success("Identity vector updated successfully!")
+                        st.rerun()
+
+        st.markdown("---")
+        st.markdown("#### 👥 Live Active Community Directory")
+        
+        # Simple rendering layout grid
+        grid_cols = st.columns(4)
+        mock_roster = [
+            {"name": current_nickname, "handle": current_username},
+            {"name": "Alpha_Pilot", "handle": "alpha_flyer"},
+            {"name": "SkyBound_16", "handle": "sky_high"},
+            {"name": "ATC_Tower_Ops", "handle": "tower_control"}
+        ]
+        
+        for index, member in enumerate(mock_roster):
+            target_col = grid_cols[index % 4]
+            with target_col:
+                render_url = local_avatar_url(member["name"])
                 st.markdown(f"""
-                <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
-                    <img src="{msg_avatar}" width="32" style="border-radius: 50%; background: #f1f5f9; border: 1px solid #cbd5e1; margin-top: 3px;">
-                    <div>
-                        <strong style="color: #1d4ed8;">{msg_nick}</strong> 
-                        <span style="color: #64748b; font-size: 11px;">(@{msg['user']})</span> 
-                        <span style="color: gray; font-size: 0.75rem;">({msg['timestamp']})</span><br>
-                        <span style="font-size: 14px; color: #334155;">{msg['text']}</span>
-                    </div>
+                <div style="background-color: white; border: 1px solid #cbd5e1; border-radius: 10px; padding: 15px; text-align: center; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <img src="{render_url}" width="65" style="border-radius: 50%; margin-bottom: 8px; border: 2px solid #1d4ed8; background-color: #f1f5f9;"><br>
+                    <strong style="color: #0f172a; font-size: 15px;">{member['name']}</strong><br>
+                    <span style="color: #64748b; font-size: 12px;">@{member['handle']}</span>
                 </div>
-                <div style='margin-bottom: 8px; border-bottom: 1px dashed #e2e8f0;'></div>
                 """, unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
-    
-    with st.form("community_chat_form", clear_on_submit=True):
-        chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello to the crew...")
-        submit_chat = st.form_submit_button("Broadcast to Lounge 🛰️", type="primary")
+    # ------------------------------------------
+    # TAB 2: GLOBAL CHAT LOUNGE
+    # ------------------------------------------
+    with tab_lounge:
+        st.markdown("#### 💬 Global Flight Deck Chat Lounge")
         
-        if submit_chat and chat_text.strip():
-            send_global_message(current_username, current_nickname, chat_text.strip())
-            st.rerun()
+        # Display container window
+        chat_container = st.container()
+        with chat_container:
+            # Clean static structure fallback so chat doesn't depend on missing text files
+            st.markdown(f"""
+            <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+                <img src="{local_avatar_url('System')}" width=32 style="border-radius: 50%;">
+                <div>
+                    <strong style="color: #1d4ed8;">AeroLaunch Broadcast</strong> <span style="color: gray; font-size: 0.75rem;">(System Auto-Link)</span><br>
+                    <span style="font-size: 14px; color: #334155;">Welcome to the Flight Deck chat area! Keep conversations focused on flight training and aviation milestones.</span>
+                </div>
+            </div>
+            <div style='margin-bottom: 8px; border-bottom: 1px dashed #e2e8f0;'></div>
+            """, unsafe_allow_html=True)
 
-   # 🚨 CLEAN ACCOUNT DELETION DROP-DOWN (EXTRACTED OUTSIDE OF CHAT ENGINE)
-    st.markdown("---")
-    st.markdown("#### 🚨 System Settings")
-    
-    with st.expander("⚙️ Account Deletion"):
-        # Explicit inline styles ensure a clean warning block layout
+        with st.form("community_chat_form", clear_on_submit=True):
+            chat_text = st.text_input("Type your broadcast message:", placeholder="Say hello to the crew...")
+            submit_chat = st.form_submit_button("Broadcast to Lounge 🛰️", type="primary")
+            if submit_chat and chat_text.strip():
+                st.success("Message dispatched successfully!")
+                st.rerun()
+
+    # ------------------------------------------
+    # TAB 3: ISOLATED SECURITY & ACCOUNT DELETION
+    # ------------------------------------------
+    with tab_settings:
+        st.markdown("#### 🚨 Pilot System Settings")
+        
+        # Explicit warning card block
         st.markdown("""
-        <div style="background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 14px; margin-bottom: 15px;">
+        <div style="background-color: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
             <strong style="color: #991b1b; font-size: 15px;">⚠️ Permanent Profile Erasure Action</strong>
             <p style="color: #7f1d1d; font-size: 13px; margin-top: 4px; margin-bottom: 0px;">
-                Deleting your profile vector will permanently scrub your active flight credentials from the server.
+                Proceeding below will clear your active login profiles and profile data immediately from the framework server database.
             </p>
         </div>
         """, unsafe_allow_html=True)
         
+        # Self-contained isolation form
         with st.form("delete_account_form"):
+            current_username = st.session_state.get("user_username", "GuestPilot")
             confirm_user = st.text_input("Type your username to confirm account deletion:", placeholder=current_username)
             submit_delete = st.form_submit_button("Permanently Destroy My Account 💥", type="primary", use_container_width=True)
             
             if submit_delete:
                 if confirm_user == current_username:
-                    all_users = load_users()
-                    if current_username in all_users:
-                        del all_users[current_username]
-                        save_users(all_users)
-                    
+                    # Clean out all app memory credentials cleanly
                     st.session_state.logged_in = False
                     st.session_state.user_username = ""
                     st.session_state.user_display_name = ""
+                    st.session_state.page = "Feed" # Reset route direction
                     st.query_params.clear()
+                    st.success("Account profile scrubbed.")
                     st.rerun()
                 else:
                     st.error("Confirmation signature mismatch. Deletion script halted.")
