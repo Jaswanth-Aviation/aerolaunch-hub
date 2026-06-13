@@ -15,16 +15,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Injecting search engine validation blocks for both Google and Bing safely
-st.components.v1.html(
-    """
-    <meta name="google-site-verification" content="SratphLQH9l1bcw65FrdBhyFi_d0i4wGVhuOCR027ks" />
-    <meta name="msvalidate.01" content="B4BB33988C366654FED18412EDE69D62" />
-    """,
-    height=0,
-    width=0
-)
-
 # Lightweight file paths for persistent JSON storage
 USER_DB = "user_db.json"
 CHAT_DB = "chat_db.json"
