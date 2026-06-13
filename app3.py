@@ -1,27 +1,3 @@
-import streamlit as st
-
-# 1. Primary Page Settings (Must stay at the absolute top)
-st.set_page_config(
-    page_title="AeroLaunch Community Base | Pilot Portal",
-    page_icon="🌐",
-    layout="wide",
-    menu_items={
-        'Get Help': 'https://github.com/Jaswanth-Aviation/aerolaunch-hub',
-        'Report a bug': 'https://github.com/Jaswanth-Aviation/aerolaunch-hub/issues',
-        'About': '# AeroLaunch Community Hub\nCreated by Jaswanth Mallareddi.'
-    }
-)
-
-# 2. Inject Search Engine Meta Tags safely into an HTML Component wrapper
-st.components.v1.html(
-    """
-    <meta name="google-site-verification" content="SratphLQH9l1bcw65FrdBhyFi_d0i4wGVhuOCR027ks" />
-    <meta name="msvalidate.01" content="B4BB33988C366654FED18412EDE69D62" />
-    """,
-    height=0,
-    width=0
-)
-
 # ==========================================
 # 1. CORE IMPORTS, DATABASE PERSISTENCE & CONFIG
 # ==========================================
